@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e8ba1758d3d7264b8206888c9608928, type: 3}
+  m_Name: Profil1
+  m_EditorClassIdentifier: 
+  Used: 1
+  maxBaseAttackInputSlots: 5
+  FALoadout:
+  - {fileID: 11400000, guid: f3c3e14e80b3bbf47a13e11f17edd9ac, type: 2}
+  - {fileID: 11400000, guid: 73cf7530c323cec48ae7a40273d02661, type: 2}
+  - {fileID: 11400000, guid: 01b158b686d3a3540bbdb79fe485522a, type: 2}
+  SuperDuperFA: {fileID: 11400000, guid: 52d82319906a0704f9322bf9130e861f, type: 2}
+  curImplant: {fileID: 11400000, guid: c09adac958dbb254d922b67a9ca751d7, type: 2}
+  lowestFAcost: 36
+  LinkerName: Skerxan
+  MonsterName: Silent Reaper
+  MaxHitPoints: 5000
+  Arena: 1
