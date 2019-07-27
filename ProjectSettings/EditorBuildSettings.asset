@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/MonsterLinker/Scenes/Arena_1.unity
+    path: Assets/MonsterLinkerAssets/Scenes/Arena_1.unity
     guid: 45cd578185c7ce8429cc6f912b9ef601
   m_configObjects: {}
