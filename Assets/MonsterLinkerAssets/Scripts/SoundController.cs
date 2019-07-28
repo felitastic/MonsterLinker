@@ -66,10 +66,14 @@ public class SoundController : MonoBehaviour
     {
         if (Instance != null)
         {
-            Application.Quit();
+            print("there is already a SFX controller!");
+            Destroy(this);
+            //Application.Quit();
         }
-
-        Instance = this;
+        else
+        {
+            Instance = this;
+        }
         //controls automatic BGM atm
         this.AudioSourceBGM.volume = this.startVolumeBGM;
         //aktTrackNumber = -1;    

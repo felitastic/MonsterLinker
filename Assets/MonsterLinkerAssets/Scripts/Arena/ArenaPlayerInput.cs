@@ -75,10 +75,11 @@ public class ArenaPlayerInput : MonoBehaviour
 
     public void Test()
     {
-        float duration = Random.Range(0.1f, 0.2f);
-        float magnitude = Random.Range(1.5f, 2.25f);
+        VFXController.Instance.SpawnEffect(VFXController.VFX.TestVFX, VFXController.Position.TestMiddle);
 
-        StartCoroutine(GameStateSwitch.Instance.camshake.Shake(duration, magnitude));
+        //float duration = Random.Range(0.1f, 0.2f);
+        //float magnitude = Random.Range(1.5f, 2.25f);
+        //StartCoroutine(GameStateSwitch.Instance.camshake.Shake(duration, magnitude));
     }
     //public void ChooseProfile(Save saveSlot)
     //{
