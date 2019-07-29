@@ -58,17 +58,22 @@ public class CreatureAnimEvents : MonoBehaviour
         animationhandler.HurtCheck();
     }
 
-    public void SFXHeavy()
+    public void SFXImpact(int ImpactNo)
     {
-        SoundController.Instance.StartSFX(SoundController.SFX.impact_heavy);
-    }
-    public void SFXNormal()
-    {
-        SoundController.Instance.StartSFX(SoundController.SFX.impact_normal);
-    }
-    public void SFXLight()
-    {
-        SoundController.Instance.StartSFX(SoundController.SFX.impact_light);
+        switch (ImpactNo)
+        {
+            case 1:
+            SoundController.Instance.StartSFX(SoundController.SFX.impact_light);
+                break;
+            case 2:
+            SoundController.Instance.StartSFX(SoundController.SFX.impact_normal);
+                break;
+            case 3:
+            SoundController.Instance.StartSFX(SoundController.SFX.impact_heavy);
+                break;
+            default:
+                break;
+        }
     }
 
     public void SFXEndurance()
@@ -86,5 +91,5 @@ public class CreatureAnimEvents : MonoBehaviour
         print("animation end");
         attackroundhandler.NextAttack();
         //animationhandler.ResetToIdle();
-    }    
+    }
 }
