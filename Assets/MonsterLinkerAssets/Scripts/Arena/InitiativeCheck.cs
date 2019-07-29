@@ -17,7 +17,7 @@ public class InitiativeCheck : MonoBehaviour
 
     public void GetSpeedValues()
     {
-        if (GameStateSwitch.Instance.implanthandler.UMactivated)
+        if (GameStateSwitch.Instance.implanthandler.Unleashed == eUnleashedMode.active)
         {
             PlayerSpeed = 100;
         }

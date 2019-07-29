@@ -26,7 +26,7 @@ public class AttackSlotSpawn : MonoBehaviour
 
     [SerializeField] Vector3 IconScale = new Vector3(1f,1f,1f);
 
-    GameObject extraSlot;
+    GameObject ExtraSlot;
 
     [SerializeField]
     private float PanelHeight;
@@ -56,14 +56,14 @@ public class AttackSlotSpawn : MonoBehaviour
         PanelHeight = 2 * spacing + cellsize;
         PlayerPanelTransform.sizeDelta = new Vector2(PanelWidth, PanelHeight);
 
-        extraSlot = GameObject.Instantiate(Slot, transform.position, transform.rotation) as GameObject;
-        extraSlot.transform.parent = PlayerInputBar.transform;
-        extraSlot.transform.localScale = IconScale;
+        ExtraSlot = GameObject.Instantiate(Slot, transform.position, transform.rotation) as GameObject;
+        ExtraSlot.transform.parent = PlayerInputBar.transform;
+        ExtraSlot.transform.localScale = IconScale;
     }
 
     public void DestroyTemporarySlot()
     {
-        Destroy(extraSlot);
+        Destroy(ExtraSlot);
     }
 
     public void SpawnPlayerSlots()

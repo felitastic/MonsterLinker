@@ -91,7 +91,7 @@ public class BAEffectsHandler : MonoBehaviour
     {
         float tempBaseDMG1 = curAttack.DMG + (curAttack.DMG * ImplantModifier);               
         float tempBaseDMG2 = tempBaseDMG1 + (tempBaseDMG1 * EnduranceModifier);
-        curDMG = tempBaseDMG2 * QTEResultModifier;
+        curDMG = tempBaseDMG2 + (tempBaseDMG2 * QTEResultModifier);
     }
 
     public void CalculateEnemyBaseDmg()

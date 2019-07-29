@@ -163,7 +163,7 @@ public class GameStateSwitch : MonoBehaviour
             ///Enemy Input laden
             ///FA Check
             case eGameState.PlayerInput:
-                attackroundhandler.QTEfailed = false;
+                attackroundhandler.NoExtraSlot = false;
                 //implanthandler.PlayerRPatAttackStart = baeffectshandler.curPlayerRP;
 
                 arenaui.StatusBars.SetActive(true);
@@ -253,66 +253,7 @@ public class GameStateSwitch : MonoBehaviour
                 baeffectshandler.ResetDmgCount();
 
         //HACK: zum Test von Temp Input Slot
-        //attackroundhandler.QTEfailed = false;
-
-                //check which implant is active
-                switch (Implant)
-                {
-                    case eImplant.UnleashedMode:
-                        //=> rundencounter für UM, check wenn eingesetzt wurde
-                        print("unleash mode");
-                        break;
-                    case eImplant.SuperFA:
-                        print("super duper fa");
-                        //=> Check ob Recovery FA freigeschaltet ist und noch nicht benutzt wurde in diesem Fight
-                        if ((baeffectshandler.curPlayerHP <= (baeffectshandler.maxPlayerHP / 100) * 25) && !feralartcheck.superFAused)
-                        {
-                            if (feralartcheck.LoadedFeralArts.Count < 4)
-                            {
-                                print("activate super duper fa");
-                                feralartcheck.LoadedFeralArts.Add(curProfile.SuperDuperFA);
-                                fainfowindow.WriteSFAData(curProfile.SuperDuperFA);
-                                fainfowindow.SI.SetActive(true);
-                            }
-                            else
-                                print("super duper fa already activated");
-                        }
-                        else
-                            print("not activating super duper FA");
-                        break;
-                    case eImplant.TempInputSlot:
-                        print("temporary input slot");
-                        //=> Check ob Temp. Extra BA Input Slot freigeschaltet wurde
-                        if (!attackroundhandler.QTEfailed)
-                        {
-                            print("no qte fails, giving 6th slot");
-                            inputbarhandler.maxBaseAttackInputSlots = 6;
-
-                            if (arenaui.playerSlots.Count < 6)
-                            {
-                                attackslotspawn.SpawnTemporarySlot();
-                                arenaui.GetAttackSlots();
-                            }
-                        }
-                        else
-                        {
-                            print("you failed, no 6th slot");
-                            inputbarhandler.maxBaseAttackInputSlots = 5;
-                            if (arenaui.playerSlots.Count > 5)
-                            {
-                                print("deleting 6th slot");
-                                attackslotspawn.DestroyTemporarySlot();
-                                arenaui.GetAttackSlots();
-                            }
-                            attackroundhandler.QTEfailed = false;
-                        }
-                        break;
-                    //case eImplant.RisingRage:
-                    //    break;
-                    default:
-                        Debug.LogWarning("implant not found: "+ Implant);
-                        break;
-                }
+        //attackroundhandler.NoExtraSlot = false;                       
 
                 //Go to Player Input State
                 SwitchState(eGameState.PlayerInput);

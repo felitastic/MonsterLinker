@@ -90,6 +90,23 @@ public enum eImplant
     TempInputSlot
 }
 
+public enum eUnleashedMode
+{
+    sleeping,
+    available,
+    active,
+    used,
+    done
+}
+
+public enum eSuperFeralArt
+{
+    sleeping,
+    available,
+    used,
+    done
+}
+
 public enum eFightResult
 {
     None,
@@ -111,9 +128,9 @@ public enum eLoadout
     ImplantChoice
 };
 
-public enum eSlotNo
-{
-    First,
-    Second,
-    Third
-};
+//public enum eSlotNo
+//{
+//    First,
+//    Second,
+//    Third
+//};

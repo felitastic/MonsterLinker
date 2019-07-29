@@ -299,7 +299,7 @@ public class QTEHandler : MonoBehaviour
                 case eQTEZone.Fail:
                     SoundController.Instance.StartSFX(SoundController.SFX.qte_timing_fail);
                     curQTEAnim.Play(curQTE.Type + "_Fail");
-                    attackroundhandler.QTEfailed = true;
+                    attackroundhandler.NoExtraSlot = true;
                     baeffectshandler.SetFA_QTEResultModifier(curQTE.ModifierFail);
 
                     break;
@@ -330,7 +330,9 @@ public class QTEHandler : MonoBehaviour
                     //do dmg stuff etc
                     SoundController.Instance.StartSFX(SoundController.SFX.qte_timing_fail);
                     curQTEAnim.Play(curQTE.Type + "_Fail");
-                    attackroundhandler.QTEfailed = true;
+                    attackroundhandler.NoExtraSlot = true;
+                    GameStateSwitch.Instance.playerCreatureanimevents.qteResult = 1;
+                    GameStateSwitch.Instance.enemyCreatureanimevents.qteResult = 1;
                     baeffectshandler.SetQTEResultModifier(curQTE.ModifierFail, curQTE.RPGainFail);
                     print("fail QTE result");
                     break;
@@ -340,6 +342,8 @@ public class QTEHandler : MonoBehaviour
                     SoundController.Instance.StartSFX(SoundController.SFX.qte_block_perfect);
                     //curQTEAnim.speed = 1.0f;
                     curQTEAnim.Play(curQTE.Type + "_Good");
+                    GameStateSwitch.Instance.playerCreatureanimevents.qteResult = 2;
+                    GameStateSwitch.Instance.enemyCreatureanimevents.qteResult = 2;
                     baeffectshandler.SetQTEResultModifier(curQTE.ModifierGood, curQTE.RPGainGood);
                     print("good QTE result");
                     break;
@@ -349,6 +353,8 @@ public class QTEHandler : MonoBehaviour
                     SoundController.Instance.StartSFX(SoundController.SFX.qte_timing_good);
                     //curQTEAnim.speed = 1.0f;
                     curQTEAnim.Play(curQTE.Type + "_Perfect");
+                    GameStateSwitch.Instance.playerCreatureanimevents.qteResult = 3;
+                    GameStateSwitch.Instance.enemyCreatureanimevents.qteResult = 3;
                     baeffectshandler.SetQTEResultModifier(curQTE.ModifierPerfect, curQTE.RPGainPerfect);
                     print("perfect QTE result");
                     break;

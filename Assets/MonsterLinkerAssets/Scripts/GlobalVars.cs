@@ -9,5 +9,5 @@ public static class GlobalVars
     public static int AttackRound;
     public static int PlayerMaxHP = 1000;
     public static int EnemyMaxHP = 1000;
-    public static bool QTEfailed;
+    public static bool NoExtraSlot;
 }

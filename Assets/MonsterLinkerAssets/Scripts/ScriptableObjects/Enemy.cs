@@ -18,7 +18,7 @@ public class Enemy : ScriptableObject
     [Tooltip("Enemys max Input Slots")]
     public int MaxInputSlots = 5;
     [Tooltip("Modifier for the dmg; 0.5 => 50% more dmg ")]
-    public int DmgModifier;
+    public float DmgModifier;
     [Tooltip("How many RP enemy gains for every hit it takes ")]
     public int RPgainperHit;
 
