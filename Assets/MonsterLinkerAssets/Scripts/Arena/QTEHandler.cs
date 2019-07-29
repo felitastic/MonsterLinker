@@ -139,7 +139,7 @@ public class QTEHandler : MonoBehaviour
                     Block3Length = clip.length;
                     break;
                 default:
-                    print("not saving time of " + clip.name);
+                    //print("not saving time of " + clip.name);
                     break;
             }
         }

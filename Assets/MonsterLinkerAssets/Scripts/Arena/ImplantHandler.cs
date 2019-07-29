@@ -64,12 +64,11 @@ public class ImplantHandler : MonoBehaviour
                     case eUnleashedMode.sleeping:
                         if ((GameStateSwitch.Instance.baeffectshandler.curPlayerHP <= (GameStateSwitch.Instance.baeffectshandler.maxPlayerHP * UMPercent)))
                         {
+                            GameStateSwitch.Instance.arenaui.UMButton.SetActive(true);
                             Unleashed = eUnleashedMode.available;
                         }
                         break;
-                    case eUnleashedMode.available:
-                        GameStateSwitch.Instance.arenaui.UMButton.SetActive(true);
-                        //show symbol for UM
+                    case eUnleashedMode.available:                        
                         break;
                     case eUnleashedMode.active:
                         //show UM counter

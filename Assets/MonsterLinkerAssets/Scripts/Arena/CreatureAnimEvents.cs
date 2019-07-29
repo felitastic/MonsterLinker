@@ -31,17 +31,22 @@ public class CreatureAnimEvents : MonoBehaviour
 
     public void FADmg()
     {
-        switch (GameStateSwitch.Instance.GameState)
-        {
-            case eGameState.QTEAttack:
-                GameStateSwitch.Instance.baeffectshandler.CalculatePlayerBaseDmg();
+        //switch (GameStateSwitch.Instance.GameState)
+        //{
+        //    case eGameState.QTEAttack:
+        //        GameStateSwitch.Instance.baeffectshandler.CalculatePlayerBaseDmg();
 
-                break;
-            case eGameState.QTEBlock:
-                GameStateSwitch.Instance.baeffectshandler.CalculateEnemyBaseDmg();
+        //        break;
+        //    case eGameState.QTEBlock:
+        //        GameStateSwitch.Instance.baeffectshandler.CalculateEnemyBaseDmg();
 
-                break;                
-        }
+        //        break;                
+        //}
+        GameStateSwitch.Instance.baeffectshandler.DealDMG();
+    }
+
+    public void BADmg()
+    {
         GameStateSwitch.Instance.baeffectshandler.DealDMG();
     }
 

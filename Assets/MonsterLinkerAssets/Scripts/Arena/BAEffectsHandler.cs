@@ -68,23 +68,27 @@ public class BAEffectsHandler : MonoBehaviour
     public void SetImplantModifier(float implantModifier)
     {
         ImplantModifier = implantModifier;
+        print("ImplantModifier: " + ImplantModifier);
     }
 
     public void SetEnduranceModifier(int mashCount)
     {
         EnduranceModifier = (float)mashCount / 100.0f;
+        print("EnduranceModifier: " + EnduranceModifier);
         //return Mathf.RoundToInt(curAttack.DMG + (curAttack.DMG * EnduranceModifier));
     }
 
     public void SetFA_QTEResultModifier(float dmgModifier)
     {
         QTEResultModifier += dmgModifier;
+        print("QTEResultModifier: " + QTEResultModifier);
     }
 
     public void SetQTEResultModifier(float dmgModifier, int rpggained)
     {
         QTEResultModifier = dmgModifier;
         RPgained = rpggained;
+        print("QTEResultModifier: " + QTEResultModifier);
     }
 
     public void CalculatePlayerBaseDmg()
@@ -92,12 +96,17 @@ public class BAEffectsHandler : MonoBehaviour
         float tempBaseDMG1 = curAttack.DMG + (curAttack.DMG * ImplantModifier);               
         float tempBaseDMG2 = tempBaseDMG1 + (tempBaseDMG1 * EnduranceModifier);
         curDMG = tempBaseDMG2 + (tempBaseDMG2 * QTEResultModifier);
+        print("player tempBaseDMG1: " +tempBaseDMG1);
+        print("player tempBaseDMG2: " + tempBaseDMG2);
+        print("player curDMG: " + curDMG);
     }
 
     public void CalculateEnemyBaseDmg()
     {
         float tempBaseDMG = curAttack.DMG + (curAttack.DMG * EnemyDMGModifier);
         curDMG = tempBaseDMG - (tempBaseDMG * QTEResultModifier);
+        print("enemy tempBaseDMG: " + tempBaseDMG);
+        print("enemy curDMG: " + curDMG);
     }
 
     public void DealDMG()
