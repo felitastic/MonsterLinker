@@ -36,6 +36,8 @@ public class ArenaUIHandler : MonoBehaviour
     public Button HeavyAttack;
     public Button NormalAttack;
     public Button LightAttack;
+    public Button UM;
+    public GameObject UMButton;
 
     [Header("Result Screen")]
     public GameObject ResultPanel;
@@ -158,6 +160,11 @@ public class ArenaUIHandler : MonoBehaviour
         {
             HeavyAttack.animator.SetTrigger("Pressed");
             HeavyAttack.onClick.Invoke();
+        }
+        if (DPadButtons.Left || Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            UM.animator.SetTrigger("Pressed");
+            UM.onClick.Invoke();            
         }
     }
 

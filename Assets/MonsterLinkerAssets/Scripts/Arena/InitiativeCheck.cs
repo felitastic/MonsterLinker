@@ -20,6 +20,11 @@ public class InitiativeCheck : MonoBehaviour
         if (GameStateSwitch.Instance.implanthandler.Unleashed == eUnleashedMode.active)
         {
             PlayerSpeed = 100;
+            if (GameStateSwitch.Instance.implanthandler.UMrounds == 1)
+            {
+                //TODO if first round, trigger animation and one time heal
+                GameStateSwitch.Instance.implanthandler.UMHeal();
+            }
         }
         else
         {

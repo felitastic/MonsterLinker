@@ -153,6 +153,7 @@ public class GameStateSwitch : MonoBehaviour
                 arenaui.FALoadout.SetActive(false);
                 arenaui.ResultPanel.SetActive(false);
                 arenaui.FALoadout.SetActive(false);
+                arenaui.UMButton.SetActive(false);
 
                 if (!firstSetupDone)
                     FirstSetup();
@@ -189,7 +190,8 @@ public class GameStateSwitch : MonoBehaviour
                 arenaui.EnemyInputBar.SetActive(true);
                 arenaui.InitiativeCheck.SetActive(true);
                 initiativecheck.GetSpeedValues();
-                StartCoroutine(initiativecheck.CompareSpeed());
+                if (implanthandler.Unleashed != eUnleashedMode.active && implanthandler.UMrounds != 1)
+                    StartCoroutine(initiativecheck.CompareSpeed());
                 arenaui.QTEPanel.SetActive(true);
 
                 //Enemy Input einblenden
@@ -325,8 +327,8 @@ public class GameStateSwitch : MonoBehaviour
         arenaui.PlayerName.text = curProfile.MonsterName;
         arenaui.EnemyName.text = curEnemy.MonsterName;
 
-        if (Implant == eImplant.SuperFA)
-            feralartcheck.superFAused = false;
+        //if (Implant == eImplant.SuperFA)
+        //    feralartcheck.superFAused = false;
 
         //TODO uncheck unleashed mode bool just in case
         //if (Implant == eImplant.UnleashedMode)
@@ -363,8 +365,8 @@ public class GameStateSwitch : MonoBehaviour
         inputbarhandler.Reset();
         enemystatemachine.ClearInput();
 
-        if (Implant == eImplant.SuperFA)
-            feralartcheck.superFAused = false;
+        //if (Implant == eImplant.SuperFA)
+        //    feralartcheck.superFAused = false;
 
         //TODO uncheck unleashed mode bool just in case
         //if (Implant == eImplant.UnleashedMode)

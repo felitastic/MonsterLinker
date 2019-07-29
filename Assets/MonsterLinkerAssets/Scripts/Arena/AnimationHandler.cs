@@ -7,6 +7,11 @@ public class AnimationHandler : MonoBehaviour
     public Animator EnemyAnim;
     public Animator PlayerAnim;
 
+    public void PlayerUMActivation()
+    {
+        PlayerAnim.SetTrigger("um");
+    }
+
     public void MoveToMiddle()
     {
         PlayerAnim.SetTrigger("walk");

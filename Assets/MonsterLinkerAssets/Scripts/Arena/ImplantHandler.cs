@@ -12,6 +12,7 @@ public class ImplantHandler : MonoBehaviour
 
     [Header("For Unleashed Mode")]
     public int UMrounds;
+    public bool UMbuttonpressed = false;
     [Tooltip("% of Player max HP threshold for activation of UM")]
     public float UMPercent = 0.25f;
     public float UM_oneTimeHeal_Value;
@@ -36,7 +37,6 @@ public class ImplantHandler : MonoBehaviour
     public void ResetCounters()
     {
         PlayerRPatAttackStart = 0f;
-        //UMavailable = false;
         UMrounds = 0;
         NoExtraSlot = false;
     }
@@ -47,10 +47,10 @@ public class ImplantHandler : MonoBehaviour
         return value;
     }
 
-    public void ActivateUM()
+    public void UMHeal()
     {
-        Unleashed = eUnleashedMode.active;
-        UMrounds = 1;
+        GameStateSwitch.Instance.animationhandler.PlayerUMActivation();
+        GameStateSwitch.Instance.baeffectshandler.HealPlayer(UM_oneTimeHeal_Value);
     }
 
     //called in nextround state
@@ -68,6 +68,7 @@ public class ImplantHandler : MonoBehaviour
                         }
                         break;
                     case eUnleashedMode.available:
+                        GameStateSwitch.Instance.arenaui.UMButton.SetActive(true);
                         //show symbol for UM
                         break;
                     case eUnleashedMode.active:

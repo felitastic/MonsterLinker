@@ -56,19 +56,33 @@ public class InputBarHandler : MonoBehaviour
         //arenaui.ConfirmBAsButton.enabled = false;
         arenaui.SetInputButtonsStatus(true);
 
-        if (feralartcheck.superFAused)
-            feralartcheck.superFAused = false;
+        //if (feralartcheck.superFAused)
+        //    feralartcheck.superFAused = false;
+    }
+
+    public void ActivateUM()
+    {
+        GameStateSwitch.Instance.implanthandler.UMbuttonpressed = !GameStateSwitch.Instance.implanthandler.UMbuttonpressed;
+        //TODO set some shit fuck bvuisdajisd so fucking dumb player sees if tis shit was chosen
+        //dumbass fucking shit animation wenn ausgewält jksausadwdaddajk
     }
 
     public void ConfirmInput()
     {
         if (PlayerAttackInput.Count == maxBaseAttackInputSlots)
         {
-            if (feralartcheck.superFAused)
+            //if (feralartcheck.superFAused)
+                //{
+                //    feralartcheck.LoadedFeralArts.RemoveAt(3);
+                //    GameStateSwitch.Instance.fainfowindow.SI.SetActive(false);
+                //}
+                if (GameStateSwitch.Instance.implanthandler.UMbuttonpressed)
             {
-                feralartcheck.LoadedFeralArts.RemoveAt(3);
-                GameStateSwitch.Instance.fainfowindow.SI.SetActive(false);
+                GameStateSwitch.Instance.implanthandler.Unleashed = eUnleashedMode.active;
+                GameStateSwitch.Instance.implanthandler.UMrounds = 1;
             }
+
+
             initiativecheck.curPlayerInput = PlayerAttackInput;
             StartCoroutine(WaitForButtonAnim());
 

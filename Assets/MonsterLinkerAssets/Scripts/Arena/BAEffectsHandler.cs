@@ -123,6 +123,14 @@ public class BAEffectsHandler : MonoBehaviour
         UpdateHPandRPbars();
     }
 
+    public void HealPlayer(float curHeal)
+    {
+        curPlayerHP += curHeal;
+        HPandRPClamp();
+        UpdateHPandRPCounter();
+        UpdateHPandRPbars();
+    }
+
     public void PlayerPaysRP()
     {
         curPlayerRP -= curAttack.RPCost;

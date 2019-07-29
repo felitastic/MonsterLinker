@@ -114,6 +114,14 @@ public class CreatureAnimEvents : MonoBehaviour
         }
     }
 
+    //TODO placeholder for testing, delete later
+    public void SFXNormal()
+    { }
+    public void SFXLight()
+    { }
+    public void SFXHeavy()
+    { }
+
     public void SFXEndurance()
     {
         //SoundController.Instance.StartLoopingSFX(SoundController.SFX.powerCharge1, 1.0f);

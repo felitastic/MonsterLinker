@@ -23,7 +23,7 @@ public class FeralArtCheck : MonoBehaviour
     public List<int> BAsToDelete;
     public List<int> BAsToColor;
 
-    public bool superFAused;
+    //public bool superFAused;
 
     public InputBarHandler inputbarhandler;
     public ArenaUIHandler arenaui;
@@ -249,11 +249,11 @@ public class FeralArtCheck : MonoBehaviour
 
                     AttackList.Insert(BAsToDelete[0], LoadedFeralArts[FANo]);
 
-                    //check if it is the super fa which can only be used once
-                    if (LoadedFeralArts[FANo] == GameStateSwitch.Instance.curProfile.SuperDuperFA)
-                    {
-                        superFAused = true;
-                    }
+                    //TODO SFA check used, maybe delete
+                    //if (LoadedFeralArts[FANo] == GameStateSwitch.Instance.curProfile.SuperDuperFA)
+                    //{
+                    //    superFAused = true;
+                    //}
 
                     //horrible hack um bei 2 3er FAs und 6 Input Slots beide farblich korrekt zu markieren
                     if (AttackList.Count == 2 && inputbarhandler.maxBaseAttackInputSlots == 6)

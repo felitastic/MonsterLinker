@@ -16,7 +16,6 @@ public class ArenaPlayerInput : MonoBehaviour
     {
         SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
         inputbarhandler.Add(baseAttack);
-        //update UI 
     }
 
     public void ExitGame()
