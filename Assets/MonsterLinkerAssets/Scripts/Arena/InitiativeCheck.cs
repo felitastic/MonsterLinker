@@ -17,15 +17,23 @@ public class InitiativeCheck : MonoBehaviour
 
     public void GetSpeedValues()
     {
-        foreach (BaseAttack attack in curPlayerInput)
+        if (GameStateSwitch.Instance.implanthandler.UMactivated)
         {
-            PlayerSpeed += attack.Speed;
+            PlayerSpeed = 100;
         }
+        else
+        {
+            foreach (BaseAttack attack in curPlayerInput)
+            {
+                PlayerSpeed += attack.Speed;
+            }
+        }
+
         foreach (BaseAttack attack in curEnemyInput)
         {
             EnemySpeed += attack.Speed;
         }
-
+        
         print("playerspeed: " + PlayerSpeed + "\n enemyspeed: " + EnemySpeed);
     }
 

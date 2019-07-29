@@ -27,38 +27,49 @@ public class SoundController : MonoBehaviour
 
     public enum SFX
     {
-        impact,
+        health_below25,
         impact_heavy,
         impact_light,
         impact_normal,
+        powerCharge1,
+        SFAimpact,
+        SFAbeingused,
+        empty,
+        unleashedMode,
         woosh_heavy,
         woosh_light,
         woosh_normal,
-        powerCharge1,
-        powerCharge2,
-        unleashedMode,
-        health_below25,
         ui_cancel,
+        ui_error,
         ui_loadoutEquip,
         ui_select,
         ui_switchBetweenSlots,
         qte_block_good,
         qte_block_perfect,
+        qte_timing_critical,
         qte_timing_fail,
         qte_timing_good,
+
         numberofSFX
     }
 
     public enum BGM
     {
+        menu1,
         fight1,
         fight2,
-        menu1,
         numberofBGM
     }
 
     public enum Ambience
     {
+        audience_booA,
+        audience_booB,
+        audience_booC,
+        audience_boo_singlePerson,
+        audience_crowdchatter,
+        audience_crowdcheer,
+
         numberofAmbience
     }
 

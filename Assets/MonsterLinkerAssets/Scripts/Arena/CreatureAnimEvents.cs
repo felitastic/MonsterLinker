@@ -42,7 +42,13 @@ public class CreatureAnimEvents : MonoBehaviour
         }
         GameStateSwitch.Instance.baeffectshandler.DealDMG();
     }
-        public void EnduranceStart()
+
+    public void VFXImpact()
+    {
+
+    }
+
+    public void EnduranceStart()
     {
         print("start endurance button mash now");
         StartCoroutine(qtehandler.ButtonMash());
