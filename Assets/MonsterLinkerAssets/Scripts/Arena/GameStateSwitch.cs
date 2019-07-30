@@ -33,6 +33,7 @@ public class GameStateSwitch : MonoBehaviour
     public CreatureAnimEvents enemyCreatureanimevents;
     public CamShake camshake;
     public ImplantHandler implanthandler;
+    public ChainLoadout chainloadout;
 
     public Save curProfile; 
     public Enemy curEnemy;
@@ -74,6 +75,7 @@ public class GameStateSwitch : MonoBehaviour
         animationhandler = GetComponentInChildren<AnimationHandler>();    
         fainfowindow = GetComponentInChildren<FAInfoWindow>();
         implanthandler = GetComponentInChildren<ImplantHandler>();
+        chainloadout = GetComponentInChildren<ChainLoadout>();
 
         qteanimevents = FindObjectOfType<QTEAnimEvents>();        
         enemystatusbar = FindObjectOfType<EnemyStatusBar>();
@@ -117,6 +119,7 @@ public class GameStateSwitch : MonoBehaviour
         baeffectshandler.enemystatusbar = enemystatusbar;
         baeffectshandler.playerstatusbar = playerstatusbar;
         baeffectshandler.implanthandler = implanthandler;
+        chainloadout.feralartcheck = feralartcheck;
     }
     
     //will be called by other scripts, update the arenastate and then run functions from the scripts
@@ -158,6 +161,8 @@ public class GameStateSwitch : MonoBehaviour
                 if (!firstSetupDone)
                     FirstSetup();
 
+                chainloadout.ConvertLoadedFeralArts();
+                chainloadout.CheckForChainPossibility();
                 StartCoroutine(WaitForIntro(IntroTime));
                 break;
             ///Player Input enablen

@@ -10,4 +10,6 @@ public class FeralArt : Attack
     [Header("Base Attacks for this FA")]
     [Tooltip("List of BAs needed for this FA")]
     public List<BaseAttack> FeralArtInput = new List<BaseAttack>();
+    [Tooltip("Description showing up in the Loadout Screen, use \\n for a linebreak")]
+    public string Description;
 }

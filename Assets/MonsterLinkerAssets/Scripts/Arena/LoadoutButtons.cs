@@ -8,8 +8,15 @@ public class LoadoutButtons : MonoBehaviour
 {
     [Header("Drag n drop")]
     public eLoadout Window;
-
+    
+    [Header("All available FAs")]
     public List<FeralArt> AllFAs;
+    [Header("All available SIs")]
+    public List<Implant> AllSIs;
+    [Header("All FA Choice GameObject")]
+    public List<GameObject> FAChoiceButtons;
+    [Header("All SI Choice GameObject")]
+    public List<GameObject> SIChoiceButtons;
     [Header("FA Field Prefab")]
     public GameObject FAField;
     [Tooltip("Icon Prefab, same as used for FA Info Window")]
@@ -77,6 +84,10 @@ public class LoadoutButtons : MonoBehaviour
             //adding the button function
             FAfield.GetComponent<Button>().onClick.AddListener(delegate { ChooseFA(feralart); });
 
+            //adding buttons to the list for description BS check
+            FAChoiceButtons.Add(FAfield);
+
+            //getting the first button in line
             if (Name.text == AllFAs[0].FAName)
             {
                 FAChoiceButton1 = FAfield.GetComponentInChildren<Button>();
@@ -125,7 +136,7 @@ public class LoadoutButtons : MonoBehaviour
     public void ConfirmLoadout() 
     {
         if (LoadedFAs[0] != null && LoadedFAs[1] != null && LoadedFAs[2] != null && GameStateSwitch.Instance.curProfile.curImplant != null)
-        {
+        {            
             StartCoroutine(WaitForButtonAnim());
         }
         else

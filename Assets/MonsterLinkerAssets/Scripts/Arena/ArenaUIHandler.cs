@@ -44,6 +44,10 @@ public class ArenaUIHandler : MonoBehaviour
     public GameObject UMText;
     public Text UMCounter;
 
+    [Header("Unleashede Mode")]
+    public GameObject SFASlot;
+    public Text SFA_Name;
+
     [Header("Result Screen")]
     public GameObject ResultPanel;
     public GameObject RetryButton;
@@ -146,6 +150,12 @@ public class ArenaUIHandler : MonoBehaviour
         {
 
         }
+    }
+
+    public void WriteSFA_Info()
+    {
+        SFA_Name.text = GameStateSwitch.Instance.implanthandler.SuperFeralArt.FAName;
+        SFASlot.SetActive(true);
     }
 
     public void CheckForPlayerBAInput()

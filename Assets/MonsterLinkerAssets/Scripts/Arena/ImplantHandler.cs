@@ -36,14 +36,14 @@ public class ImplantHandler : MonoBehaviour
 
     public void ResetCounters()
     {
-        PlayerRPatAttackStart = 0f;
+        PlayerRPatAttackStart = 0.0f;
         UMrounds = 0;
         NoExtraSlot = false;
     }
 
     public float RPMultiplier()
     {
-        float value = (OneRP_Multiplier * PlayerRPatAttackStart);
+        float value = (OneRP_Multiplier * Mathf.Round(PlayerRPatAttackStart));
         return value;
     }
 
@@ -111,15 +111,19 @@ public class ImplantHandler : MonoBehaviour
                         if ((GameStateSwitch.Instance.baeffectshandler.curPlayerHP <= (GameStateSwitch.Instance.baeffectshandler.maxPlayerHP * UMPercent)))
                         {
                             SuperFA = eSuperFeralArt.available;
+                            GameStateSwitch.Instance.feralartcheck.LoadedFeralArts.Add(SuperFeralArt);
                         }
                         break;
                     case eSuperFeralArt.available:
                         //show SFA in feral art list
                         print("Super FA is available for use");
+                        GameStateSwitch.Instance.arenaui.WriteSFA_Info();
 
                         break;
                     case eSuperFeralArt.used:
                         //disable SFA from feral art list
+                        GameStateSwitch.Instance.arenaui.SFASlot.SetActive(false);
+                        GameStateSwitch.Instance.feralartcheck.LoadedFeralArts.RemoveAt(3);
                         SuperFA = eSuperFeralArt.done;
                         break;
                     case eSuperFeralArt.done:
@@ -173,6 +177,7 @@ public class ImplantHandler : MonoBehaviour
                 break;
 
             case eImplant.RisingRage:
+                PlayerRPatAttackStart = GameStateSwitch.Instance.baeffectshandler.curPlayerRP;
                 break;
 
             default:

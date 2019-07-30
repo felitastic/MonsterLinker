@@ -9,4 +9,6 @@ public class Implant : ScriptableObject
     public eImplant ImplantType;
     public int RPCost;
     public List<BaseAttack> FAInput;
+    [Tooltip("Description showing up in the Loadout Screen, use \\n for a linebreak")]
+    public string Description;
 }
