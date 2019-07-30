@@ -37,7 +37,12 @@ public class ArenaUIHandler : MonoBehaviour
     public Button NormalAttack;
     public Button LightAttack;
     public Button UM;
+
+    [Header("Unleashede Mode")]
     public GameObject UMButton;
+    public GameObject UMIcon;
+    public GameObject UMText;
+    public Text UMCounter;
 
     [Header("Result Screen")]
     public GameObject ResultPanel;
@@ -103,11 +108,12 @@ public class ArenaUIHandler : MonoBehaviour
 
     public void SetIniArrow(string who)
     {
-        //float z = rotation;
-        //Vector3 newPos = new Vector3(0, 0, z);
-        //IniArrow.transform.Rotate(newPos);
-
         IniArrow.GetComponentInChildren<Animator>().Play("play"+who);
+    }
+
+    public void SetIni_UM()
+    {
+        IniArrow.GetComponentInChildren<Animator>().Play("playp");        
     }
 
     public void SetPlayerHPandRP(int HP, int RP)

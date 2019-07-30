@@ -7,9 +7,10 @@ public class AnimationHandler : MonoBehaviour
     public Animator EnemyAnim;
     public Animator PlayerAnim;
 
+    //TODO set to um animation when its there
     public void PlayerUMActivation()
     {
-        PlayerAnim.SetTrigger("um");
+        //PlayerAnim.SetTrigger("um");
     }
 
     public void MoveToMiddle()

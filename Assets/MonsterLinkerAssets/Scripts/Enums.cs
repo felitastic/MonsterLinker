@@ -95,7 +95,6 @@ public enum eUnleashedMode
     sleeping,
     available,
     active,
-    used,
     done
 }
 

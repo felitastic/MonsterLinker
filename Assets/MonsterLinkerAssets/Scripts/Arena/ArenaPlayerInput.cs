@@ -74,7 +74,8 @@ public class ArenaPlayerInput : MonoBehaviour
 
     public void Test()
     {
-        VFXController.Instance.SpawnEffect(VFXController.VFX.TestVFX, VFXController.Position.TestMiddle);
+        GameStateSwitch.Instance.baeffectshandler.curPlayerHP -= GameStateSwitch.Instance.baeffectshandler.maxPlayerHP * 0.72f;
+        //    VFXController.Instance.SpawnEffect(VFXController.VFX.TestVFX, VFXController.Position.TestMiddle);
 
         //float duration = Random.Range(0.1f, 0.2f);
         //float magnitude = Random.Range(1.5f, 2.25f);

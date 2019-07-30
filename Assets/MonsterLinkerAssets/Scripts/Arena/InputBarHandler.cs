@@ -63,8 +63,14 @@ public class InputBarHandler : MonoBehaviour
     public void ActivateUM()
     {
         GameStateSwitch.Instance.implanthandler.UMbuttonpressed = !GameStateSwitch.Instance.implanthandler.UMbuttonpressed;
-        //TODO set some shit fuck bvuisdajisd so fucking dumb player sees if tis shit was chosen
-        //dumbass fucking shit animation wenn ausgewält jksausadwdaddajk
+        if (GameStateSwitch.Instance.implanthandler.UMbuttonpressed)
+        {
+            arenaui.UMButton.GetComponentInChildren<Animator>().SetBool("Highlighted", true);
+        }
+        else
+        {
+            arenaui.UMButton.GetComponentInChildren<Animator>().SetBool("Highlighted", false);
+        }
     }
 
     public void ConfirmInput()
@@ -76,13 +82,13 @@ public class InputBarHandler : MonoBehaviour
                 //    feralartcheck.LoadedFeralArts.RemoveAt(3);
                 //    GameStateSwitch.Instance.fainfowindow.SI.SetActive(false);
                 //}
-                if (GameStateSwitch.Instance.implanthandler.UMbuttonpressed)
+
+            if (GameStateSwitch.Instance.implanthandler.UMbuttonpressed)
             {
                 GameStateSwitch.Instance.implanthandler.Unleashed = eUnleashedMode.active;
                 GameStateSwitch.Instance.implanthandler.UMrounds = 1;
+                GameStateSwitch.Instance.implanthandler.ImplantCheck();
             }
-
-
             initiativecheck.curPlayerInput = PlayerAttackInput;
             StartCoroutine(WaitForButtonAnim());
 

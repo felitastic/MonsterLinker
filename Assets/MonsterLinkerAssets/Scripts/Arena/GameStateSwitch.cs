@@ -188,10 +188,22 @@ public class GameStateSwitch : MonoBehaviour
                 arenaui.InputPanel.SetActive(false);
                 arenaui.PlayerInputBar.SetActive(true);
                 arenaui.EnemyInputBar.SetActive(true);
-                arenaui.InitiativeCheck.SetActive(true);
-                initiativecheck.GetSpeedValues();
-                if (implanthandler.Unleashed != eUnleashedMode.active && implanthandler.UMrounds != 1)
+
+                if (implanthandler.Unleashed == eUnleashedMode.active && implanthandler.UMrounds == 1)
+                {
+                    implanthandler.UMHeal();
+                }
+                else if (implanthandler.Unleashed == eUnleashedMode.active && implanthandler.UMrounds != 1)
+                {
+                    StartCoroutine(initiativecheck.UMIni());
+                }
+                else
+                {
+                    arenaui.InitiativeCheck.SetActive(true);
+                    initiativecheck.GetSpeedValues();
                     StartCoroutine(initiativecheck.CompareSpeed());
+                }
+
                 arenaui.QTEPanel.SetActive(true);
 
                 //Enemy Input einblenden
@@ -243,6 +255,9 @@ public class GameStateSwitch : MonoBehaviour
                 arenaui.QTEPanel.SetActive(false);
                 //Disable both Initiative Arrows
                 arenaui.StatusBars.SetActive(false);
+                //Check if implant conditions are met
+                implanthandler.UMRoundCounter();
+                implanthandler.ImplantCheck();
                 //arenaui.PlayerInitiativeArrow.enabled = false;
                 //arenaui.EnemyInitiativeArrow.enabled = false;
                 initiativecheck.ResetSpeedValues();

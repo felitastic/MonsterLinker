@@ -17,22 +17,10 @@ public class InitiativeCheck : MonoBehaviour
 
     public void GetSpeedValues()
     {
-        if (GameStateSwitch.Instance.implanthandler.Unleashed == eUnleashedMode.active)
+        foreach (BaseAttack attack in curPlayerInput)
         {
-            PlayerSpeed = 100;
-            if (GameStateSwitch.Instance.implanthandler.UMrounds == 1)
-            {
-                //TODO if first round, trigger animation and one time heal
-                GameStateSwitch.Instance.implanthandler.UMHeal();
-            }
-        }
-        else
-        {
-            foreach (BaseAttack attack in curPlayerInput)
-            {
-                PlayerSpeed += attack.Speed;
-            }
-        }
+            PlayerSpeed += attack.Speed;
+        } 
 
         foreach (BaseAttack attack in curEnemyInput)
         {
@@ -40,6 +28,16 @@ public class InitiativeCheck : MonoBehaviour
         }
         
         print("playerspeed: " + PlayerSpeed + "\n enemyspeed: " + EnemySpeed);
+    }
+
+    public IEnumerator UMIni()
+    {
+        arenaui.SetIniArrow("p");
+        arenaui.UMText.SetActive(true);
+        yield return new WaitForSeconds(ShowIniCheckSecs);
+        arenaui.UMText.SetActive(false);
+        turnchanger.SwitchTurn(eTurn.PlayerFirst);
+        GameStateSwitch.Instance.animationhandler.MoveToMiddle();
     }
 
     public IEnumerator CompareSpeed()

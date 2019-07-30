@@ -47,15 +47,26 @@ public class ImplantHandler : MonoBehaviour
         return value;
     }
 
-    public void UMHeal()
+    public IEnumerator UMHeal()
     {
+        print("healing player by" + UM_oneTimeHeal_Value);
+        float animationTime = 1.5f;
         GameStateSwitch.Instance.animationhandler.PlayerUMActivation();
         GameStateSwitch.Instance.baeffectshandler.HealPlayer(UM_oneTimeHeal_Value);
+        yield return new WaitForSeconds(animationTime);
+        GameStateSwitch.Instance.initiativecheck.UMIni();
+    }
+
+    public void UMRoundCounter()
+    {
+        UMrounds += 1;
     }
 
     //called in nextround state
     public void ImplantCheck()
     {
+        print("current Implant: " + GameStateSwitch.Instance.Implant);
+
         switch (GameStateSwitch.Instance.Implant)
         {
             case eImplant.UnleashedMode:
@@ -64,6 +75,7 @@ public class ImplantHandler : MonoBehaviour
                     case eUnleashedMode.sleeping:
                         if ((GameStateSwitch.Instance.baeffectshandler.curPlayerHP <= (GameStateSwitch.Instance.baeffectshandler.maxPlayerHP * UMPercent)))
                         {
+                            print("UM available now");
                             GameStateSwitch.Instance.arenaui.UMButton.SetActive(true);
                             Unleashed = eUnleashedMode.available;
                         }
@@ -71,13 +83,17 @@ public class ImplantHandler : MonoBehaviour
                     case eUnleashedMode.available:                        
                         break;
                     case eUnleashedMode.active:
-                        //show UM counter
-                        print("UM has been active for " + UMrounds + " rounds");
-                        UMrounds += 1;
-                        break;
-                    case eUnleashedMode.used:
-                        //disable UM symbol
-                        Unleashed = eUnleashedMode.done;
+                        //show UM symbol
+                        GameStateSwitch.Instance.arenaui.UMIcon.SetActive(true);
+                        print("UM round " + UMrounds);                        
+                        //update UM counter
+                        GameStateSwitch.Instance.arenaui.UMCounter.text = ""+UMrounds;
+                        if (UMrounds > 3)
+                        {
+                            //disable UM symbol
+                            GameStateSwitch.Instance.arenaui.UMIcon.SetActive(false);
+                            Unleashed = eUnleashedMode.done;
+                        }
                         break;
                     case eUnleashedMode.done:
                         break;
