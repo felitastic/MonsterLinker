@@ -9,7 +9,8 @@ public enum eGameState
     QTEAttack,
     QTEBlock,
     NextRound,
-    Result
+    Result,
+    Blacklist
 };
 
 public enum eEnemyState

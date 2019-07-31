@@ -12,6 +12,7 @@ public class GameStateSwitch : MonoBehaviour
 
     public float IntroTime = 1f;
     //TODO: List of all scripts in the arena scene
+    public PreLoadScript preloadscript;
     public FeralArtCheck feralartcheck;
     public ArenaPlayerInput playerinput;
     public InputBarHandler inputbarhandler;
@@ -81,6 +82,7 @@ public class GameStateSwitch : MonoBehaviour
         enemystatusbar = FindObjectOfType<EnemyStatusBar>();
         playerstatusbar = FindObjectOfType<PlayerStatusBar>();
         camshake = FindObjectOfType<CamShake>();
+        preloadscript = FindObjectOfType<PreLoadScript>();
     }
 
     void ConnectScripts()
@@ -130,9 +132,11 @@ public class GameStateSwitch : MonoBehaviour
 
         switch (gamestate)
         {
-            ///Blacklist und FA Loadout für Spieler
+            ///FA Loadout für Spieler
             ///Enemy Values laden und Attack Slot Setup für Enemy und Spieler
             case eGameState.Loadout:
+                curProfile = preloadscript.Save1;
+                arenaui.MenuScreen.SetActive(false);
                 if (!firstSetupDone)
                     loadoutbuttons.WriteFAList();
                 else
@@ -220,7 +224,7 @@ public class GameStateSwitch : MonoBehaviour
                 animationhandler.EnemyAnim.SetBool("block", true);
                 arenaui.InitiativeCheck.SetActive(false);
                 arenaui.EnemyInputBar.SetActive(false);
-                arenaui.PlayerInputBar.SetActive(true);                                
+                arenaui.PlayerInputBar.SetActive(true);
                 //baeffectshandler.SetEnduranceModifier(0);
                 attackroundhandler.GetAttackList(feralartcheck.AttackList);
 
@@ -274,8 +278,8 @@ public class GameStateSwitch : MonoBehaviour
                 //Reset DMG counters for the end of each turn
                 baeffectshandler.ResetDmgCount();
 
-        //HACK: zum Test von Temp Input Slot
-        //attackroundhandler.NoExtraSlot = false;                       
+                //HACK: zum Test von Temp Input Slot
+                //attackroundhandler.NoExtraSlot = false;                       
 
                 //Go to Player Input State
                 SwitchState(eGameState.PlayerInput);
@@ -315,6 +319,8 @@ public class GameStateSwitch : MonoBehaviour
                         break;
                 }
                 arenaui.ResultPanel.SetActive(true);
+                break;
+            case eGameState.Blacklist:
                 break;
         }
     }

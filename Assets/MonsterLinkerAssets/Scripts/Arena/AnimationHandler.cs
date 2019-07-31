@@ -62,7 +62,7 @@ public class AnimationHandler : MonoBehaviour
         {
             PlayerAnim.SetBool("death", true);
             EnemyAnim.SetTrigger("victory");
-        }
+        }        
     }
 
     public void ResetToIdle()

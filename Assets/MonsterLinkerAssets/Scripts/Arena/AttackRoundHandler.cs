@@ -32,6 +32,7 @@ public class AttackRoundHandler : MonoBehaviour
     
     public void NextAttack()
     {
+        baeffectshandler.deathCheck = false;
         baeffectshandler.QTEResultModifier = 0.0f;
         print("attack " + curAttack.name + " done");
         if (curRound < maxRounds)

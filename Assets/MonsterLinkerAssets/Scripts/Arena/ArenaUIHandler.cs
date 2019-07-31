@@ -12,6 +12,8 @@ public class ArenaUIHandler : MonoBehaviour
     public Text PlayerSpeed;
 
     [Header("Drag n Drop Menus")]
+    public GameObject TitleScreen;
+    public GameObject MenuScreen;
     public GameObject FALoadout;
     public GameObject InputPanel;
     public GameObject PlayerInputBar;
