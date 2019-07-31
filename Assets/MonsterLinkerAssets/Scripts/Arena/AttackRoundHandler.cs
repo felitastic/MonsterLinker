@@ -39,8 +39,15 @@ public class AttackRoundHandler : MonoBehaviour
             print("next attack");
             curRound += 1;
             curAttack = curAttackList[curRound-1];
+            //if this is the last attack
+            if (curRound == maxRounds)
+            {
+                print("check for death after this attack");
+                baeffectshandler.deathCheck = true;
+            }
             StartAttack();
         }
+
         else
         {
             print("turn done");
@@ -50,7 +57,7 @@ public class AttackRoundHandler : MonoBehaviour
 
     public void CheckForTurn()
     {
-        baeffectshandler.CheckForDeath();
+        //baeffectshandler.CheckForDeath();
 
         if (GameStateSwitch.Instance.FightResult == eFightResult.None)
         {

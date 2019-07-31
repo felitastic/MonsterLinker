@@ -40,7 +40,7 @@ public class AnimationHandler : MonoBehaviour
     {
         switch(GameStateSwitch.Instance.GameState)
         {
-            case eGameState.QTEAttack:
+            case eGameState.QTEAttack: 
                 //print("enemy hurt");
                 EnemyAnim.SetTrigger("hurt");
                 break;
@@ -48,6 +48,20 @@ public class AnimationHandler : MonoBehaviour
                 //print("player hurt");
                 PlayerAnim.SetTrigger("hurt");
                 break;
+        }
+    }
+
+    public void DeathFlag(bool playerwins)
+    {
+        if (playerwins)
+        {
+            EnemyAnim.SetBool("death", true);
+            PlayerAnim.SetTrigger("victory");
+        }
+        else
+        {
+            PlayerAnim.SetBool("death", true);
+            EnemyAnim.SetTrigger("victory");
         }
     }
 

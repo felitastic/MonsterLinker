@@ -18,6 +18,8 @@ public class BAEffectsHandler : MonoBehaviour
     public float curDMG;
     public int RPgained;
 
+    public bool deathCheck = false;
+
     [Header("At the end of one attack round")]
     public float TotalDmgTaken;
     public float TotalDmgDealt;
@@ -219,6 +221,11 @@ public class BAEffectsHandler : MonoBehaviour
         playerstatusbar.RPTick(Mathf.RoundToInt(curPlayerRP));
         enemystatusbar.HPTick(Mathf.Round(curEnemyHP));
         enemystatusbar.RPTick(Mathf.RoundToInt(curEnemyRP));
+
+        if (deathCheck)
+        {
+            CheckForDeath();
+        }
     }
 
     public void ShowTotalDmg(float totaldmg)
@@ -239,26 +246,44 @@ public class BAEffectsHandler : MonoBehaviour
 
     public void CheckForDeath()
     {
-        if (Mathf.RoundToInt(curEnemyHP) > (int)0 && Mathf.RoundToInt(curPlayerHP) > (int)0)
+        switch (GameStateSwitch.Instance.GameState)
         {
-            GameStateSwitch.Instance.FightResult = eFightResult.None;
-            print("fight state: " + GameStateSwitch.Instance.FightResult);
-        }
-        else if (Mathf.RoundToInt(curEnemyHP) <= (int)0)
-        {
-            GameStateSwitch.Instance.FightResult = eFightResult.Victory;
-            print("fight state: " + GameStateSwitch.Instance.FightResult);
-            GameStateSwitch.Instance.SwitchState(eGameState.Result);
-            return;
-        }
-        else if (Mathf.RoundToInt(curPlayerHP) <= (int)0)
-        {
-            GameStateSwitch.Instance.FightResult = eFightResult.Defeat;
-            print("fight state: " + GameStateSwitch.Instance.FightResult);
-            GameStateSwitch.Instance.SwitchState(eGameState.Result);
-            return;
+            case eGameState.QTEAttack:
+                if (Mathf.RoundToInt(curEnemyHP) <= (int)0)
+                {
+                    GameStateSwitch.Instance.animationhandler.DeathFlag(true);
+                    StartCoroutine(ShowResult(eFightResult.Victory));
+                }
+                else
+                {
+                    GameStateSwitch.Instance.FightResult = eFightResult.None;
+                }
+                break;
+            case eGameState.QTEBlock:
+                if (Mathf.RoundToInt(curPlayerHP) <= (int)0)
+                {
+                    GameStateSwitch.Instance.animationhandler.DeathFlag(false);
+                    StartCoroutine(ShowResult(eFightResult.Defeat));
+                }
+                else
+                {
+                    GameStateSwitch.Instance.FightResult = eFightResult.None;
+                }
+                break;
+            default:
+                break;
         }
     }
+
+    public IEnumerator ShowResult(eFightResult fightresult)
+    {
+        float DeathTime = 1.5f;
+        GameStateSwitch.Instance.FightResult = fightresult;
+        yield return new WaitForSeconds(DeathTime);
+        GameStateSwitch.Instance.SwitchState(eGameState.Result);
+        print("fight state: " + GameStateSwitch.Instance.FightResult);
+    }
+
     //    if (Mathf.Round(hitpoints) <= 0)
     //{
     //    //TODO: set result screen to open up
