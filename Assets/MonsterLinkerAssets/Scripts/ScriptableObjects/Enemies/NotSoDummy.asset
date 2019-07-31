@@ -18,6 +18,7 @@ MonoBehaviour:
   MaxHitPoints: 500
   MaxInputSlots: 5
   DmgModifier: 0
+  RPgainperHit: 3
   FAs:
   - {fileID: 11400000, guid: b1372efe5fe38c548b9d24c31f652320, type: 2}
   - {fileID: 11400000, guid: f3c3e14e80b3bbf47a13e11f17edd9ac, type: 2}

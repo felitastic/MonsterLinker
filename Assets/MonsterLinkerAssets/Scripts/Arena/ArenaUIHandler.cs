@@ -7,6 +7,7 @@ public class ArenaUIHandler : MonoBehaviour
 {
     [Header("Initiative UI")]
     public GameObject IniArrow;
+    public GameObject IniBG;
     public Text EnemySpeed;
     public Text PlayerSpeed;
 
@@ -39,12 +40,13 @@ public class ArenaUIHandler : MonoBehaviour
     public Button UM;
 
     [Header("Unleashede Mode")]
-    public GameObject UMButton;
-    public GameObject UMIcon;
-    public GameObject UMText;
-    public Text UMCounter;
+    public GameObject UM_Button;
+    public GameObject UM_BuffIcon;
+    public Image UM_IconImage;
+    public List<Sprite> BuffIcons;
+    public GameObject UM_Text;
 
-    [Header("Unleashede Mode")]
+    [Header("Super Feral Art")]
     public GameObject SFASlot;
     public Text SFA_Name;
 
@@ -84,6 +86,12 @@ public class ArenaUIHandler : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void UpdateUMBuff(int round)
+    {
+        UM_BuffIcon.GetComponentInChildren<Animator>().SetTrigger("update");
+        UM_IconImage.sprite = BuffIcons[round - 1];
     }
 
     public IEnumerator ShowDmgCounters(int DmgTaken)

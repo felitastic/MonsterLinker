@@ -15,7 +15,7 @@ MonoBehaviour:
   ModifierFail: 1.5
   ModifierGood: 1
   ModifierPerfect: 0.5
-  RPGainFail: 2
+  RPGainFail: 4
   RPGainGood: 3
-  RPGainPerfect: 4
+  RPGainPerfect: 2
   Type: Block

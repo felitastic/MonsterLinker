@@ -156,7 +156,7 @@ public class GameStateSwitch : MonoBehaviour
                 arenaui.FALoadout.SetActive(false);
                 arenaui.ResultPanel.SetActive(false);
                 arenaui.FALoadout.SetActive(false);
-                arenaui.UMButton.SetActive(false);
+                arenaui.UM_Button.SetActive(false);
 
                 if (!firstSetupDone)
                     FirstSetup();
@@ -196,12 +196,12 @@ public class GameStateSwitch : MonoBehaviour
 
                 if (implanthandler.Unleashed == eUnleashedMode.active && implanthandler.UMrounds == 1)
                 {
-                    implanthandler.UMHeal();
+                    StartCoroutine(implanthandler.UMHeal());
                 }
-                else if (implanthandler.Unleashed == eUnleashedMode.active && implanthandler.UMrounds != 1)
-                {
-                    StartCoroutine(initiativecheck.UMIni());
-                }
+                //else if (implanthandler.Unleashed == eUnleashedMode.active && implanthandler.UMrounds != 1)
+                //{
+                //    StartCoroutine(initiativecheck.UMIni());
+                //}
                 else
                 {
                     arenaui.InitiativeCheck.SetActive(true);
@@ -281,6 +281,7 @@ public class GameStateSwitch : MonoBehaviour
                 SwitchState(eGameState.PlayerInput);
                 break;
             case eGameState.Result:
+                arenaui.UM_BuffIcon.SetActive(false);
                 arenaui.StatusBars.SetActive(false);
                 arenaui.EnemyInputBar.SetActive(false);
                 arenaui.PlayerInputBar.SetActive(false);

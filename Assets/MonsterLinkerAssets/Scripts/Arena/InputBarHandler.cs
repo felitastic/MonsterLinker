@@ -65,11 +65,13 @@ public class InputBarHandler : MonoBehaviour
         GameStateSwitch.Instance.implanthandler.UMbuttonpressed = !GameStateSwitch.Instance.implanthandler.UMbuttonpressed;
         if (GameStateSwitch.Instance.implanthandler.UMbuttonpressed)
         {
-            arenaui.UMButton.GetComponentInChildren<Animator>().SetBool("Highlighted", true);
+            arenaui.UM_Button.GetComponentInChildren<Animator>().SetBool("Highlighted", true);
+            GameStateSwitch.Instance.arenaui.UM_BuffIcon.SetActive(true);
         }
         else
         {
-            arenaui.UMButton.GetComponentInChildren<Animator>().SetBool("Highlighted", false);
+            arenaui.UM_Button.GetComponentInChildren<Animator>().SetBool("Highlighted", false);
+            GameStateSwitch.Instance.arenaui.UM_BuffIcon.SetActive(false);
         }
     }
 
@@ -88,6 +90,9 @@ public class InputBarHandler : MonoBehaviour
                 GameStateSwitch.Instance.implanthandler.Unleashed = eUnleashedMode.active;
                 GameStateSwitch.Instance.implanthandler.UMrounds = 1;
                 GameStateSwitch.Instance.implanthandler.ImplantCheck();
+                arenaui.UM_BuffIcon.GetComponentInChildren<Animator>().SetTrigger("active");
+                GameStateSwitch.Instance.arenaui.UM_Button.SetActive(false);
+                GameStateSwitch.Instance.implanthandler.UMbuttonpressed = false;
             }
             initiativecheck.curPlayerInput = PlayerAttackInput;
             StartCoroutine(WaitForButtonAnim());

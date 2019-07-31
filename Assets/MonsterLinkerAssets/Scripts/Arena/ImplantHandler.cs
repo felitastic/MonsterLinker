@@ -37,7 +37,6 @@ public class ImplantHandler : MonoBehaviour
     public void ResetCounters()
     {
         PlayerRPatAttackStart = 0.0f;
-        UMrounds = 0;
         NoExtraSlot = false;
     }
 
@@ -50,11 +49,11 @@ public class ImplantHandler : MonoBehaviour
     public IEnumerator UMHeal()
     {
         print("healing player by" + UM_oneTimeHeal_Value);
-        float animationTime = 1.5f;
+        float animationTime = 1f;
         GameStateSwitch.Instance.animationhandler.PlayerUMActivation();
         GameStateSwitch.Instance.baeffectshandler.HealPlayer(UM_oneTimeHeal_Value);
         yield return new WaitForSeconds(animationTime);
-        GameStateSwitch.Instance.initiativecheck.UMIni();
+        StartCoroutine(GameStateSwitch.Instance.initiativecheck.UMIni());
     }
 
     public void UMRoundCounter()
@@ -76,26 +75,29 @@ public class ImplantHandler : MonoBehaviour
                         if ((GameStateSwitch.Instance.baeffectshandler.curPlayerHP <= (GameStateSwitch.Instance.baeffectshandler.maxPlayerHP * UMPercent)))
                         {
                             print("UM available now");
-                            GameStateSwitch.Instance.arenaui.UMButton.SetActive(true);
+                            GameStateSwitch.Instance.arenaui.UM_Button.SetActive(true);
                             Unleashed = eUnleashedMode.available;
                         }
                         break;
                     case eUnleashedMode.available:                        
                         break;
                     case eUnleashedMode.active:
-                        //show UM symbol
-                        GameStateSwitch.Instance.arenaui.UMIcon.SetActive(true);
-                        print("UM round " + UMrounds);                        
-                        //update UM counter
-                        GameStateSwitch.Instance.arenaui.UMCounter.text = ""+UMrounds;
+                        print("UM round " + UMrounds);
+                        //GameStateSwitch.Instance.arenaui.UM_BuffIcon.SetActive(true);
+
                         if (UMrounds > 3)
                         {
                             //disable UM symbol
-                            GameStateSwitch.Instance.arenaui.UMIcon.SetActive(false);
+                            GameStateSwitch.Instance.arenaui.UM_BuffIcon.GetComponentInChildren<Animator>().SetTrigger("inactive");                            
                             Unleashed = eUnleashedMode.done;
+                            return;
                         }
+
+                        GameStateSwitch.Instance.arenaui.UpdateUMBuff(UMrounds);
+
                         break;
                     case eUnleashedMode.done:
+                        GameStateSwitch.Instance.arenaui.UM_BuffIcon.SetActive(false);
                         break;
                     default:
                         Debug.LogError("UM state not found");

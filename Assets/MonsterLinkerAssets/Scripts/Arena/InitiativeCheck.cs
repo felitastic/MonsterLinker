@@ -20,55 +20,64 @@ public class InitiativeCheck : MonoBehaviour
         foreach (BaseAttack attack in curPlayerInput)
         {
             PlayerSpeed += attack.Speed;
-        } 
+        }
 
         foreach (BaseAttack attack in curEnemyInput)
         {
             EnemySpeed += attack.Speed;
         }
-        
+
+        if (GameStateSwitch.Instance.implanthandler.Unleashed == eUnleashedMode.active)
+        {
+            PlayerSpeed = 99;
+        }
+
         print("playerspeed: " + PlayerSpeed + "\n enemyspeed: " + EnemySpeed);
     }
 
     public IEnumerator UMIni()
     {
+        arenaui.SetSpeedValues(EnemySpeed, PlayerSpeed);
+        arenaui.UM_Text.SetActive(true);
         arenaui.SetIniArrow("p");
-        arenaui.UMText.SetActive(true);
         yield return new WaitForSeconds(ShowIniCheckSecs);
-        arenaui.UMText.SetActive(false);
+        arenaui.UM_Text.SetActive(false);
         turnchanger.SwitchTurn(eTurn.PlayerFirst);
         GameStateSwitch.Instance.animationhandler.MoveToMiddle();
     }
 
     public IEnumerator CompareSpeed()
     {
+        print("comparing speeds");
+        if (PlayerSpeed > EnemySpeed)
         {
-            print("comparing speeds");
-            if (PlayerSpeed > EnemySpeed)
-            {
-                print("players turn");
-                arenaui.SetSpeedValues(EnemySpeed, PlayerSpeed);
-                arenaui.SetIniArrow("p");
-                yield return new WaitForSeconds(ShowIniCheckSecs);
-                turnchanger.SwitchTurn(eTurn.PlayerFirst);
-            }
-            else if (EnemySpeed > PlayerSpeed)
-            {
-                print("enemys turn");
-                arenaui.SetSpeedValues(EnemySpeed, PlayerSpeed);
-                arenaui.SetIniArrow("e");
-                yield return new WaitForSeconds(ShowIniCheckSecs);
-                turnchanger.SwitchTurn(eTurn.EnemyFirst);
-            }
-            else
-            {
-                print("players turn");
-                arenaui.SetSpeedValues(EnemySpeed-1, PlayerSpeed);
-                arenaui.SetIniArrow("p");
-                yield return new WaitForSeconds(ShowIniCheckSecs);
-                turnchanger.SwitchTurn(eTurn.PlayerFirst);
-            }
+            print("players turn");
+            arenaui.SetSpeedValues(EnemySpeed, PlayerSpeed);
+            arenaui.IniBG.SetActive(true);
+            arenaui.SetIniArrow("p");
+            yield return new WaitForSeconds(ShowIniCheckSecs);
+            turnchanger.SwitchTurn(eTurn.PlayerFirst);
         }
+        else if (EnemySpeed > PlayerSpeed)
+        {
+            print("enemys turn");
+            arenaui.SetSpeedValues(EnemySpeed, PlayerSpeed);
+            arenaui.IniBG.SetActive(true);
+            arenaui.SetIniArrow("e");
+            yield return new WaitForSeconds(ShowIniCheckSecs);
+            turnchanger.SwitchTurn(eTurn.EnemyFirst);
+        }
+        else
+        {
+            print("players turn");
+            arenaui.SetSpeedValues(EnemySpeed - 1, PlayerSpeed);
+            arenaui.IniBG.SetActive(true);
+            arenaui.SetIniArrow("p");
+            yield return new WaitForSeconds(ShowIniCheckSecs);
+            turnchanger.SwitchTurn(eTurn.PlayerFirst);
+        }
+
+        arenaui.IniBG.SetActive(false);
         GameStateSwitch.Instance.animationhandler.MoveToMiddle();
     }
 

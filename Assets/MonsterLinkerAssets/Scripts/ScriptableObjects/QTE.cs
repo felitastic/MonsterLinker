@@ -13,7 +13,7 @@ public class QTE : ScriptableObject
     [Tooltip("Modifier for QTE perfect result")]
     public float ModifierPerfect;
 
-    [Header("RP gain Modifiers for Block QTE, only integer")]
+    [Header("RP gain Modifiers for QTE results, only integer")]
     [Tooltip("Modifier for QTE fail result")]
     public int RPGainFail;
     [Tooltip("Modifier for QTE good result")]

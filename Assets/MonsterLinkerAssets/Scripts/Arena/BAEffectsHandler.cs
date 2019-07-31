@@ -84,10 +84,10 @@ public class BAEffectsHandler : MonoBehaviour
         print("QTEResultModifier: " + QTEResultModifier);
     }
 
-    public void SetQTEResultModifier(float dmgModifier, int rpggained)
+    public void SetQTEResultModifier(float dmgModifier, int RPgain)
     {
         QTEResultModifier = dmgModifier;
-        RPgained = rpggained;
+        RPgained = curAttack.RPGain + RPgain;
         print("QTEResultModifier: " + QTEResultModifier);
     }
 
@@ -115,13 +115,13 @@ public class BAEffectsHandler : MonoBehaviour
         {
             case eGameState.QTEAttack:
                 CalculatePlayerBaseDmg();
-                EnemyTakesDmg(curDMG, EnemyRPgain);
+                EnemyTakesDmg(curDMG);
                 PlayerPaysRP();
 
                 break;
             case eGameState.QTEBlock:
                 CalculateEnemyBaseDmg();
-                PlayerTakesDmg(curDMG, RPgained);
+                PlayerTakesDmg(curDMG);
                 EnemyPaysRP();
 
                 break;
@@ -152,12 +152,13 @@ public class BAEffectsHandler : MonoBehaviour
         enemystatusbar.RPTick(Mathf.RoundToInt(curEnemyRP));
     }
 
-    public void PlayerTakesDmg(float curDMG, int RPgained)
+    public void PlayerTakesDmg(float curDMG)
     {
         print("dealing dmg to player");
         curPlayerHP -= curDMG;
-        curPlayerRP += RPgained;
         curEnemyHP += curAttack.HPGain;
+        curPlayerRP += RPgained;
+        curEnemyRP += curAttack.RPGain;
         TotalDmgTaken += curDMG;
 
         //StartCoroutine(arenaui.ShowDmgCounters(Mathf.RoundToInt(curDMG)));
@@ -168,11 +169,12 @@ public class BAEffectsHandler : MonoBehaviour
         //print("Player HP: " + curPlayerHP + ", Player RP: " + curPlayerRP +", Enemy HP: " + curEnemyHP+", Enemy RP: " + curEnemyRP);
     }
 
-    public void EnemyTakesDmg(float curDMG, int RPgained)
+    public void EnemyTakesDmg(float curDMG)
     {
         curEnemyHP -= curDMG;
-        curEnemyRP += RPgained;
         curPlayerHP += curAttack.HPGain;
+        curEnemyRP += EnemyRPgain;
+        curPlayerRP += RPgained;
         TotalDmgDealt += curDMG;
 
         //print("dealing dmg to enemy");
