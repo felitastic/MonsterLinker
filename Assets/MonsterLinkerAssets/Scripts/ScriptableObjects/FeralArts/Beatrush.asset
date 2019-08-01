@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32eeac52b95f9414aa5d46835d18ac12, type: 3}
-  m_Name: BeatRush
+  m_Name: Beatrush
   m_EditorClassIdentifier: 
   DMG: 899
   RPCost: 60
