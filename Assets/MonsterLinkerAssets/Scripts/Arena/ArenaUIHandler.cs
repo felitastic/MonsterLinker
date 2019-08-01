@@ -31,7 +31,11 @@ public class ArenaUIHandler : MonoBehaviour
     public Text PlayerName;
 
     public Text PlayerDmgTaken;
-    public Text EnemyDmgTaken;
+    public Text PlayerDmgTaken2;
+    public Text EnemyDmgTaken;    
+    public Text EnemyDmgTaken2;    
+    public Animator PlayerDmgTextAnim;    
+    public Animator EnemyDmgTextAnim;    
 
     [Header("Buttons for BA Input")]
     public Button HeavyAttack;
@@ -99,12 +103,18 @@ public class ArenaUIHandler : MonoBehaviour
         if (GameStateSwitch.Instance.GameState == eGameState.QTEAttack)
         {
             EnemyDmgTaken.text = "-" + DmgTaken;
+            EnemyDmgTaken2.text = "-" + DmgTaken;
             PlayerDmgTaken.text = "";
+            PlayerDmgTaken2.text = "";
+            EnemyDmgTextAnim.SetTrigger("dmg");
         }
         else if (GameStateSwitch.Instance.GameState == eGameState.QTEBlock)
         {
             PlayerDmgTaken.text = "-" + DmgTaken;
+            PlayerDmgTaken2.text = "-" + DmgTaken;
             EnemyDmgTaken.text = "";
+            EnemyDmgTaken2.text = "";
+            PlayerDmgTextAnim.SetTrigger("dmg");
         }
 
         DmgCounter.SetActive(true);

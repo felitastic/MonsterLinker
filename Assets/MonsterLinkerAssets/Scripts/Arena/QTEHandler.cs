@@ -37,6 +37,8 @@ public class QTEHandler : MonoBehaviour
     public Image ButtonImage;
 
     public Text EnduranceCounter;
+    public Text EnduranceCounter2;
+    public Animator EnduranceTextAnim;
 
     [Tooltip("Random generated no. for button")]
     [SerializeField] int ran;
@@ -257,13 +259,20 @@ public class QTEHandler : MonoBehaviour
         if (Input.GetButtonDown(Buttons[ran].inputString))
         {
             SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
-            GameStateSwitch.Instance.camshake.Shake(0.10f, 1.75f);
+            //GameStateSwitch.Instance.camshake.Shake(0.10f, 1.75f);
             print("button " + Buttons[ran].name + " pressed");
             mashCounter += 1;
+            MashCounterAnim();
             baeffectshandler.SetEnduranceModifier(mashCounter);
-            float curDMG = Mathf.RoundToInt(baeffectshandler.curAttack.DMG + (baeffectshandler.curAttack.DMG * baeffectshandler.EnduranceModifier));
-            EnduranceCounter.text = (""+curDMG);
         }
+    }
+
+    public void MashCounterAnim()
+    {
+        float curDMG = Mathf.RoundToInt(baeffectshandler.curAttack.DMG + (baeffectshandler.curAttack.DMG * baeffectshandler.EnduranceModifier));
+        EnduranceTextAnim.Play("mash");
+        EnduranceCounter.text = ("" + curDMG);
+        EnduranceCounter2.text = EnduranceCounter.text;
     }
 
     void CheckForInput()
@@ -453,6 +462,7 @@ public class QTEHandler : MonoBehaviour
         {
             case eQTEState.Waiting:
                 EnduranceCounter.text = "";
+                EnduranceCounter2.text = "";
                 curQTEAnim.Play("Wait");
                 QTEButton.SetActive(false);
                 QTEInput = eQTEInput.None;
@@ -471,6 +481,7 @@ public class QTEHandler : MonoBehaviour
                 break;
             case eQTEState.Done:
                 EnduranceCounter.text = "";
+                EnduranceCounter2.text = "";
                 print("kuhteheh done");
                 QTEInput = eQTEInput.None; 
                 curQTEAnim.Play("Wait");

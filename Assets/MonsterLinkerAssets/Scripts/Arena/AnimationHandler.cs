@@ -24,7 +24,6 @@ public class AnimationHandler : MonoBehaviour
     public void EnduranceAnimStart()
     {
         PlayerAnim.SetBool("Endurance", true);
-        StartCoroutine(GameStateSwitch.Instance.qtehandler.ButtonMash());
     }
 
     //TODO set effect

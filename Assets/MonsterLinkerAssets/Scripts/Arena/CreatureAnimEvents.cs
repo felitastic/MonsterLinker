@@ -83,7 +83,7 @@ public class CreatureAnimEvents : MonoBehaviour
                 VFXController.Instance.SpawnEffectViaInt(VFXController.VFX.TestVFX, Position);
                 break;
             default:
-
+                print("impact vfx no not found: " + ImpactNo);
                 VFXController.Instance.SpawnEffectViaInt(VFXController.VFX.TestVFX, Position);
                 break;
         }
@@ -130,7 +130,7 @@ public class CreatureAnimEvents : MonoBehaviour
     {
         SoundController.Instance.StartSFX(SoundController.SFX.woosh_heavy);
     }
-
+   
 
     //calls hurt for the creature being hit
     public void HitImpact()
@@ -162,6 +162,7 @@ public class CreatureAnimEvents : MonoBehaviour
                 magnitude = Random.Range(2.5f, 3.5f);
                 break;
             default:
+                print("shake #" + ShakeNo+" not found, using default");
                 break;
         }
         StartCoroutine(GameStateSwitch.Instance.camshake.Shake(duration, magnitude));
@@ -170,14 +171,12 @@ public class CreatureAnimEvents : MonoBehaviour
     //Screenshake depending on qte result
     public void QTEScreenShake()
     {
-        float duration = 0f;
-        float magnitude = 0f;
+        float duration = Random.Range(0.15f, 0.25f);
+        float magnitude = Random.Range(2.0f, 3.0f);
 
         switch (QTEAnimEvents.QTEZone)
         {
-            case eQTEZone.None:
-                duration = Random.Range(0.15f, 0.25f);
-                magnitude = Random.Range(2.0f, 3.0f);
+            case eQTEZone.None:                           
                 break;
             case eQTEZone.Fail:
                 duration = Random.Range(0.15f, 0.25f);
@@ -192,7 +191,7 @@ public class CreatureAnimEvents : MonoBehaviour
                 magnitude = Random.Range(2.5f, 3.5f);
                 break;
         }
-
+        print("qte result:" + QTEAnimEvents.QTEZone);
         StartCoroutine(GameStateSwitch.Instance.camshake.Shake(duration, magnitude));
     }
 
@@ -214,6 +213,7 @@ public class CreatureAnimEvents : MonoBehaviour
                 VFXController.Instance.SpawnEffect(VFXController.VFX.TestVFX, VFXController.Position.TestMiddle);
                 break;
         }
+        print("qte result:" + QTEAnimEvents.QTEZone);
     }
 
     public void SFXImpact(int ImpactNo)
@@ -230,8 +230,11 @@ public class CreatureAnimEvents : MonoBehaviour
                 SoundController.Instance.StartSFX(SoundController.SFX.impact_heavy);
                 break;
             default:
+                print("sfx #" + ImpactNo + " not found, using normal");
+                SoundController.Instance.StartSFX(SoundController.SFX.impact_normal);
                 break;
         }
+
     }
 
     //TODO placeholder for testing, delete later
@@ -242,12 +245,19 @@ public class CreatureAnimEvents : MonoBehaviour
     public void SFXHeavy()
     { }
 
+    public void EnduranceStart()
+    {
+        StartCoroutine(qtehandler.ButtonMash());
+    }
+
+
     public void SFXEndurance()
     {
         //SoundController.Instance.StartLoopingSFX(SoundController.SFX.powerCharge1, 1.0f);
     }
 
-    public void EndEndurance()
+
+    public void EnduranceEnd()
     {
         //SoundController.Instance.StopLoopingSound()
     }
