@@ -7,6 +7,14 @@ public class AnimationHandler : MonoBehaviour
     public Animator EnemyAnim;
     public Animator PlayerAnim;
     
+    
+    public IEnumerator IdleOffset()
+    {
+        EnemyAnim.speed = 0.5f;
+        yield return new WaitForSeconds(0.5f);
+        EnemyAnim.speed = 1f;
+    }
+    
     //TODO set to um animation when its there
     public void PlayerUMActivation()
     {

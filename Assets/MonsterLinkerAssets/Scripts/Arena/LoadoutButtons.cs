@@ -33,7 +33,7 @@ public class LoadoutButtons : MonoBehaviour
 
     public Button FAChoiceButton1;
     public Button ImplantChoiceButton1;
-    public Button StartButton;
+    public List<Button> MenuButtons;
 
     public List<FeralArt> LoadedFAs = new List<FeralArt>(3);
     public List<Button> FAChoiceButton;
@@ -216,14 +216,26 @@ public class LoadoutButtons : MonoBehaviour
         switch (Window)
         {
             case eLoadout.LoadoutOnly:
+                foreach (Button button in MenuButtons)
+                {
+                    button.enabled = true;
+                }
                 curLeftButton.GetComponentInChildren<Animator>().SetBool("Cursor", false);
                 CloseWindows();
                 break;
             case eLoadout.FeralArtChoice:
+                foreach (Button button in MenuButtons)
+                {
+                    button.enabled = false;
+                }
                 curLeftButton.GetComponentInChildren<Animator>().SetBool("Cursor", true);
                 FeralArtChoice.SetActive(true);
                 break;
             case eLoadout.ImplantChoice:
+                foreach (Button button in MenuButtons)
+                {
+                    button.enabled = false;
+                }
                 curLeftButton.GetComponentInChildren<Animator>().SetBool("Cursor", true);
                 ImplantChoice.SetActive(true);
                 break;

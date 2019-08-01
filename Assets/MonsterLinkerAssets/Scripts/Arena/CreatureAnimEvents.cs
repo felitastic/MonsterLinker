@@ -173,26 +173,47 @@ public class CreatureAnimEvents : MonoBehaviour
         float duration = 0f;
         float magnitude = 0f;
 
-        switch (qteResult)
+        switch (QTEAnimEvents.QTEZone)
         {
-            //weakest
-            case 1:
+            case eQTEZone.None:
                 duration = Random.Range(0.15f, 0.25f);
                 magnitude = Random.Range(2.0f, 3.0f);
                 break;
-            case 2:
+            case eQTEZone.Fail:
+                duration = Random.Range(0.15f, 0.25f);
+                magnitude = Random.Range(2.0f, 3.0f);
+                break;
+            case eQTEZone.Good:
                 duration = Random.Range(0.17f, 0.27f);
                 magnitude = Random.Range(2.25f, 3.25f);
                 break;
-            //strongest
-            case 3:
+            case eQTEZone.Perfect:
                 duration = Random.Range(0.25f, 0.3f);
                 magnitude = Random.Range(2.5f, 3.5f);
                 break;
-            default:
+        }
+
+        StartCoroutine(GameStateSwitch.Instance.camshake.Shake(duration, magnitude));
+    }
+
+    //Impact VFX depending on qte result
+    public void QTE_ImpactVFX()
+    {
+        switch (QTEAnimEvents.QTEZone)
+        {
+            case eQTEZone.None:
+                VFXController.Instance.SpawnEffect(VFXController.VFX.TestVFX, VFXController.Position.TestMiddle);
+                break;
+            case eQTEZone.Fail:
+                VFXController.Instance.SpawnEffect(VFXController.VFX.TestVFX, VFXController.Position.TestMiddle);
+                break;
+            case eQTEZone.Good:
+                VFXController.Instance.SpawnEffect(VFXController.VFX.TestVFX, VFXController.Position.TestMiddle);
+                break;
+            case eQTEZone.Perfect:
+                VFXController.Instance.SpawnEffect(VFXController.VFX.TestVFX, VFXController.Position.TestMiddle);
                 break;
         }
-        StartCoroutine(GameStateSwitch.Instance.camshake.Shake(duration, magnitude));
     }
 
     public void SFXImpact(int ImpactNo)

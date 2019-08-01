@@ -139,6 +139,7 @@ public class GameStateSwitch : MonoBehaviour
             case eGameState.Loadout:
                 //TODO activate this later when menus are used
                 //curProfile = preloadscript.Save1;
+                StartCoroutine(animationhandler.IdleOffset());
 
                 if (!firstSetupDone)
                     loadoutbuttons.WriteFAList();

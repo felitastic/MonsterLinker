@@ -30,7 +30,6 @@ public class TutorialChan : MonoBehaviour
     {
         GameStateSwitch.Instance.curProfile.Tutorial = tutorial;
 
-
         switch (tutorial)
         {
             case eTutorial.menu:
