@@ -135,8 +135,9 @@ public class GameStateSwitch : MonoBehaviour
             ///FA Loadout für Spieler
             ///Enemy Values laden und Attack Slot Setup für Enemy und Spieler
             case eGameState.Loadout:
-                curProfile = preloadscript.Save1;
-                arenaui.MenuScreen.SetActive(false);
+                //TODO activate this later when menus are used
+                //curProfile = preloadscript.Save1;
+
                 if (!firstSetupDone)
                     loadoutbuttons.WriteFAList();
                 else
