@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187ffa8210cdc4c4d836799ae5eee7c6, type: 3}
   m_Name: Block
   m_EditorClassIdentifier: 
-  ModifierFail: 1.5
-  ModifierGood: 1
-  ModifierPerfect: 0.5
-  RPGainFail: 4
-  RPGainGood: 3
-  RPGainPerfect: 2
+  ModifierFail: 1
+  ModifierGood: 0.6
+  ModifierPerfect: 0.3
+  RPGainFail: 2
+  RPGainGood: 1
+  RPGainPerfect: 0
   Type: Block

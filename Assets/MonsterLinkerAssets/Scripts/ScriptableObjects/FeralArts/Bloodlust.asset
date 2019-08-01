@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32eeac52b95f9414aa5d46835d18ac12, type: 3}
   m_Name: Bloodlust
   m_EditorClassIdentifier: 
-  DMG: 592
+  DMG: 600
   RPCost: 48
-  RPGain: 4
+  RPGain: 2
   HPGain: 3
   Speed: 11
   AnimationName: FA2

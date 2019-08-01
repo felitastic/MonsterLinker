@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32eeac52b95f9414aa5d46835d18ac12, type: 3}
   m_Name: Super_FA
   m_EditorClassIdentifier: 
-  DMG: 1060
+  DMG: 1325
   RPCost: 0
-  RPGain: 8
+  RPGain: 4
   HPGain: 1
   Speed: 99
   AnimationName: FA1

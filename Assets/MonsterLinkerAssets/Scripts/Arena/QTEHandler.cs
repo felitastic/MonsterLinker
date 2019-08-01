@@ -251,13 +251,18 @@ public class QTEHandler : MonoBehaviour
 
     public void CountButtonMash()
     {
+        float duration = Random.Range(0.15f, 0.25f);
+        float magnitude = Random.Range(2.0f, 3.0f);
+
         if (Input.GetButtonDown(Buttons[ran].inputString))
         {
+            SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
+            GameStateSwitch.Instance.camshake.Shake(0.10f, 1.75f);
             print("button " + Buttons[ran].name + " pressed");
             mashCounter += 1;
             baeffectshandler.SetEnduranceModifier(mashCounter);
             float curDMG = Mathf.RoundToInt(baeffectshandler.curAttack.DMG + (baeffectshandler.curAttack.DMG * baeffectshandler.EnduranceModifier));
-            EnduranceCounter.text = (""+curDMG); 
+            EnduranceCounter.text = (""+curDMG);
         }
     }
 

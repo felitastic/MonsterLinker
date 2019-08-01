@@ -58,4 +58,10 @@ public class VFXController : MonoBehaviour
         newVFX.transform.position = this.SpawnPosition[(int)position].transform.position;
     }
     
+    public void SpawnEffectViaInt(VFX effect, int position)
+    {
+        GameObject newVFX = GameObject.Instantiate(this.VFXEffect[(int)effect], transform.position, transform.rotation) as GameObject;
+        newVFX.name = "" + effect;
+        newVFX.transform.position = this.SpawnPosition[position].transform.position;
+    }
 }

@@ -35,6 +35,7 @@ public class GameStateSwitch : MonoBehaviour
     public CamShake camshake;
     public ImplantHandler implanthandler;
     public ChainLoadout chainloadout;
+    public AudienceController audiencecontroller;
 
     public Save curProfile; 
     public Enemy curEnemy;
@@ -77,6 +78,7 @@ public class GameStateSwitch : MonoBehaviour
         fainfowindow = GetComponentInChildren<FAInfoWindow>();
         implanthandler = GetComponentInChildren<ImplantHandler>();
         chainloadout = GetComponentInChildren<ChainLoadout>();
+        audiencecontroller = GetComponentInChildren<AudienceController>();
 
         qteanimevents = FindObjectOfType<QTEAnimEvents>();        
         enemystatusbar = FindObjectOfType<EnemyStatusBar>();

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32eeac52b95f9414aa5d46835d18ac12, type: 3}
   m_Name: Onslaught
   m_EditorClassIdentifier: 
-  DMG: 1084
+  DMG: 1134
   RPCost: 72
-  RPGain: 8
+  RPGain: 4
   HPGain: 2
   Speed: 12
   AnimationName: FA1

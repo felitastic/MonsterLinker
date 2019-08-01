@@ -34,7 +34,7 @@ public class SoundController : MonoBehaviour
         powerCharge1,
         SFAimpact,
         SFAbeingused,
-        empty,
+        powerCharge2,
         unleashedMode,
         woosh_heavy,
         woosh_light,

@@ -92,12 +92,12 @@ public class AttackRoundHandler : MonoBehaviour
                         {
                             //endurance qte callen
                             qtehandler.SetType(eQTEType.FAEndurance);
-                            animationhandler.PlayerAnim.SetBool("Endurance", true);
+                            animationhandler.EnduranceAnimStart();
                         }
                         else
                         {
                             //FA QTE und animation callen
-                            animationhandler.PlayerAnim.SetBool("Endurance", false);
+                            animationhandler.EnduranceAnimEnd();
                             baeffectshandler.PlayerPaysRP();
                             qtehandler.SetType(eQTEType.FA);
                             animationhandler.PlayerAttack(curAttack.AnimationName);

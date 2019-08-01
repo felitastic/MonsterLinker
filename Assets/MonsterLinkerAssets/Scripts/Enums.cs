@@ -128,9 +128,14 @@ public enum eLoadout
     ImplantChoice
 };
 
-//public enum eSlotNo
-//{
-//    First,
-//    Second,
-//    Third
-//};
+public enum eTutorial
+{
+    notstarted,
+    menu,
+    loadout,
+    input1,
+    inicheck,
+    infight,
+    input2,
+    done
+}

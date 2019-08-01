@@ -24,7 +24,7 @@ public class CreatureAnimEvents : MonoBehaviour
     public void FAQTEcall(int FAnumber)
     {
         //qtehandler.AnimString = ("FA" + FAnumber);
-        qtehandler.CallFAQTE("FA"+FAnumber);
+        qtehandler.CallFAQTE("FA" + FAnumber);
         //qtehandler.WaitingTime = 0.0f;
         //StartCoroutine(qtehandler.WaitForStart());
     }
@@ -50,30 +50,124 @@ public class CreatureAnimEvents : MonoBehaviour
         GameStateSwitch.Instance.baeffectshandler.DealDMG();
     }
 
-    public void VFXImpact()
+    public void VFX_Swoosh(GameObject position)
     {
 
     }
 
-    public void EnduranceStart()
+    public void VFXImpact(int ImpactNo)
     {
-        print("start endurance button mash now");
-        StartCoroutine(qtehandler.ButtonMash());
+        int Position = 0;
+
+        if (GameStateSwitch.Instance.GameState == eGameState.QTEAttack)
+        {
+            //enemy spawn pos
+            Position = (int)VFXController.Position.TestMiddle;
+        }
+        else
+        {
+            //player spawn pos
+            Position = (int)VFXController.Position.TestMiddle;
+        }
+
+        //different vfx for different impacts
+        switch (ImpactNo)
+        {
+            case 1:
+                VFXController.Instance.SpawnEffectViaInt(VFXController.VFX.TestVFX, Position);
+                break;
+            case 2:
+                VFXController.Instance.SpawnEffectViaInt(VFXController.VFX.TestVFX, Position);
+                break;
+            case 3:
+                VFXController.Instance.SpawnEffectViaInt(VFXController.VFX.TestVFX, Position);
+                break;
+            default:
+
+                VFXController.Instance.SpawnEffectViaInt(VFXController.VFX.TestVFX, Position);
+                break;
+        }
     }
 
+    //Unleashed mode intro animation
+    public void VFX_UMStart()
+    {
+        VFXController.Instance.SpawnEffect(VFXController.VFX.TestVFX, VFXController.Position.TestMiddle);
+    }
+
+    //calls a light swoosh
+    public void VFX_SwooshLight(int position)
+    {
+        VFXController.Instance.SpawnEffect(VFXController.VFX.TestVFX, VFXController.Position.TestMiddle);
+    }
+
+    //calls a normal swoosh
+    public void VFX_SwooshNormal(int position)
+    {
+        VFXController.Instance.SpawnEffect(VFXController.VFX.TestVFX, VFXController.Position.TestMiddle);
+    }
+
+    //calls a heavy swoosh
+    public void VFX_SwooshHeavy(int position)
+    {
+        VFXController.Instance.SpawnEffect(VFXController.VFX.TestVFX, VFXController.Position.TestMiddle);
+    }
+
+    //calls a light swoosh
+    public void SFX_SwooshLight()
+    {
+        SoundController.Instance.StartSFX(SoundController.SFX.woosh_light);
+    }
+
+    //calls a normal swoosh
+    public void SFX_SwooshNormal()
+    {
+        SoundController.Instance.StartSFX(SoundController.SFX.woosh_normal);
+    }
+
+    //calls a heavy swoosh
+    public void SVFX_SwooshHeavy()
+    {
+        SoundController.Instance.StartSFX(SoundController.SFX.woosh_heavy);
+    }
+
+
+    //calls hurt for the creature being hit
     public void HitImpact()
     {
         //print("impact, calling animation");
         animationhandler.HurtCheck();
     }
 
-    public void ScreenShake()
+    //General screenshake
+    public void ScreenShake(int ShakeNo)
     {
         float duration = Random.Range(0.15f, 0.25f);
         float magnitude = Random.Range(2.0f, 3.0f);
+
+        switch (ShakeNo)
+        {
+            //weakest
+            case 1:
+                duration = Random.Range(0.15f, 0.25f);
+                magnitude = Random.Range(2.0f, 3.0f);
+                break;
+            case 2:
+                duration = Random.Range(0.17f, 0.27f);
+                magnitude = Random.Range(2.25f, 3.25f);
+                break;
+            //strongest
+            case 3:
+                duration = Random.Range(0.20f, 0.3f);
+                magnitude = Random.Range(2.5f, 3.5f);
+                break;
+            default:
+                break;
+        }
         StartCoroutine(GameStateSwitch.Instance.camshake.Shake(duration, magnitude));
     }
 
+    //Screenshake depending on qte result
     public void QTEScreenShake()
     {
         float duration = 0f;
@@ -87,13 +181,13 @@ public class CreatureAnimEvents : MonoBehaviour
                 magnitude = Random.Range(2.0f, 3.0f);
                 break;
             case 2:
-                 duration = Random.Range(0.17f, 0.27f);
-                 magnitude = Random.Range(2.25f, 3.25f);
+                duration = Random.Range(0.17f, 0.27f);
+                magnitude = Random.Range(2.25f, 3.25f);
                 break;
             //strongest
             case 3:
-                 duration = Random.Range(0.25f, 0.3f);
-                 magnitude = Random.Range(2.5f, 3.5f);
+                duration = Random.Range(0.25f, 0.3f);
+                magnitude = Random.Range(2.5f, 3.5f);
                 break;
             default:
                 break;
@@ -106,13 +200,13 @@ public class CreatureAnimEvents : MonoBehaviour
         switch (ImpactNo)
         {
             case 1:
-            SoundController.Instance.StartSFX(SoundController.SFX.impact_light);
+                SoundController.Instance.StartSFX(SoundController.SFX.impact_light);
                 break;
             case 2:
-            SoundController.Instance.StartSFX(SoundController.SFX.impact_normal);
+                SoundController.Instance.StartSFX(SoundController.SFX.impact_normal);
                 break;
             case 3:
-            SoundController.Instance.StartSFX(SoundController.SFX.impact_heavy);
+                SoundController.Instance.StartSFX(SoundController.SFX.impact_heavy);
                 break;
             default:
                 break;

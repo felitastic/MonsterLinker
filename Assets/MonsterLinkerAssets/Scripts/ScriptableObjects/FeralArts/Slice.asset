@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32eeac52b95f9414aa5d46835d18ac12, type: 3}
   m_Name: Slice
   m_EditorClassIdentifier: 
-  DMG: 390
+  DMG: 405
   RPCost: 36
-  RPGain: 8
+  RPGain: 4
   HPGain: 1
   Speed: 7
   AnimationName: FA1

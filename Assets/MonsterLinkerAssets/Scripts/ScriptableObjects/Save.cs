@@ -21,6 +21,7 @@ public class Save : ScriptableObject
     [SerializeField] public int curRP;
     [Tooltip("Which arena has the player reached?")]
     public int Arena = 1;
+    public eTutorial Tutorial = eTutorial.notstarted;
 
     public void SetCheapestFAcost()
     {

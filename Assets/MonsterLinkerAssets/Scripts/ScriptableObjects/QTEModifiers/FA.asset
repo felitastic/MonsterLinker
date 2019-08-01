@@ -15,7 +15,7 @@ MonoBehaviour:
   ModifierFail: 0
   ModifierGood: 0.05
   ModifierPerfect: 0.1
-  RPGainFail: 0
-  RPGainGood: 0
+  RPGainFail: 2
+  RPGainGood: 1
   RPGainPerfect: 0
   Type: FA

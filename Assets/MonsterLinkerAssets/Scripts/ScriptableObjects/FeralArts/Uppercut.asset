@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32eeac52b95f9414aa5d46835d18ac12, type: 3}
   m_Name: Uppercut
   m_EditorClassIdentifier: 
-  DMG: 410
+  DMG: 425
   RPCost: 36
-  RPGain: 8
+  RPGain: 4
   HPGain: 0
-  Speed: 9
+  Speed: 5
   AnimationName: FA1
   AttackType: 0
   FAName: Uppercut
