@@ -247,11 +247,27 @@ public class BAEffectsHandler : MonoBehaviour
         QTEResultModifier = 0f;
     }
 
-    public void CheckForDeath()
+    public void LerpHP()
     {
         switch (GameStateSwitch.Instance.GameState)
         {
             case eGameState.QTEAttack:
+                enemystatusbar.HPLerp();
+                break;
+            case eGameState.QTEBlock:
+                playerstatusbar.HPLerp();
+                break;
+            default:
+                print("no state found, not lerpin any HP");
+                break;
+        }
+    }
+
+    public void CheckForDeath()
+    {
+        switch (GameStateSwitch.Instance.GameState)
+        {
+            case eGameState.QTEAttack:                
                 if (Mathf.RoundToInt(curEnemyHP) <= (int)0)
                 {
                     GameStateSwitch.Instance.animationhandler.DeathFlag(true);

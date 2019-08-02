@@ -139,3 +139,10 @@ public enum eTutorial
     input2,
     done
 }
+
+public enum eToriiColor
+{
+    cyan,
+    pink,
+    yellow
+}

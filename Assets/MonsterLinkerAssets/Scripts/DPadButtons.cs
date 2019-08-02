@@ -8,6 +8,7 @@ public class DPadButtons : MonoBehaviour
     public static bool Down;
     public static bool Right;
     public static bool Left;
+    public static bool disabled;
 
     private float lastX;
     private float lastY;
@@ -23,31 +24,34 @@ public class DPadButtons : MonoBehaviour
         float lastDpadX = lastX;
         float lastDpadY = lastY;
 
-        if (Input.GetAxis("PADH") != 0)
+        if (!disabled)
         {
-            float DPadX = Input.GetAxis("PADH");
+            if (Input.GetAxis("PADH") != 0)
+            {
+                float DPadX = Input.GetAxis("PADH");
 
-            Right = DPadX == 1 && lastDpadX != 1;
-            Left = DPadX == -1 && lastDpadX != -1;
-            lastX = DPadX;
-        }
-        else
-        {
-            lastX = 0;
-        }
+                Right = DPadX == 1 && lastDpadX != 1;
+                Left = DPadX == -1 && lastDpadX != -1;
+                lastX = DPadX;
+            }
+            else
+            {
+                lastX = 0;
+            }
 
-        if (Input.GetAxis("PADV") != 0)
-        {
-            float DPadY = Input.GetAxis("PADV");
+            if (Input.GetAxis("PADV") != 0)
+            {
+                float DPadY = Input.GetAxis("PADV");
 
-            Up = DPadY == 1 && lastDpadY != 1;
-            Down = DPadY == -1 && lastDpadY != -1;
+                Up = DPadY == 1 && lastDpadY != 1;
+                Down = DPadY == -1 && lastDpadY != -1;
 
-            lastY = DPadY;
-        }
-        else
-        {
-            lastY = 0;
+                lastY = DPadY;
+            }
+            else
+            {
+                lastY = 0;
+            }
         }
     }
 }

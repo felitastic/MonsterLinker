@@ -11,7 +11,7 @@ public class InputBarHandler : MonoBehaviour
     public FeralArtCheck feralartcheck;
     public InitiativeCheck initiativecheck;
     public ArenaUIHandler arenaui;
-    
+
     //call this via button to add the attack
     public void Add(BaseAttack baseAttack)
     {
@@ -26,12 +26,12 @@ public class InputBarHandler : MonoBehaviour
 
         if (PlayerAttackInput.Count >= maxBaseAttackInputSlots)
         {
-            print("input bar full: "+ PlayerAttackInput[0].name+    
-                                ", "+ PlayerAttackInput[1].name +
+            print("input bar full: " + PlayerAttackInput[0].name +
+                                ", " + PlayerAttackInput[1].name +
                                 ", " + PlayerAttackInput[2].name +
                                 ", " + PlayerAttackInput[3].name +
-                                ", " + PlayerAttackInput[4].name);    
-            
+                                ", " + PlayerAttackInput[4].name);
+
             //arenaui.ConfirmBAsButton.enabled = true;
             //TODO disable BA input and enable confirm button
             arenaui.SetConfirmButtonStatus(true);
@@ -46,16 +46,18 @@ public class InputBarHandler : MonoBehaviour
         if (PlayerAttackInput.Count == 0)
             return;
 
-        PlayerAttackInput.Clear();
-        feralartcheck.ResetLists();
-        arenaui.UpdatePlayerInput(PlayerAttackInput);
-        arenaui.ResetBAColours(Color.white);        
-        print("resetting Input bar");
+        if (!DPadButtons.disabled)
+        {
+            PlayerAttackInput.Clear();
+            feralartcheck.ResetLists();
+            arenaui.UpdatePlayerInput(PlayerAttackInput);
+            arenaui.ResetBAColours(Color.white);
+            print("resetting Input bar");
 
-        arenaui.SetConfirmButtonStatus(false);
-        //arenaui.ConfirmBAsButton.enabled = false;
-        arenaui.SetInputButtonsStatus(true);
-
+            arenaui.SetConfirmButtonStatus(false);
+            //arenaui.ConfirmBAsButton.enabled = false;
+            arenaui.SetInputButtonsStatus(true);
+        }
         //if (feralartcheck.superFAused)
         //    feralartcheck.superFAused = false;
     }
@@ -77,46 +79,53 @@ public class InputBarHandler : MonoBehaviour
 
     public void ConfirmInput()
     {
-        if (PlayerAttackInput.Count == maxBaseAttackInputSlots)
+        if (!DPadButtons.disabled)
         {
-            //if (feralartcheck.superFAused)
+            if (PlayerAttackInput.Count == maxBaseAttackInputSlots)
+            {
+                //if (feralartcheck.superFAused)
                 //{
                 //    feralartcheck.LoadedFeralArts.RemoveAt(3);
                 //    GameStateSwitch.Instance.fainfowindow.SI.SetActive(false);
                 //}
 
-            if (GameStateSwitch.Instance.implanthandler.UMbuttonpressed)
-            {
-                GameStateSwitch.Instance.implanthandler.Unleashed = eUnleashedMode.active;
-                GameStateSwitch.Instance.implanthandler.UMrounds = 1;
-                GameStateSwitch.Instance.implanthandler.ImplantCheck();
-                arenaui.UM_BuffIcon.GetComponentInChildren<Animator>().SetTrigger("active");
-                GameStateSwitch.Instance.arenaui.UM_Button.SetActive(false);
-                GameStateSwitch.Instance.implanthandler.UMbuttonpressed = false;
-            }
-            initiativecheck.curPlayerInput = PlayerAttackInput;
-            StartCoroutine(WaitForButtonAnim());
+                if (GameStateSwitch.Instance.implanthandler.UMbuttonpressed)
+                {
+                    GameStateSwitch.Instance.implanthandler.Unleashed = eUnleashedMode.active;
+                    GameStateSwitch.Instance.implanthandler.UMrounds = 1;
+                    GameStateSwitch.Instance.implanthandler.ImplantCheck();
+                    arenaui.UM_BuffIcon.GetComponentInChildren<Animator>().SetTrigger("active");
+                    GameStateSwitch.Instance.arenaui.UM_Button.SetActive(false);
+                    GameStateSwitch.Instance.arenaui.UM_Button.GetComponentInChildren<Button>().interactable = false;
+                    GameStateSwitch.Instance.implanthandler.UMbuttonpressed = false;
+                }
+                initiativecheck.curPlayerInput = PlayerAttackInput;
+                StartCoroutine(WaitForButtonAnim());
 
+            }
+            else
+            {
+                arenaui.SetConfirmButtonStatus(false);
+                //arenaui.ConfirmBAsButton.enabled = false;
+                print("BA input not full, cannot start fight");
+            }
         }
-        else
-        {
-            arenaui.SetConfirmButtonStatus(false);
-            //arenaui.ConfirmBAsButton.enabled = false;
-            print("BA input not full, cannot start fight");
-        }
-    }   
+    }
 
     public void ShowHideInfo()
     {
-        if (arenaui.BaseAttackInfoPanel.activeSelf)
+        if (!DPadButtons.disabled)
         {
-            arenaui.BaseAttackInfoPanel.SetActive(false);
-            arenaui.InfoButtonText.text = ("Show Info");
-        }
-        else
-        {
-            arenaui.BaseAttackInfoPanel.SetActive(true);
-            arenaui.InfoButtonText.text = ("Hide Info");
+            if (arenaui.BaseAttackInfoPanel.activeSelf)
+            {
+                arenaui.BaseAttackInfoPanel.SetActive(false);
+                arenaui.InfoButtonText.text = ("Show Info");
+            }
+            else
+            {
+                arenaui.BaseAttackInfoPanel.SetActive(true);
+                arenaui.InfoButtonText.text = ("Hide Info");
+            }
         }
     }
 

@@ -23,8 +23,15 @@ public class CreatureAnimEvents : MonoBehaviour
 
     public void FAQTEcall(int FAnumber)
     {
+        if (GameStateSwitch.Instance.GameState == eGameState.QTEAttack)
+        {
+            qtehandler.CallFAQTE("FA" + FAnumber);
+        }
+        else if (GameStateSwitch.Instance.GameState == eGameState.QTEBlock)
+        {
+            qtehandler.CallFAQTE("BlockFA"+FAnumber);
+        }
         //qtehandler.AnimString = ("FA" + FAnumber);
-        qtehandler.CallFAQTE("FA" + FAnumber);
         //qtehandler.WaitingTime = 0.0f;
         //StartCoroutine(qtehandler.WaitForStart());
     }

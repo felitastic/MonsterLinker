@@ -27,11 +27,6 @@ public class StatusBarHandler : MonoBehaviour
     [Tooltip("Desired X Pos., where to move the bar to")]
     public float desired_xPos;
 
-    [Tooltip("How quick the second healthbar 'lerps' down")] 
-    public int LerpSpeed = 3;
-    [Tooltip("How long the second healthbar 'lerps' down")] 
-    public int LerpTime = 3;
-
     [Header("HP and RP values")]
     [Tooltip("Max HP in this fight")]
     public float maxHP;
@@ -46,14 +41,31 @@ public class StatusBarHandler : MonoBehaviour
     [Tooltip("RP after reduction")]
     public float futureRP;
 
-    [SerializeField] bool lerping;
-    Vector2 curPos;
-    Vector2 newPos;
+    //[Header("For the credits lerp")]
+    //[Tooltip("Regulates how fast the hp decrease, higher no = slower")]
+    public float lerpTime = 0.75f;
+    float curLerpTime;
+    Vector3 StartPos;
+    Vector3 EndPos;
+    private bool lerping;
 
-    public void Update()
+    public void FixedUpdate()
     {
-        while (lerping)
-            HPhurtTransform.anchoredPosition = Vector2.Lerp(curPos, newPos, Time.deltaTime * LerpSpeed);
+        if (lerping)
+        {
+
+            if (HPhurtTransform.anchoredPosition == new Vector2(EndPos.x, EndPos.y))
+            {
+                lerping = false;
+            }
+
+            curLerpTime += Time.deltaTime;
+            if (curLerpTime > lerpTime)
+                curLerpTime = lerpTime;
+
+            float percentage = curLerpTime / lerpTime;
+            HPhurtTransform.anchoredPosition = Vector3.Lerp(StartPos, EndPos, percentage);
+        }
     }
 
     public void GetValues(float maxHitPoints, float maxRagePoints,  float MaxXValueHP, float MaxXValueRP, float MinXValueRP, float MinXValueHP)
@@ -106,57 +118,10 @@ public class StatusBarHandler : MonoBehaviour
         curRP = futureRP;
     }
 
-    //TODO: not working
     public void HPLerp()
     {
-        print("lerp hp");
-        //set current position of the bar
-        cur_yPos = HPhurtTransform.anchoredPosition.y;
-        cur_xPos = HPhurtTransform.anchoredPosition.x;
-
-        //percentage values
-        float curPercent = 100 - ((futureHP / maxHP) * 100);
-        desired_xPos = maxXValueHP * (curPercent / 100);
-        
-        curPos = new Vector2(cur_xPos, cur_yPos);
-        newPos = new Vector2(desired_xPos, cur_yPos);
-
-        StartCoroutine(WaitForLerp());
-        curHP = futureHP;
-    }
-
-    public IEnumerator WaitForLerp()
-    {
+        StartPos = HPhurtTransform.anchoredPosition;
+        EndPos = HPnormalTransform.anchoredPosition;
         lerping = true;
-        yield return new WaitForSeconds(LerpTime);
-        lerping = false;
     }
-
-    //private int CurP_HP
-    //{
-    //    get { return Mathf.RoundToInt(GameStateSwitch.Instance.baeffectshandler.curPlayerHP); }
-    //    set { curP_HP = value; }
-    //}
-
-    ////get max health, curhealth, rp from calling function ? -> Round to Int
-
-    //public void SetStatusBarPositions()
-    //{
-    //    cachedY = P_HPnormalTransform.position.y;
-
-    //}
-
-    ////Calculates position of bar
-    //private float MapValues(float x, float inMin, float inMax, float outMin, float outMax)
-    //{
-    //    return (x - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
-    //}
-
-    //public void LerpPlayerHP()
-    //{
-    //    float currentXValue = MapValues(curP_HP, 0, Mathf.RoundToInt(GameStateSwitch.Instance.baeffectshandler.maxPlayerHP), minXValue, maxXValue);
-
-    //    P_HPnormalTransform.position = new Vector3(currentXValue, cachedY);
-
-    //}    
 }

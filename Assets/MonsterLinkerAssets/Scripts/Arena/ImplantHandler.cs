@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ImplantHandler : MonoBehaviour
 {
@@ -76,19 +77,21 @@ public class ImplantHandler : MonoBehaviour
                         {
                             print("UM available now");
                             GameStateSwitch.Instance.arenaui.UM_Button.SetActive(true);
+                            GameStateSwitch.Instance.arenaui.UM_Button.GetComponentInChildren<Button>().interactable = true;
+                            
                             Unleashed = eUnleashedMode.available;
-                        }
+                        }                        
                         break;
                     case eUnleashedMode.available:                        
                         break;
                     case eUnleashedMode.active:
                         print("UM round " + UMrounds);
-                        //GameStateSwitch.Instance.arenaui.UM_BuffIcon.SetActive(true);
 
                         if (UMrounds > 3)
                         {
                             //disable UM symbol
-                            GameStateSwitch.Instance.arenaui.UM_BuffIcon.GetComponentInChildren<Animator>().SetTrigger("inactive");                            
+                            GameStateSwitch.Instance.arenaui.UM_BuffIcon.GetComponentInChildren<Animator>().SetTrigger("inactive");
+                            GameStateSwitch.Instance.arenaui.UM_Button.GetComponentInChildren<Button>().interactable = false;
                             Unleashed = eUnleashedMode.done;
                             return;
                         }

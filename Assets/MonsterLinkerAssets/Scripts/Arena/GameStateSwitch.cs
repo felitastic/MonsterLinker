@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameStateSwitch : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class GameStateSwitch : MonoBehaviour
     public ImplantHandler implanthandler;
     public ChainLoadout chainloadout;
     public AudienceController audiencecontroller;
+    public Torii_ColorChange toriicolorchange;
 
     public Save curProfile; 
     public Enemy curEnemy;
@@ -79,6 +81,7 @@ public class GameStateSwitch : MonoBehaviour
         implanthandler = GetComponentInChildren<ImplantHandler>();
         chainloadout = GetComponentInChildren<ChainLoadout>();
         audiencecontroller = GetComponentInChildren<AudienceController>();
+        toriicolorchange = GetComponentInChildren<Torii_ColorChange>();
 
         qteanimevents = FindObjectOfType<QTEAnimEvents>();        
         enemystatusbar = FindObjectOfType<EnemyStatusBar>();
@@ -176,7 +179,7 @@ public class GameStateSwitch : MonoBehaviour
             ///Player Input enablen
             ///Enemy Input laden
             ///FA Check
-            case eGameState.PlayerInput:
+            case eGameState.PlayerInput:              
                 attackroundhandler.NoExtraSlot = false;
                 //implanthandler.PlayerRPatAttackStart = baeffectshandler.curPlayerRP;
 
@@ -334,6 +337,8 @@ public class GameStateSwitch : MonoBehaviour
         print("first setup of values n shit");
         baeffectshandler.StartHpandRPValues(curProfile.MaxHitPoints, curProfile.curRP, curEnemy.MaxHitPoints, 0, curEnemy.RPgainperHit, curEnemy.DmgModifier);
         inputbarhandler.maxBaseAttackInputSlots = curProfile.maxBaseAttackInputSlots;
+        GameStateSwitch.Instance.arenaui.UM_Button.GetComponentInChildren<Button>().interactable = false;
+        arenaui.UM_Button.SetActive(false);
 
         attackslotspawn.Setup(GameStateSwitch.Instance.curProfile.maxBaseAttackInputSlots, GameStateSwitch.Instance.enemystatemachine.maxInputSlots);
         attackslotspawn.SpawnPlayerSlots();

@@ -43,7 +43,7 @@ public class AttackRoundHandler : MonoBehaviour
             //if this is the last attack
             if (curRound == maxRounds)
             {
-                print("check for death after this attack");
+                print("check for death after this attack");        
                 baeffectshandler.deathCheck = true;
             }
             StartAttack();
@@ -51,6 +51,7 @@ public class AttackRoundHandler : MonoBehaviour
 
         else
         {
+            baeffectshandler.LerpHP();
             print("turn done");
             CheckForTurn();
         }

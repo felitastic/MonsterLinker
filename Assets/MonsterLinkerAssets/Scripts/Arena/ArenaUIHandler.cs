@@ -12,6 +12,7 @@ public class ArenaUIHandler : MonoBehaviour
     public Text PlayerSpeed;
 
     [Header("Drag n Drop Menus")]
+    public GameObject CheatWindow;
     public GameObject FALoadout;
     public GameObject InputPanel;
     public GameObject PlayerInputBar;
@@ -66,7 +67,7 @@ public class ArenaUIHandler : MonoBehaviour
     public GameObject BaseAttackInfoPanel;
     public Text InfoButtonText;
     public Button ConfirmBAsButton;
-    public GameObject DmgCounter;
+    //public GameObject DmgCounter;
 
     [HideInInspector]
     //public AttackSlot[] playerSlots;
@@ -90,6 +91,20 @@ public class ArenaUIHandler : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void UseCheatWindow()
+    {
+        if (!DPadButtons.disabled)
+        {
+            DPadButtons.disabled = true;
+            CheatWindow.SetActive(true);
+        }
+        else
+        {
+            DPadButtons.disabled = false;
+            CheatWindow.SetActive(false);
+        }      
     }
 
     public void UpdateUMBuff(int round)
@@ -117,9 +132,9 @@ public class ArenaUIHandler : MonoBehaviour
             PlayerDmgTextAnim.SetTrigger("dmg");
         }
 
-        DmgCounter.SetActive(true);
+        //DmgCounter.SetActive(true);
         yield return new WaitForSeconds(1f);
-        DmgCounter.SetActive(false);
+        //DmgCounter.SetActive(false);
     }
 
     public void SetSpeedValues(int eSpeed, int pSpeed)
@@ -197,8 +212,11 @@ public class ArenaUIHandler : MonoBehaviour
         }
         if (DPadButtons.Left || Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            UM.animator.SetTrigger("Pressed");
-            UM.onClick.Invoke();            
+            if (GameStateSwitch.Instance.arenaui.UM_Button.GetComponentInChildren<Button>().interactable)
+            {
+                UM.animator.SetTrigger("Pressed");
+                UM.onClick.Invoke();
+            }       
         }
     }
 

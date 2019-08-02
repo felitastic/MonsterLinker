@@ -11,7 +11,7 @@ public class ArenaPlayerInput : MonoBehaviour
 {
     public InputBarHandler inputbarhandler;
     public ArenaUIHandler arenaui;
-    public FeralArtCheck feralartcheck;
+    public FeralArtCheck feralartcheck;    
     public void AddBaseattack(BaseAttack baseAttack)
     {
         SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
@@ -35,10 +35,10 @@ public class ArenaPlayerInput : MonoBehaviour
         SceneManager.LoadScene(curScene.name);
     }
 
-        public void ResetPlayerInput()
+    public void ResetPlayerInput()
     {
         SoundController.Instance.StartSFX(SoundController.SFX.ui_cancel);
-        inputbarhandler.Reset();
+        inputbarhandler.Reset();       
     }
 
     public void RetryFight()
@@ -72,15 +72,36 @@ public class ArenaPlayerInput : MonoBehaviour
         SceneManager.LoadScene("Home");
     }
 
-    public void Test()
+    public void CallCheatWindow()
     {
-        GameStateSwitch.Instance.baeffectshandler.curPlayerHP -= GameStateSwitch.Instance.baeffectshandler.maxPlayerHP * 0.72f;
-        //    VFXController.Instance.SpawnEffect(VFXController.VFX.TestVFX, VFXController.Position.TestMiddle);
+        arenaui.UseCheatWindow();
+    }
+
+    public void HP25()
+    {
+        GameStateSwitch.Instance.baeffectshandler.curPlayerHP = GameStateSwitch.Instance.baeffectshandler.maxPlayerHP * 0.25f;
+        GameStateSwitch.Instance.baeffectshandler.UpdateHPandRPCounter();
+        GameStateSwitch.Instance.baeffectshandler.UpdateHPandRPbars();
+        arenaui.UseCheatWindow();
+    }
+
+    public void RP100()
+    {
+        GameStateSwitch.Instance.baeffectshandler.curPlayerRP = 100;
+        GameStateSwitch.Instance.baeffectshandler.UpdateHPandRPCounter();
+        GameStateSwitch.Instance.baeffectshandler.UpdateHPandRPbars();
+        arenaui.UseCheatWindow();
+    }
+
+    public void TestStuff()
+    {
+        //VFXController.Instance.SpawnEffect(VFXController.VFX.TestVFX, VFXController.Position.TestMiddle);
 
         //float duration = Random.Range(0.1f, 0.2f);
         //float magnitude = Random.Range(1.5f, 2.25f);
         //StartCoroutine(GameStateSwitch.Instance.camshake.Shake(duration, magnitude));
     }
+
     //public void ChooseProfile(Save saveSlot)
     //{
     //    if (saveSlot.Used)
