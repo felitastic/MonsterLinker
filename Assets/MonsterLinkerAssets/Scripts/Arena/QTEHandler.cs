@@ -31,10 +31,15 @@ public class QTEHandler : MonoBehaviour
     [Header("For the Button Input Randomizer")]
     public List<ButtonInput> Buttons = new List<ButtonInput>();
     public List<Vector2> ButtonPosVectors;
+
     public GameObject QTEButton;
     public RectTransform QTEButtonTransform;
-    public Animator ButtonAnim;
     public Image ButtonImage;
+
+    public GameObject EnduranceButton;
+    public Animator EnduranceButtonAnim;
+    public RectTransform EnduranceButtonTransform;
+    public Image EnduranceButtonImage;
 
     public Text EnduranceCounter;
     public Text EnduranceCounter2;
@@ -238,7 +243,7 @@ public class QTEHandler : MonoBehaviour
                     QTEButtonTransform.anchoredPosition = ButtonPosVectors[2];
                     break;
                 case eQTEType.FAEndurance:
-                    QTEButtonTransform.anchoredPosition = ButtonPosVectors[0];
+                    EnduranceButtonTransform.anchoredPosition = ButtonPosVectors[0];
                     break;
                 case eQTEType.FA:
                     QTEButtonTransform.anchoredPosition = ButtonPosVectors[1];
@@ -248,6 +253,7 @@ public class QTEHandler : MonoBehaviour
                     break;
             }
             ButtonImage.sprite = Buttons[ran].buttonSprite;
+            EnduranceButtonImage.sprite = Buttons[ran].buttonSprite;
         }
     }
 
@@ -271,6 +277,7 @@ public class QTEHandler : MonoBehaviour
     {
         float curDMG = Mathf.RoundToInt(baeffectshandler.curAttack.DMG + (baeffectshandler.curAttack.DMG * baeffectshandler.EnduranceModifier));
         EnduranceTextAnim.Play("mash");
+        EnduranceButtonAnim.SetTrigger("Pressed");
         EnduranceCounter.text = ("" + curDMG);
         EnduranceCounter2.text = EnduranceCounter.text;
     }
@@ -465,6 +472,7 @@ public class QTEHandler : MonoBehaviour
                 EnduranceCounter2.text = "";
                 curQTEAnim.Play("Wait");
                 QTEButton.SetActive(false);
+                EnduranceButton.SetActive(false);
                 QTEInput = eQTEInput.None;
                 break;
             case eQTEState.Running:
@@ -475,8 +483,8 @@ public class QTEHandler : MonoBehaviour
                 break;
             case eQTEState.Endurance:
                 print("endurance kuhteheh running");
-                QTEInput = eQTEInput.Endurance;                
-                QTEButton.SetActive(true);
+                QTEInput = eQTEInput.Endurance;
+                EnduranceButton.SetActive(true);
                 curQTEAnim.SetTrigger("Endurance");
                 break;
             case eQTEState.Done:
@@ -486,6 +494,7 @@ public class QTEHandler : MonoBehaviour
                 QTEInput = eQTEInput.None; 
                 curQTEAnim.Play("Wait");
                 QTEButton.SetActive(false);
+                EnduranceButton.SetActive(false);
                 //RandomButtonGenerator();
                 mashCounter = 0;
                 break;
