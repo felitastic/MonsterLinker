@@ -284,7 +284,7 @@ public class QTEHandler : MonoBehaviour
             if (Input.GetButtonDown(Buttons[ran].inputString))
             {
                 print("kuhteheh button pressed");
-                ButtonAnim.Play("Highlighted");
+                //ButtonAnim.Play("Highlighted");
                 StartCoroutine(CheckQTEZone());
             }
             else

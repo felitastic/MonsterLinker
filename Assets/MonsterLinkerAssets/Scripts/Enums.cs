@@ -142,7 +142,18 @@ public enum eTutorial
 
 public enum eToriiColor
 {
-    cyan,
+    violett,
     pink,
-    yellow
+    yellow,
+    green,
+    orange
+}
+
+public enum eEnemySkin
+{
+    Slicer,
+    Crystalfang,
+    Pyro,
+    Xensor,
+    Eldritch
 }
