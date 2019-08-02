@@ -129,7 +129,8 @@ public class SoundController : MonoBehaviour
     public void StartBGM(BGM sound, float volume = 1f)
     {
         AudioSourceBGM.loop = true;
-        this.AudioSourceBGM.PlayOneShot(this.BGMClips[(int)sound], volume);
+        //this.AudioSourceBGM.Play(this.BGMClips[(int)sound]);
+        //    PlayOneShot(this.BGMClips[(int)sound], volume);
     }
 
     public void StartLoopingBGM(BGM sound, float volume = 1f)

@@ -2,6 +2,7 @@
 
 public enum eGameState
 {
+    Setup,
     Loadout,
     Intro,
     PlayerInput,

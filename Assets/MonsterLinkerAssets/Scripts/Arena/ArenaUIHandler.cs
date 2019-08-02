@@ -57,8 +57,8 @@ public class ArenaUIHandler : MonoBehaviour
 
     [Header("Result Screen")]
     public GameObject ResultPanel;
+    public GameObject HomeButton;
     public GameObject RetryButton;
-    public GameObject LoadoutButton;
     public GameObject NextButton;
     public Text ResultText;
     public Text ResultNameText;

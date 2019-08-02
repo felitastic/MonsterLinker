@@ -158,7 +158,7 @@ public class BAEffectsHandler : MonoBehaviour
     {
         print("dealing dmg to player");
         curPlayerHP -= curDMG;
-        curEnemyHP += curAttack.HPGain;
+        curEnemyHP += (maxEnemyHP * (100 / curAttack.HPGain));
         curPlayerRP += RPgained;
         curEnemyRP += curAttack.RPGain;
         TotalDmgTaken += curDMG;
@@ -176,7 +176,7 @@ public class BAEffectsHandler : MonoBehaviour
     public void EnemyTakesDmg(float curDMG)
     {
         curEnemyHP -= curDMG;
-        curPlayerHP += curAttack.HPGain;
+        curPlayerHP += (maxPlayerHP * (100/curAttack.HPGain));
         curEnemyRP += EnemyRPgain;
         curPlayerRP += RPgained;
         TotalDmgDealt += curDMG;

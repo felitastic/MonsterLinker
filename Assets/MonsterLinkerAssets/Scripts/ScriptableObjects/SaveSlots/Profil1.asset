@@ -16,12 +16,13 @@ MonoBehaviour:
   maxBaseAttackInputSlots: 5
   FALoadout:
   - {fileID: 11400000, guid: f3c3e14e80b3bbf47a13e11f17edd9ac, type: 2}
-  - {fileID: 11400000, guid: 73cf7530c323cec48ae7a40273d02661, type: 2}
-  - {fileID: 11400000, guid: 01b158b686d3a3540bbdb79fe485522a, type: 2}
-  SuperDuperFA: {fileID: 11400000, guid: 52d82319906a0704f9322bf9130e861f, type: 2}
-  curImplant: {fileID: 11400000, guid: c09adac958dbb254d922b67a9ca751d7, type: 2}
+  - {fileID: 11400000, guid: a73caced1849f6646bb69e0497467b39, type: 2}
+  - {fileID: 11400000, guid: b1372efe5fe38c548b9d24c31f652320, type: 2}
+  curImplant: {fileID: 11400000, guid: bbd889200690dd84fa6c1ea34e67d0fa, type: 2}
   lowestFAcost: 36
   LinkerName: Skerxan
   MonsterName: Silent Reaper
   MaxHitPoints: 5000
+  curRP: 0
   Arena: 1
+  Tutorial: 0

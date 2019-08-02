@@ -7,7 +7,7 @@ public class GameStateSwitch : MonoBehaviour
 {
     public static GameStateSwitch Instance;
 
-    public eGameState GameState;
+    public eGameState GameState = eGameState.Setup;
     public eFightResult FightResult;
     public eImplant Implant;
 
@@ -38,6 +38,7 @@ public class GameStateSwitch : MonoBehaviour
     public ChainLoadout chainloadout;
     public AudienceController audiencecontroller;
     public Torii_ColorChange toriicolorchange;
+    public ArenaStageChanger arenastagechanger;
 
     public Save curProfile; 
     public Enemy curEnemy;
@@ -56,9 +57,7 @@ public class GameStateSwitch : MonoBehaviour
         }
         #endregion
 
-        GetAllScripts();
-        ConnectScripts();
-        SwitchState(eGameState.Loadout);
+        SwitchState(eGameState.Setup);
     }
 
     void GetAllScripts()
@@ -71,7 +70,6 @@ public class GameStateSwitch : MonoBehaviour
         arenaui = GetComponentInChildren<ArenaUIHandler>();
         attackslotspawn = GetComponentInChildren<AttackSlotSpawn>();
         initiativecheck = GetComponentInChildren<InitiativeCheck>();
-        enemystatemachine = GetComponentInChildren<EnemyStateMachine>();
         turnchanger = GetComponentInChildren<TurnChanger>();
         qtehandler = GetComponentInChildren<QTEHandler>();
         baeffectshandler = GetComponentInChildren<BAEffectsHandler>();
@@ -82,6 +80,7 @@ public class GameStateSwitch : MonoBehaviour
         chainloadout = GetComponentInChildren<ChainLoadout>();
         audiencecontroller = GetComponentInChildren<AudienceController>();
         toriicolorchange = GetComponentInChildren<Torii_ColorChange>();
+        arenastagechanger = GetComponentInChildren<ArenaStageChanger>();
 
         qteanimevents = FindObjectOfType<QTEAnimEvents>();        
         enemystatusbar = FindObjectOfType<EnemyStatusBar>();
@@ -99,8 +98,7 @@ public class GameStateSwitch : MonoBehaviour
         playerinput.inputbarhandler = inputbarhandler;
         playerinput.arenaui = arenaui;
         playerinput.feralartcheck = feralartcheck;
-        enemystatemachine.arenaui = arenaui;
-        enemystatemachine.initiativecheck = initiativecheck;
+
         initiativecheck.arenaui = arenaui;
         initiativecheck.turnchanger = turnchanger;
         qtehandler.baeffectshandler = baeffectshandler;
@@ -114,7 +112,6 @@ public class GameStateSwitch : MonoBehaviour
         attackroundhandler.qtehandler = qtehandler;
         attackroundhandler.animationhandler = animationhandler;
         attackroundhandler.turnchanger = turnchanger;
-        enemystatemachine.baeffectshandler = baeffectshandler;
         playerCreatureanimevents.animationhandler = animationhandler;
         playerCreatureanimevents.attackroundhandler = attackroundhandler;
         playerCreatureanimevents.qtehandler = qtehandler;
@@ -127,8 +124,18 @@ public class GameStateSwitch : MonoBehaviour
         baeffectshandler.playerstatusbar = playerstatusbar;
         baeffectshandler.implanthandler = implanthandler;
         chainloadout.feralartcheck = feralartcheck;
+        arenastagechanger.toriicolorchange = toriicolorchange;
     }
     
+    public void SetEnemy()
+    {
+        arenastagechanger.CheckArenaStage(curProfile.Arena);
+        enemystatemachine = GetComponentInChildren<EnemyStateMachine>();
+        enemystatemachine.arenaui = arenaui;
+        enemystatemachine.initiativecheck = initiativecheck;
+        enemystatemachine.baeffectshandler = baeffectshandler;
+    }
+
     //will be called by other scripts, update the arenastate and then run functions from the scripts
     public void SwitchState(eGameState gamestate)
     {
@@ -137,11 +144,20 @@ public class GameStateSwitch : MonoBehaviour
 
         switch (gamestate)
         {
+            case eGameState.Setup:
+                GetAllScripts();
+                ConnectScripts();
+                //TODO activate when everything is working
+                //curProfile = preloadscript.Save1;
+                SetEnemy();
+                SwitchState(eGameState.Loadout);
+
+                //TODO play blacklist video
+
+                break;
             ///FA Loadout für Spieler
             ///Enemy Values laden und Attack Slot Setup für Enemy und Spieler
             case eGameState.Loadout:
-                //TODO activate this later when menus are used
-                //curProfile = preloadscript.Save1;
                 StartCoroutine(animationhandler.IdleOffset());
 
                 if (!firstSetupDone)
@@ -158,7 +174,9 @@ public class GameStateSwitch : MonoBehaviour
                 arenaui.FALoadout.SetActive(true);
                 arenaui.QTEPanel.SetActive(false);
                 enemystatemachine.GetEnemyValues();
-                //enemystatemachine.SetEnemyType(curEnemy);
+
+                if (!firstSetupDone)
+                    FirstSetup();
                 break;
             ///Arena in cinematischer Cutscene vorstellen
             ///FA Loadout und alle scripts laden
@@ -168,10 +186,6 @@ public class GameStateSwitch : MonoBehaviour
                 arenaui.ResultPanel.SetActive(false);
                 arenaui.FALoadout.SetActive(false);
                 arenaui.UM_Button.SetActive(false);
-
-                if (!firstSetupDone)
-                    FirstSetup();
-
                 chainloadout.ConvertLoadedFeralArts();
                 chainloadout.CheckForChainPossibility();
                 StartCoroutine(WaitForIntro(IntroTime));
@@ -309,22 +323,18 @@ public class GameStateSwitch : MonoBehaviour
                         Debug.LogError("No Result set!");
                         break;
                     case eFightResult.Victory:
-                        arenaui.RetryButton.SetActive(true);
-                        arenaui.LoadoutButton.SetActive(true);
-                        //arenaui.NextButton.SetActive(true);
-                        //arenaui.LoadoutButton.SetActive(false);
+                        arenaui.NextButton.SetActive(true);
+                        arenaui.RetryButton.SetActive(false);
                         arenaui.ResultText.text = "WINNER";
 
                         break;
                     case eFightResult.Defeat:
                         arenaui.RetryButton.SetActive(true);
-                        arenaui.LoadoutButton.SetActive(true);
-                        //arenaui.NextButton.SetActive(false);
-                        //arenaui.LoadoutButton.SetActive(true);
-
+                        arenaui.NextButton.SetActive(false);
                         arenaui.ResultText.text = "LOSER";
                         break;
                 }
+                arenaui.HomeButton.SetActive(true);
                 arenaui.ResultPanel.SetActive(true);
                 break;
             case eGameState.Blacklist:

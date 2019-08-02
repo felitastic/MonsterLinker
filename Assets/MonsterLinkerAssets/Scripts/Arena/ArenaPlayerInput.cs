@@ -29,41 +29,26 @@ public class ArenaPlayerInput : MonoBehaviour
         Application.Quit();
     }
 
-    public void ReloadScene()
-    {
-        Scene curScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(curScene.name);
-    }
-
     public void ResetPlayerInput()
     {
         SoundController.Instance.StartSFX(SoundController.SFX.ui_cancel);
         inputbarhandler.Reset();       
     }
 
+
     public void RetryFight()
     {
-        GameStateSwitch.Instance.animationhandler.EnemyAnim.SetTrigger("jump");
-        GameStateSwitch.Instance.animationhandler.PlayerAnim.SetTrigger("jump");
-        GameStateSwitch.Instance.SwitchState(eGameState.PlayerInput);
-        //Scene curScene = SceneManager.GetActiveScene();
-        //SceneManager.LoadScene(curScene.name);
-    }
-
-    public void RetryWithLoadout()
-    {
         SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
-        GameStateSwitch.Instance.animationhandler.EnemyAnim.SetTrigger("jump");
-        GameStateSwitch.Instance.animationhandler.PlayerAnim.SetTrigger("jump");
-        GameStateSwitch.Instance.SwitchState(eGameState.Loadout);
-        //Scene curScene = SceneManager.GetActiveScene();
-        //SceneManager.LoadScene(curScene.name);
+        Scene curScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(curScene.name);
     }
 
     public void NextFight()
     {
-        SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SoundController.Instance.StartSFX(SoundController.SFX.ui_loadoutEquip);
+        Scene curScene = SceneManager.GetActiveScene();
+        GameStateSwitch.Instance.curProfile.Arena += 1;
+        SceneManager.LoadScene(curScene.name);
     }
 
     public void BackToHome()
