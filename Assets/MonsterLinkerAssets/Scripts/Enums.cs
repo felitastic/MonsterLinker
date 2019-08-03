@@ -132,13 +132,24 @@ public enum eLoadout
 public enum eTutorial
 {
     notstarted,
-    menu,
     loadout,
     input1,
     inicheck,
     infight,
     input2,
     done
+}
+
+public enum eQTEFacialExpression
+{
+    happy,
+    sad,
+    shocked
+}
+
+public enum eQTEBodyLanguage
+{
+    pointUp
 }
 
 public enum eToriiColor

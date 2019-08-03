@@ -97,7 +97,7 @@ LightmapSettings:
     m_ShowResolutionOverlay: 1
     m_ExportTrainingData: 0
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 1748146653}
   - component: {fileID: 1748146652}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: PreLoadScript
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,7 +149,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc71720fb41e7e74f8519466ffdc84a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curSave: {fileID: 11400000, guid: 50f46be133dcc0941935aaac9e32b8e2, type: 2}
   Save1: {fileID: 11400000, guid: 50f46be133dcc0941935aaac9e32b8e2, type: 2}
+  Save2: {fileID: 11400000, guid: 977a06ab1ddea8843bfdce426efff78f, type: 2}
+  Save3: {fileID: 11400000, guid: 24d7786eef60d6140897f8b137494432, type: 2}
 --- !u!4 &1748146653
 Transform:
   m_ObjectHideFlags: 0

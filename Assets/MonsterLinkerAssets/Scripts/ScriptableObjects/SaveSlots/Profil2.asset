@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e8ba1758d3d7264b8206888c9608928, type: 3}
+  m_Name: Profil2
+  m_EditorClassIdentifier: 
+  Empty: 1
+  LinkerName: 
+  MonsterName: 
+  Arena: 1
+  Tutorial: 0
+  maxBaseAttackInputSlots: 5
+  FALoadout: []
+  StartFAs:
+  - {fileID: 11400000, guid: 73cf7530c323cec48ae7a40273d02661, type: 2}
+  - {fileID: 11400000, guid: 01b158b686d3a3540bbdb79fe485522a, type: 2}
+  - {fileID: 11400000, guid: 650cedf781f27744e88f1b0704b87678, type: 2}
+  curImplant: {fileID: 0}
+  lowestFAcost: 0
+  MaxHitPoints: 5000
+  curRP: 0

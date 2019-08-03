@@ -158,12 +158,14 @@ public class BAEffectsHandler : MonoBehaviour
     {
         print("dealing dmg to player");
         curPlayerHP -= curDMG;
-        curEnemyHP += (maxEnemyHP * (100 / curAttack.HPGain));
+        curEnemyHP += (maxEnemyHP * (curAttack.HPGain/100));
         curPlayerRP += RPgained;
         curEnemyRP += curAttack.RPGain;
         TotalDmgTaken += curDMG;
 
-        StartCoroutine(arenaui.ShowDmgCounters(Mathf.RoundToInt(curDMG)));
+        arenaui.DebugPlayerDMG.text = "" + curDMG;
+        
+        //StartCoroutine(arenaui.ShowDmgCounters(Mathf.RoundToInt(curDMG)));
 
         //StartCoroutine(arenaui.ShowDmgCounters(Mathf.RoundToInt(curDMG)));
         //GameStateSwitch.Instance.statusbarhandler.LerpPlayerHP();
@@ -176,12 +178,15 @@ public class BAEffectsHandler : MonoBehaviour
     public void EnemyTakesDmg(float curDMG)
     {
         curEnemyHP -= curDMG;
-        curPlayerHP += (maxPlayerHP * (100/curAttack.HPGain));
+        curPlayerHP += (maxPlayerHP * (curAttack.HPGain/100));
         curEnemyRP += EnemyRPgain;
         curPlayerRP += RPgained;
         TotalDmgDealt += curDMG;
 
-        StartCoroutine(arenaui.ShowDmgCounters(Mathf.RoundToInt(curDMG)));
+        arenaui.DebugEnemyDMG.text = "" + curDMG;
+
+        //StartCoroutine(arenaui.ShowDmgCounters(Mathf.RoundToInt(curDMG)));
+
         //print("dealing dmg to enemy");
         //curEnemyHP -= curDMG;
         //curPlayerHP += curAttack.HPGain;

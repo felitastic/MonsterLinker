@@ -5,34 +5,37 @@ using UnityEngine.UI;
 
 public class TutorialChan : MonoBehaviour
 {
-    [Tooltip("Different Positions for her to appear")]
-    public List<GameObject> Positions;
+    public Image curFace;
+    public Image curBody;
+    public Text curDialogue;
 
-    public List<Image> QTEFace;
-    public enum QTEFacialExpression
+    public Animator QTEchanAnim;
+    public RectTransform QTEposition;
+    public GameObject ContinueButton;
+
+    public List<Sprite> QTEFace;
+    public List<Sprite> QTEBody;
+
+    public void TutChan_Switch(eQTEBodyLanguage body, eQTEFacialExpression face)
     {
-        happy,
-        excited,
-        sad,
-        angry
+        print("face: " + face);
+        print("body: " + body);
+        curFace.sprite = QTEFace[(int)face];
+        curBody.sprite = QTEBody[(int)body];
     }
 
-    public List<Image> QTEBody;
-    public enum QTEBodyLanguage
+    public void WriteDialogue(string dialogue)
     {
-        pointUp,
-        pointDown,
-        pointMiddle,
-        noPoint
+        curDialogue.text = dialogue;
     }
 
-    public void StateSwitch(eTutorial tutorial)
+    public void TutStateSwitch(eTutorial tutorial)
     {
-        GameStateSwitch.Instance.curProfile.Tutorial = tutorial;
+        FindObjectOfType<PreLoadScript>().curSave.Tutorial = tutorial;
 
         switch (tutorial)
         {
-            case eTutorial.menu:
+            case eTutorial.notstarted:
                 break;
             case eTutorial.loadout:
                 break;

@@ -6,14 +6,11 @@ using UnityEngine.UI;
 
 public class HomeMenu : MonoBehaviour
 {
-    public GameObject TitleScreen;
     public GameObject MenuScreen;
-
     public GameObject ExitPanel;
     public Text ExitText;
     public GameObject CreditPanel;
-    public GameObject CreditTexts;
-
+    public GameObject CreditTexts;    
     private Coroutine curRoutine;
 
     [Header("For the credits lerp")]
@@ -22,33 +19,18 @@ public class HomeMenu : MonoBehaviour
     float curLerpTime;
     Vector3 StartPos;
     Vector3 EndPos;
-    private bool lerping;
-
-    //button input for fight, settings/credits, exit
-    //give curprofile to next scene
-    //profile manager that is set to dontdestroyonload
-
-    public void InitiatingLink()
-    {
-        StartCoroutine(WaitForGlitchyButton());
-    }
-
-    public IEnumerator WaitForGlitchyButton()
-    {
-        yield return new WaitForSeconds(0.8f);
-        TitleScreen.SetActive(false);
-        MenuScreen.SetActive(true);
-    }
-
+    private bool lerping;  
+    
     public void GoToArena()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
 
     public void QuitGame()
     {
         ExitPanel.SetActive(true);
         curRoutine = StartCoroutine(QuitText());
+        //disable confirm buttons, only enable b press for cancel
     }    
 
     public IEnumerator QuitText()

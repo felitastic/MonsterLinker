@@ -31,10 +31,13 @@ public class ArenaUIHandler : MonoBehaviour
     public Text EnemyName;
     public Text PlayerName;
 
+    public Text DebugPlayerDMG;
+    public Text DebugEnemyDMG;
+
     public Text PlayerDmgTaken;
     public Text PlayerDmgTaken2;
-    public Text EnemyDmgTaken;    
-    public Text EnemyDmgTaken2;    
+    public Text EnemyDmgTaken;
+    public Text EnemyDmgTaken2;
     public Animator PlayerDmgTextAnim;    
     public Animator EnemyDmgTextAnim;    
 

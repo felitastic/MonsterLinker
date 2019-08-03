@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/MonsterLinkerAssets/Scenes/PreLoad.unity
     guid: f12eedcd257f9f644ba8e4f117473636
   - enabled: 1
+    path: Assets/MonsterLinkerAssets/Scenes/Title.unity
+    guid: 8971f892d2d90f347976622d89a7f2ee
+  - enabled: 1
     path: Assets/MonsterLinkerAssets/Scenes/Home.unity
     guid: 39c1d90b2778abe4bb3b22a9718d8067
   - enabled: 1

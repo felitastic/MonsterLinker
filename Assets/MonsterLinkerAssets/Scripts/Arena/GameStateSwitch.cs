@@ -148,7 +148,7 @@ public class GameStateSwitch : MonoBehaviour
                 GetAllScripts();
                 ConnectScripts();
                 //TODO activate when everything is working
-                //curProfile = preloadscript.Save1;
+                curProfile = preloadscript.Save1;
                 SetEnemy();
                 SwitchState(eGameState.Loadout);
 
