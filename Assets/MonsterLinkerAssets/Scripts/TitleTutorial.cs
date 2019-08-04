@@ -91,6 +91,7 @@ public class TitleTutorial : MonoBehaviour
             case 5:
                 EndDialogue(true);
                 yield return new WaitForSeconds(0.3f);
+                qte.TutStateSwitch(eTutorial.menu);
                 SceneManager.LoadScene(2);
                 break;
             case 6:

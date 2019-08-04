@@ -10,8 +10,11 @@ public class HomeMenu : MonoBehaviour
     public GameObject ExitPanel;
     public Text ExitText;
     public GameObject CreditPanel;
-    public GameObject CreditTexts;    
+    public GameObject CreditTexts;     
     private Coroutine curRoutine;
+
+    public MenuTutorial menututorial;
+    [SerializeField] PreLoadScript preloadscript;
 
     [Header("For the credits lerp")]
     [Tooltip("Regulates how fast the credits roll, higher no = slower")]
@@ -19,8 +22,25 @@ public class HomeMenu : MonoBehaviour
     float curLerpTime;
     Vector3 StartPos;
     Vector3 EndPos;
-    private bool lerping;  
-    
+    private bool lerping;
+
+    public void Start()
+    {
+        preloadscript = FindObjectOfType<PreLoadScript>();
+
+        if (preloadscript.curSave.Tutorial == eTutorial.menu)
+        {
+            menututorial.TriggerDialogue(1);
+        }
+        else if (preloadscript.curSave.Tutorial == eTutorial.loadout)
+        {
+            menututorial.TriggerDialogue(7);
+        }
+        else if (preloadscript.curSave.Tutorial == eTutorial.done)
+        {
+            menututorial.TriggerDialogue(0);
+        }
+    }
     public void GoToArena()
     {
         SceneManager.LoadScene(3);

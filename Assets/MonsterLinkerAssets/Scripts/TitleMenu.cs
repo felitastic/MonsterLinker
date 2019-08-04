@@ -158,7 +158,14 @@ public class TitleMenu : MonoBehaviour
 
     public void ConfirmPlayerName()
     {
-        preloadscript.curSave.LinkerName = PlayerName.text;
+        if (string.IsNullOrWhiteSpace(PlayerName.text))
+        {
+            preloadscript.curSave.LinkerName = "Hoody";
+        }
+        else
+        {
+            preloadscript.curSave.LinkerName = PlayerName.text;
+        }
         InputPlayerNameWindow.SetActive(false);
         titletutorial.TriggerDialogue(4);
         preloadscript.curSave.Empty = false;

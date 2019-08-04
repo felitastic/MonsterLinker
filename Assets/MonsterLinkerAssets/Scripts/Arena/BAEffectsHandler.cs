@@ -117,13 +117,13 @@ public class BAEffectsHandler : MonoBehaviour
         {
             case eGameState.QTEAttack:
                 CalculatePlayerBaseDmg();
-                EnemyTakesDmg(curDMG);
+                EnemyTakesDmg();
                 PlayerPaysRP();
 
                 break;
             case eGameState.QTEBlock:
                 CalculateEnemyBaseDmg();
-                PlayerTakesDmg(curDMG);
+                PlayerTakesDmg();
                 EnemyPaysRP();
 
                 break;
@@ -154,7 +154,7 @@ public class BAEffectsHandler : MonoBehaviour
         enemystatusbar.RPTick(Mathf.RoundToInt(curEnemyRP));
     }
 
-    public void PlayerTakesDmg(float curDMG)
+    public void PlayerTakesDmg()
     {
         print("dealing dmg to player");
         curPlayerHP -= curDMG;
@@ -175,7 +175,7 @@ public class BAEffectsHandler : MonoBehaviour
         //print("Player HP: " + curPlayerHP + ", Player RP: " + curPlayerRP +", Enemy HP: " + curEnemyHP+", Enemy RP: " + curEnemyRP);
     }
 
-    public void EnemyTakesDmg(float curDMG)
+    public void EnemyTakesDmg()
     {
         curEnemyHP -= curDMG;
         curPlayerHP += (maxPlayerHP * (curAttack.HPGain/100));

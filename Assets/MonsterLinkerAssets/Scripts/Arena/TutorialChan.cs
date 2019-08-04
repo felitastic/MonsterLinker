@@ -8,6 +8,7 @@ public class TutorialChan : MonoBehaviour
     public Image curFace;
     public Image curBody;
     public Text curDialogue;
+    public Vector2 curPos;
 
     public Animator QTEchanAnim;
     public RectTransform QTEposition;
@@ -38,6 +39,7 @@ public class TutorialChan : MonoBehaviour
     public void ChangeQTEPos(Vector2 newPos)
     {
         QTEposition.anchoredPosition = newPos;
+        curPos = QTEposition.anchoredPosition;
     }
 
     public void ChangeQTELine(string curLine)
@@ -54,26 +56,26 @@ public class TutorialChan : MonoBehaviour
     {
         FindObjectOfType<PreLoadScript>().curSave.Tutorial = tutorial;
 
-        switch (tutorial)
-        {
-            case eTutorial.notstarted:
-                break;
-            case eTutorial.menu:
-                break;
-            case eTutorial.loadout:
-                break;
-            case eTutorial.input1:
-                break;
-            case eTutorial.inicheck:
-                break;
-            case eTutorial.infight:
-                break;
-            case eTutorial.input2:
-                break;
-            case eTutorial.done:
-                break;
-            default:
-                break;
-        }
+        //switch (tutorial)
+        //{
+        //    case eTutorial.notstarted:
+        //        break;
+        //    case eTutorial.menu:
+        //        break;
+        //    case eTutorial.loadout:
+        //        break;
+        //    case eTutorial.input1:
+        //        break;
+        //    case eTutorial.inicheck:
+        //        break;
+        //    case eTutorial.infight:
+        //        break;
+        //    case eTutorial.input2:
+        //        break;
+        //    case eTutorial.done:
+        //        break;
+        //    default:
+        //        break;
+        //}
     }
 }
