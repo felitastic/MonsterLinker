@@ -17,7 +17,7 @@ MonoBehaviour:
   RPGain: 4
   HPGain: 2
   Speed: 12
-  AnimationName: FA1
+  AnimationName: FA5
   AttackType: 0
   FAName: Onslaught
   FeralArtInput:

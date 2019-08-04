@@ -124,14 +124,14 @@ public class TitleMenu : MonoBehaviour
                 break;
         }
 
+        SaveLoadWindow.SetActive(false);
         if (preloadscript.curSave.Empty)
         {
-            SaveLoadWindow.SetActive(false);
-            StartCoroutine(titletutorial.TriggerDialogue());
+            titletutorial.TriggerDialogue(0);
         }
         else
         {
-            SceneManager.LoadScene(2);
+            titletutorial.TriggerDialogue(6);
         }
     }
 
@@ -160,6 +160,7 @@ public class TitleMenu : MonoBehaviour
     {
         preloadscript.curSave.LinkerName = PlayerName.text;
         InputPlayerNameWindow.SetActive(false);
-        titletutorial.TriggerDialogue();
+        titletutorial.TriggerDialogue(4);
+        preloadscript.curSave.Empty = false;
     }
 }

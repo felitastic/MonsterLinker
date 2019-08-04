@@ -17,9 +17,9 @@ MonoBehaviour:
   RPGain: 4
   HPGain: 1
   Speed: 99
-  AnimationName: FA1
+  AnimationName: FA8
   AttackType: 0
-  FAName: Super FA
+  FAName: Last Resort
   FeralArtInput:
   - {fileID: 11400000, guid: 6bcfc2dad5ac01847859eb8aa9dc16ed, type: 2}
   - {fileID: 11400000, guid: 6bcfc2dad5ac01847859eb8aa9dc16ed, type: 2}

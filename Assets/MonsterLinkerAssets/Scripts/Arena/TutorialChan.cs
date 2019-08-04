@@ -16,17 +16,38 @@ public class TutorialChan : MonoBehaviour
     public List<Sprite> QTEFace;
     public List<Sprite> QTEBody;
 
-    public void TutChan_Switch(eQTEBodyLanguage body, eQTEFacialExpression face)
+    public void QTEchan_Fadeout()
+    {
+        QTEchanAnim.SetTrigger("fadeout");
+    }
+
+    public void QTEchan_Fadein()
+    {
+        QTEchanAnim.SetTrigger("fadein");
+    }
+
+    public void ChangeQTEBody(eQTEBodyLanguage body, eQTEFacialExpression face, Vector2 newPos)
     {
         print("face: " + face);
         print("body: " + body);
         curFace.sprite = QTEFace[(int)face];
         curBody.sprite = QTEBody[(int)body];
+        ChangeQTEPos(newPos);
+    }    
+
+    public void ChangeQTEPos(Vector2 newPos)
+    {
+        QTEposition.anchoredPosition = newPos;
     }
 
-    public void WriteDialogue(string dialogue)
+    public void ChangeQTELine(string curLine)
     {
-        curDialogue.text = dialogue;
+        curDialogue.text = curLine;
+    }
+
+    public void WriteDialogue(string curLine)
+    {
+        curDialogue.text = curLine;
     }
 
     public void TutStateSwitch(eTutorial tutorial)
@@ -36,6 +57,8 @@ public class TutorialChan : MonoBehaviour
         switch (tutorial)
         {
             case eTutorial.notstarted:
+                break;
+            case eTutorial.menu:
                 break;
             case eTutorial.loadout:
                 break;

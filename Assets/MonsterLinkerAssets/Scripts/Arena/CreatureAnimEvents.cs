@@ -8,9 +8,22 @@ public class CreatureAnimEvents : MonoBehaviour
     public AttackRoundHandler attackroundhandler;
     public QTEHandler qtehandler;
 
+    public GameObject curVFXPosition;
+
     public int qteResult;
 
     //QTEStateSwitch(eQTEState QTEState)
+
+    public void _test_SetVFXPosition(GameObject Position)
+    {
+        curVFXPosition = Position;
+    }
+
+    public void _test_SetVFXEffect(GameObject curVFX)
+    {
+        GameObject newVFX = GameObject.Instantiate(curVFX, transform.position, transform.rotation) as GameObject;
+        newVFX.transform.position = curVFXPosition.transform.position;
+    }
 
     public void AttackAnimStart()
     {

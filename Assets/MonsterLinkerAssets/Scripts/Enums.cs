@@ -132,6 +132,7 @@ public enum eLoadout
 public enum eTutorial
 {
     notstarted,
+    menu,
     loadout,
     input1,
     inicheck,
