@@ -20,20 +20,20 @@ public class MenuTutorial : MonoBehaviour
         switch (curLine)
         {
             case 0:
-                qte.ChangeQTEBody(eQTEBodyLanguage.pointUp, eQTEFacialExpression.happy, new Vector2(800, -100));
+                qte.ChangeQTEBody(eQTEBodyLanguage.armsdown, eQTEFacialExpression.neutral, new Vector2(800, -100));
                 qte.ChangeQTELine(lines[curLine]);
                 qte.QTEchan_Fadein();
                 qte.ContinueButton.SetActive(true);
                 break;
             case 1:
                 MenuButtons.SetActive(false);
-                qte.ChangeQTEBody(eQTEBodyLanguage.pointUp, eQTEFacialExpression.happy, new Vector2(0, 0));
+                qte.ChangeQTEBody(eQTEBodyLanguage.armsdown, eQTEFacialExpression.neutral, new Vector2(0, 0));
                 qte.ChangeQTELine(lines[curLine]);
                 qte.QTEchan_Fadein();
                 qte.ContinueButton.SetActive(true);
                 break;
             case 7:
-                qte.ChangeQTEBody(eQTEBodyLanguage.pointUp, eQTEFacialExpression.happy, new Vector2(-800, -100));
+                qte.ChangeQTEBody(eQTEBodyLanguage.armsdown, eQTEFacialExpression.neutral, new Vector2(-800, -100));
                 qte.ChangeQTELine(lines[curLine]);
                 qte.QTEchan_Fadein();
                 qte.ContinueButton.SetActive(false);
@@ -85,7 +85,7 @@ public class MenuTutorial : MonoBehaviour
 
                 break;
             case 5:
-                qte.ChangeQTEBody(eQTEBodyLanguage.pointUp, eQTEFacialExpression.shocked, new Vector2(-800, 100));
+                qte.ChangeQTEBody(eQTEBodyLanguage.armsdown, eQTEFacialExpression.neutral, new Vector2(-800, 100));
                 break;
             case 6:
                 EndDialogue(false);

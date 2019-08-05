@@ -1399,7 +1399,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 53132984730a76c4a8ab507cb9dc789f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c20dcadc1e004514c89ebc7cbd59912b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4389,8 +4389,12 @@ MonoBehaviour:
   QTEposition: {fileID: 901623786}
   ContinueButton: {fileID: 352001246}
   QTEFace:
-  - {fileID: 21300000, guid: becf2cb541f43294190ee6b57cb9cacd, type: 3}
-  - {fileID: 21300000, guid: e0c2e19b29341c946b3a18dc8d2bbddb, type: 3}
-  - {fileID: 21300000, guid: e782b2dc2e2c1c24b8622c0531ea5f5f, type: 3}
+  - {fileID: 21300000, guid: 3be2f6146eb031b49a82816d3118cffb, type: 3}
+  - {fileID: 21300000, guid: a681f59989f1768438a07eaaf84b370d, type: 3}
+  - {fileID: 21300000, guid: d9e597c59cc633d40a0165818c5a72e4, type: 3}
+  - {fileID: 21300000, guid: b8a27406426f0bb4c85624a4123b05ee, type: 3}
   QTEBody:
-  - {fileID: 21300000, guid: a0bf75a8cd031e84ca5143b18ef81bdf, type: 3}
+  - {fileID: 21300000, guid: 2d98772b8bf9b304ab0e4a2c30a05ccc, type: 3}
+  - {fileID: 21300000, guid: 12eed055c8fcb644aa41089b52ccfd86, type: 3}
+  - {fileID: 21300000, guid: 7d74b6e5e6636d44b9797ebabbc1d1be, type: 3}
+  - {fileID: 21300000, guid: 83e04e14ea45dbe468607cb3f2ff8149, type: 3}

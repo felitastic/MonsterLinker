@@ -55,7 +55,6 @@ public class Save : ScriptableObject
         Tutorial = eTutorial.notstarted;
         FALoadout = StartFAs;
         curImplant = defaultImplant;
-        curImplant = null;
         lowestFAcost = 0;
         MaxHitPoints = 5000;
     }

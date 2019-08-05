@@ -143,14 +143,18 @@ public enum eTutorial
 
 public enum eQTEFacialExpression
 {
-    happy,
-    sad,
-    shocked
+    annoyed,
+    concerned,
+    neutral,
+    excited
 }
 
 public enum eQTEBodyLanguage
 {
-    pointUp
+    armscrossed,
+    armsdown,
+    pointLeft,
+    pointRight
 }
 
 public enum eToriiColor
@@ -169,4 +173,14 @@ public enum eEnemySkin
     Pyro,
     Xensor,
     Eldritch
+}
+
+public enum eCamPosition
+{
+    loadout,
+    intro,
+    input,
+    attack,
+    block,
+    result
 }

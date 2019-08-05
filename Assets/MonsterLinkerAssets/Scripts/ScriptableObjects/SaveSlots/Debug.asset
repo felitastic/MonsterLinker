@@ -15,11 +15,11 @@ MonoBehaviour:
   Empty: 0
   LinkerName: Debugger
   MonsterName: Debug Beast
-  Arena: 1
+  Arena: 2
   Tutorial: 0
   maxBaseAttackInputSlots: 5
   FALoadout:
-  - {fileID: 11400000, guid: b1372efe5fe38c548b9d24c31f652320, type: 2}
+  - {fileID: 11400000, guid: 01b158b686d3a3540bbdb79fe485522a, type: 2}
   - {fileID: 11400000, guid: a73caced1849f6646bb69e0497467b39, type: 2}
   - {fileID: 11400000, guid: 73cf7530c323cec48ae7a40273d02661, type: 2}
   StartFAs: []

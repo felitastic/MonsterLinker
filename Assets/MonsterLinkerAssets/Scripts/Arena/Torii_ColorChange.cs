@@ -10,6 +10,7 @@ public class Torii_ColorChange : MonoBehaviour
 
     public List<Material> ToriiColor;
     public List<Material> EnemySkin;
+    public List<GameObject> LinkerChar;
 
     public eToriiColor curColor;
     public eEnemySkin curSkin;
@@ -20,5 +21,7 @@ public class Torii_ColorChange : MonoBehaviour
         curSkin = enemySkin;
         RightTorii.material = ToriiColor[(int)toriiColor];
         Enemy.material = EnemySkin[(int)enemySkin];
-    }
+
+        GameObject EnemyLinker = GameObject.Instantiate(LinkerChar[(int)toriiColor]);
+    }    
 }
