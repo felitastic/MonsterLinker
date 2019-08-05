@@ -10,7 +10,7 @@ public class AnimationHandler : MonoBehaviour
     
     public IEnumerator IdleOffset()
     {
-        EnemyAnim.speed = 0.5f;
+        EnemyAnim.speed = 0f;
         yield return new WaitForSeconds(0.5f);
         EnemyAnim.speed = 1f;
     }

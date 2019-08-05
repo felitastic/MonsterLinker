@@ -5,76 +5,69 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     public List<GameObject> CamTransforms;
-    public GameObject Camera;
+    public GameObject CamHolder;
 
-    public float speed = 5f;
-    public bool moving;
-
+    Quaternion StartQuaternion;
     Vector3 StartPos;
+    Quaternion EndQuaternion;
     Vector3 EndPos;
+
+    //Time for the whole movement, the higher, the slower the object moves
+    public float lerpTime = 5f;
+    //Is set to the current time as long as the lerp is running
+    float curLerpTime;
+    //To start the lerp
+    public bool lerping;
+    
+    public void Update()
+    {
+        if (lerping)
+        {
+            curLerpTime += Time.deltaTime;
+
+            if (curLerpTime > lerpTime)
+                curLerpTime = lerpTime;
+
+            float percentage = curLerpTime / lerpTime;
+            CamHolder.transform.position = Vector3.Lerp(StartPos, EndPos, percentage);
+            CamHolder.transform.rotation = Quaternion.Lerp(StartQuaternion, EndQuaternion, percentage);
+
+            if (Mathf.Approximately(percentage, 1.0f))
+            {
+                EndLerp();
+            }
+        } 
+    }
+
+    public void SetCamPosition(eCamPosition camEndPos)
+    {
+        CamHolder.transform.position = CamTransforms[(int)camEndPos].transform.position;
+        CamHolder.transform.rotation = CamTransforms[(int)camEndPos].transform.rotation;
+    }
 
     public void SetPositions(eCamPosition camEndPos)
     {
-        StartPos = Camera.transform.position;
-        //set endposition depending on gamestate
+        StartPos = CamHolder.transform.position;
+        StartQuaternion = CamHolder.transform.rotation;
         EndPos = CamTransforms[(int)camEndPos].transform.position;
+        EndQuaternion = CamTransforms[(int)camEndPos].transform.rotation;
     }
 
-    public void MoveCamera()
+    public void StartLerp(float curSpeed)
     {
-        moving = true;
+        //StartPos = Camera.GetComponent<Transform>();
+        ////set endposition depending on gamestate
+        //EndPos = CamTransforms[(int)camEndPos];
+        lerpTime = curSpeed;
+        lerping = true;
     }
 
-    void Update()
+    public void EndLerp()
     {
-        if (moving)
-        {
-            Camera.transform.position = Vector3.MoveTowards(StartPos, EndPos, speed * Time.deltaTime);
-
-            if (Camera.transform.position == EndPos)
-                moving = false;
-        }
+        //setting curtime back to zero
+        curLerpTime = 0.0f;
+        //ending lerp
+        lerping = false;
     }
-
-    ////Time for the whole movement, the higher, the slower the object moves
-    //public float lerpTime = 5f;
-    ////Is set to the current time as long as the lerp is running
-    //float curLerpTime;
-    ////Start and End Position of the object
-    //Transform StartPos;
-    //Transform EndPos;
-    ////To start the lerp
-    //private bool lerping;
-
-    //public void Update()
-    //{
-    //    if (lerping)
-    //    {
-    //        curLerpTime += Time.deltaTime;
-
-    //        if (curLerpTime > lerpTime)
-    //            curLerpTime = lerpTime;
-
-    //        float percentage = curLerpTime / lerpTime;
-    //        Camera.GetComponent<Transform>() = Vector3.Lerp(StartPos, EndPos, percentage); 
-    //    }
-    //}
-
-    //public void StartLerp(eCamPosition camEndPos)
-    //{
-    //    StartPos = Camera.GetComponent<Transform>();
-    //    //set endposition depending on gamestate
-    //    EndPos = CamTransforms[(int)camEndPos];
-
-    //    lerping = true;
-    //}
-
-    //public void EndLerp()
-    //{
-    //    //setting curtime back to zero
-    //    curLerpTime = 0.0f;
-    //    //ending lerp
-    //    lerping = false;
-    //}
 
 }

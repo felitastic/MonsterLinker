@@ -66,15 +66,15 @@ public class AttackRoundHandler : MonoBehaviour
         {
             if (turnchanger.Turns == eTurn.EnemyFirst)
             {
-                turnchanger.SwitchTurn(eTurn.PlayerSecond);
+                StartCoroutine(turnchanger.SwitchTurn(eTurn.PlayerSecond));
             }
             else if (turnchanger.Turns == eTurn.PlayerFirst)
             {
-                turnchanger.SwitchTurn(eTurn.EnemySecond);
+                StartCoroutine(turnchanger.SwitchTurn(eTurn.EnemySecond));
             }
             else
             {
-                turnchanger.SwitchTurn(eTurn.BothDone);
+                StartCoroutine(turnchanger.SwitchTurn(eTurn.BothDone));
             }
         }
     }

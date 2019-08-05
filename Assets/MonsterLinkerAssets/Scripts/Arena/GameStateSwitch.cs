@@ -39,6 +39,7 @@ public class GameStateSwitch : MonoBehaviour
     public AudienceController audiencecontroller;
     public Torii_ColorChange toriicolorchange;
     public ArenaStageChanger arenastagechanger;
+    public CameraMovement cameramovement;
 
     public Save curProfile; 
     public Enemy curEnemy;
@@ -81,6 +82,7 @@ public class GameStateSwitch : MonoBehaviour
         audiencecontroller = GetComponentInChildren<AudienceController>();
         toriicolorchange = GetComponentInChildren<Torii_ColorChange>();
         arenastagechanger = GetComponentInChildren<ArenaStageChanger>();
+        cameramovement = GetComponentInChildren<CameraMovement>();
 
         qteanimevents = FindObjectOfType<QTEAnimEvents>();        
         enemystatusbar = FindObjectOfType<EnemyStatusBar>();
@@ -158,7 +160,8 @@ public class GameStateSwitch : MonoBehaviour
             ///FA Loadout für Spieler
             ///Enemy Values laden und Attack Slot Setup für Enemy und Spieler
             case eGameState.Loadout:
-                StartCoroutine(animationhandler.IdleOffset());
+                cameramovement.SetCamPosition(eCamPosition.loadout);
+                //StartCoroutine(animationhandler.IdleOffset());
 
                 if (!firstSetupDone)
                     loadoutbuttons.WriteFAList();
@@ -181,6 +184,9 @@ public class GameStateSwitch : MonoBehaviour
             ///Arena in cinematischer Cutscene vorstellen
             ///FA Loadout und alle scripts laden
             case eGameState.Intro:
+                cameramovement.SetPositions(eCamPosition.intro);
+                cameramovement.StartLerp(3f);
+
                 SoundController.Instance.StartFightMusic();
                 arenaui.StatusBars.SetActive(false);
                 arenaui.FALoadout.SetActive(false);
@@ -194,7 +200,11 @@ public class GameStateSwitch : MonoBehaviour
             ///Player Input enablen
             ///Enemy Input laden
             ///FA Check
-            case eGameState.PlayerInput:              
+            case eGameState.PlayerInput:
+                cameramovement.SetPositions(eCamPosition.input);
+                cameramovement.StartLerp(1f);
+
+                //cameramovement.SetCamPosition(eCamPosition.input);
                 attackroundhandler.NoExtraSlot = false;
                 //implanthandler.PlayerRPatAttackStart = baeffectshandler.curPlayerRP;
 
@@ -214,6 +224,10 @@ public class GameStateSwitch : MonoBehaviour
                 break;
             ///Speedwerte vergleichen um Ini festzulegen
             case eGameState.InitiativeCheck:
+                cameramovement.SetPositions(eCamPosition.inicheck);
+                cameramovement.StartLerp(1f);
+                //cameramovement.SetCamPosition(eCamPosition.inicheck);
+
                 //baeffectshandler.GetAttackLists(feralartcheck.AttackList, enemystatemachine.curAttackInput);
                 //baeffectshandler.GetAttackLists(inputbarhandler.PlayerAttackInput, enemystatemachine.curAttackInput);
                 arenaui.InputPanel.SetActive(false);
@@ -242,6 +256,11 @@ public class GameStateSwitch : MonoBehaviour
                 //Int Turn += 1; Bei Turn 2 zu NextRound wechseln
                 break;
             case eGameState.QTEAttack:
+                cameramovement.SetPositions(eCamPosition.attack);
+                cameramovement.StartLerp(0.5f);
+
+                //cameramovement.SetCamPosition(eCamPosition.attack);
+
                 animationhandler.PlayerAnim.SetBool("block", false);
                 animationhandler.EnemyAnim.SetBool("block", true);
                 arenaui.InitiativeCheck.SetActive(false);
@@ -262,6 +281,11 @@ public class GameStateSwitch : MonoBehaviour
                 //Am Ende des Turns: RP Gain Summe, Total DMG Dealt Count -> Check for Death
                 break;
             case eGameState.QTEBlock:
+                cameramovement.SetPositions(eCamPosition.block);
+                cameramovement.StartLerp(0.5f);
+
+                //cameramovement.SetCamPosition(eCamPosition.block);
+
                 animationhandler.EnemyAnim.SetBool("block", false);
                 animationhandler.PlayerAnim.SetBool("block", true);
                 arenaui.InitiativeCheck.SetActive(false);
@@ -280,12 +304,11 @@ public class GameStateSwitch : MonoBehaviour
                 //Am Ende des Turns: RP Gain Summe, Total DMG Taken Count -> Check for Death
                 break;
             case eGameState.NextRound:
-                animationhandler.ResetToIdle();
-                animationhandler.JumpBack();
+                
 
                 arenaui.QTEPanel.SetActive(false);
                 //Disable both Initiative Arrows
-                arenaui.StatusBars.SetActive(false);
+                //arenaui.StatusBars.SetActive(false);
                 //Check if implant conditions are met
                 implanthandler.UMRoundCounter();
                 implanthandler.ImplantCheck();
@@ -299,12 +322,10 @@ public class GameStateSwitch : MonoBehaviour
                 enemystatemachine.curAttackInput.Clear();
                 //Reset DMG counters for the end of each turn
                 baeffectshandler.ResetDmgCount();
-
                 //HACK: zum Test von Temp Input Slot
                 //attackroundhandler.NoExtraSlot = false;                       
+                StartCoroutine(PrepareNextTurn(1.5f));
 
-                //Go to Player Input State
-                SwitchState(eGameState.PlayerInput);
                 break;
             case eGameState.Result:
                 arenaui.UM_BuffIcon.SetActive(false);
@@ -324,6 +345,7 @@ public class GameStateSwitch : MonoBehaviour
                         Debug.LogError("No Result set!");
                         break;
                     case eFightResult.Victory:
+                        cameramovement.SetCamPosition(eCamPosition.resultwin);
                         arenaui.NextButton.SetActive(true);
                         arenaui.RetryButton.SetActive(false);
                         arenaui.ResultText.text = "WINNER";
@@ -331,6 +353,7 @@ public class GameStateSwitch : MonoBehaviour
 
                         break;
                     case eFightResult.Defeat:
+                        cameramovement.SetCamPosition(eCamPosition.resultloss);
                         arenaui.RetryButton.SetActive(true);
                         arenaui.NextButton.SetActive(false);
                         arenaui.ResultText.text = "LOSER";
@@ -419,6 +442,18 @@ public class GameStateSwitch : MonoBehaviour
         //TODO uncheck unleashed mode bool just in case
         //if (Implant == eImplant.UnleashedMode)
         //    feralartcheck.UnleashedModeused = false;
+    }
+
+    IEnumerator PrepareNextTurn(float waitingTime)
+    {
+        cameramovement.SetPositions(eCamPosition.inicheck);
+        animationhandler.ResetToIdle();
+        animationhandler.JumpBack();
+        cameramovement.StartLerp(0.5f);
+        yield return new WaitForSeconds(waitingTime);
+
+        //Go to Player Input State
+        SwitchState(eGameState.PlayerInput);
     }
 
     IEnumerator WaitForIntro(float waitingTime)

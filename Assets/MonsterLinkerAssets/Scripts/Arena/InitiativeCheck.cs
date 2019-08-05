@@ -44,7 +44,7 @@ public class InitiativeCheck : MonoBehaviour
         arenaui.SetIniArrow("e");
         yield return new WaitForSeconds(ShowIniCheckSecs);
         arenaui.UM_Text.SetActive(false);
-        turnchanger.SwitchTurn(eTurn.PlayerFirst);
+        StartCoroutine(turnchanger.SwitchTurn(eTurn.PlayerFirst));
         GameStateSwitch.Instance.animationhandler.MoveToMiddle();
     }
 
@@ -58,7 +58,7 @@ public class InitiativeCheck : MonoBehaviour
             arenaui.IniBG.SetActive(true);
             arenaui.SetIniArrow("e");
             yield return new WaitForSeconds(ShowIniCheckSecs);
-            turnchanger.SwitchTurn(eTurn.PlayerFirst);
+            StartCoroutine(turnchanger.SwitchTurn(eTurn.PlayerFirst));
         }
         else if (EnemySpeed > PlayerSpeed)
         {
@@ -67,7 +67,7 @@ public class InitiativeCheck : MonoBehaviour
             arenaui.IniBG.SetActive(true);
             arenaui.SetIniArrow("p");
             yield return new WaitForSeconds(ShowIniCheckSecs);
-            turnchanger.SwitchTurn(eTurn.EnemyFirst);
+            StartCoroutine(turnchanger.SwitchTurn(eTurn.EnemyFirst));
         }
         else
         {
@@ -76,10 +76,10 @@ public class InitiativeCheck : MonoBehaviour
             arenaui.IniBG.SetActive(true);
             arenaui.SetIniArrow("e");
             yield return new WaitForSeconds(ShowIniCheckSecs);
-            turnchanger.SwitchTurn(eTurn.PlayerFirst);
+            StartCoroutine(turnchanger.SwitchTurn(eTurn.PlayerFirst));
         }
 
-        arenaui.IniBG.SetActive(false);
+        arenaui.IniBG.SetActive(false);        
         GameStateSwitch.Instance.animationhandler.MoveToMiddle();
     }
 

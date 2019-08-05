@@ -139,15 +139,16 @@ public class SoundController : MonoBehaviour
 
     public IEnumerator StopMenuMusic()
     {
-        AudioSourceBGM_Menu.volume = 0.8f;
-        yield return new WaitForSeconds(0.2f);
-        AudioSourceBGM_Menu.volume = 0.6f;
-        yield return new WaitForSeconds(0.2f);
-        AudioSourceBGM_Menu.volume = 0.4f;
-        yield return new WaitForSeconds(0.2f);
-        AudioSourceBGM_Menu.volume = 0.2f;
-        yield return new WaitForSeconds(0.2f);
+        //AudioSourceBGM_Menu.volume = 0.8f;
+        //yield return new WaitForSeconds(0.2f);
+        //AudioSourceBGM_Menu.volume = 0.6f;
+        //yield return new WaitForSeconds(0.2f);
+        //AudioSourceBGM_Menu.volume = 0.4f;
+        //yield return new WaitForSeconds(0.2f);
+        //AudioSourceBGM_Menu.volume = 0.2f;
+        //yield return new WaitForSeconds(0.2f);
         AudioSourceBGM_Menu.Stop();
+        yield return new WaitForSeconds(0.01f);
     }
     public void StartFightMusic()
     {
@@ -156,15 +157,16 @@ public class SoundController : MonoBehaviour
 
     public IEnumerator StopFightMusic()
     {
-        AudioSourceBGM_Fight.volume = 0.8f;
-        yield return new WaitForSeconds(0.2f);
-        AudioSourceBGM_Fight.volume = 0.6f;
-        yield return new WaitForSeconds(0.2f);
-        AudioSourceBGM_Fight.volume = 0.4f;
-        yield return new WaitForSeconds(0.2f);
-        AudioSourceBGM_Fight.volume = 0.2f;
-        yield return new WaitForSeconds(0.2f);
+        //AudioSourceBGM_Fight.volume = 0.8f;
+        //yield return new WaitForSeconds(0.2f);
+        //AudioSourceBGM_Fight.volume = 0.6f;
+        //yield return new WaitForSeconds(0.2f);
+        //AudioSourceBGM_Fight.volume = 0.4f;
+        //yield return new WaitForSeconds(0.2f);
+        //AudioSourceBGM_Fight.volume = 0.2f;
+        //yield return new WaitForSeconds(0.2f);
         AudioSourceBGM_Fight.Stop();
+        yield return new WaitForSeconds(0.01f);
     }
 
 

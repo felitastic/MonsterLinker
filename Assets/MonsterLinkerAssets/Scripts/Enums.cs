@@ -180,7 +180,9 @@ public enum eCamPosition
     loadout,
     intro,
     input,
+    inicheck,
     attack,
     block,
-    result
+    resultloss,
+    resultwin
 }
