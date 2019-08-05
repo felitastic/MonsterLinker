@@ -181,6 +181,7 @@ public class GameStateSwitch : MonoBehaviour
             ///Arena in cinematischer Cutscene vorstellen
             ///FA Loadout und alle scripts laden
             case eGameState.Intro:
+                SoundController.Instance.StartFightMusic();
                 arenaui.StatusBars.SetActive(false);
                 arenaui.FALoadout.SetActive(false);
                 arenaui.ResultPanel.SetActive(false);
@@ -311,8 +312,8 @@ public class GameStateSwitch : MonoBehaviour
                 arenaui.EnemyInputBar.SetActive(false);
                 arenaui.PlayerInputBar.SetActive(false);
 
-                SoundController.Instance.AudioSourceBGM_Fight.mute = true;
-                SoundController.Instance.AudioSourceBGM_Menu.mute = false;
+                //SoundController.Instance.AudioSourceBGM_Fight.mute = true;
+                //SoundController.Instance.AudioSourceBGM_Menu.mute = false;
 
                 ResetFight();
 
@@ -326,6 +327,7 @@ public class GameStateSwitch : MonoBehaviour
                         arenaui.NextButton.SetActive(true);
                         arenaui.RetryButton.SetActive(false);
                         arenaui.ResultText.text = "WINNER";
+                        curProfile.Arena += 1;
 
                         break;
                     case eFightResult.Defeat:

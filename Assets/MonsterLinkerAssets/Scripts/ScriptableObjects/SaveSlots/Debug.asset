@@ -12,17 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e8ba1758d3d7264b8206888c9608928, type: 3}
   m_Name: Debug
   m_EditorClassIdentifier: 
-  Used: 1
+  Empty: 0
+  LinkerName: Debugger
+  MonsterName: Debug Beast
+  Arena: 1
+  Tutorial: 0
   maxBaseAttackInputSlots: 5
   FALoadout:
   - {fileID: 11400000, guid: b1372efe5fe38c548b9d24c31f652320, type: 2}
   - {fileID: 11400000, guid: a73caced1849f6646bb69e0497467b39, type: 2}
   - {fileID: 11400000, guid: 73cf7530c323cec48ae7a40273d02661, type: 2}
-  SuperDuperFA: {fileID: 11400000, guid: 52d82319906a0704f9322bf9130e861f, type: 2}
+  StartFAs: []
   curImplant: {fileID: 11400000, guid: c09adac958dbb254d922b67a9ca751d7, type: 2}
+  defaultImplant: {fileID: 11400000, guid: d13aaf7f67a5a294d88ba3c900a07973, type: 2}
   lowestFAcost: 36
-  LinkerName: Debugger
-  MonsterName: Debug Beast
   MaxHitPoints: 5000
   curRP: 100
-  Arena: 1

@@ -130,16 +130,14 @@ public class BAEffectsHandler : MonoBehaviour
         }
 
         HPandRPClamp();
-        UpdateHPandRPCounter();
-        UpdateHPandRPbars();
+        //UpdateHPandRPCounter();
+        //UpdateHPandRPbars();
     }
 
     public void HealPlayer(float curHeal)
     {
         curPlayerHP += curHeal;
         HPandRPClamp();
-        UpdateHPandRPCounter();
-        UpdateHPandRPbars();
     }
 
     public void PlayerPaysRP()
@@ -163,8 +161,10 @@ public class BAEffectsHandler : MonoBehaviour
         curEnemyRP += curAttack.RPGain;
         TotalDmgTaken += curDMG;
 
-        arenaui.DebugPlayerDMG.text = "" + curDMG;
-        
+        //HPandRPClamp();
+
+        //arenaui.DebugPlayerDMG.text = "" + curDMG;
+
         //StartCoroutine(arenaui.ShowDmgCounters(Mathf.RoundToInt(curDMG)));
 
         //StartCoroutine(arenaui.ShowDmgCounters(Mathf.RoundToInt(curDMG)));
@@ -183,7 +183,9 @@ public class BAEffectsHandler : MonoBehaviour
         curPlayerRP += RPgained;
         TotalDmgDealt += curDMG;
 
-        arenaui.DebugEnemyDMG.text = "" + curDMG;
+        //HPandRPClamp();
+
+        //arenaui.DebugEnemyDMG.text = "" + curDMG;
 
         //StartCoroutine(arenaui.ShowDmgCounters(Mathf.RoundToInt(curDMG)));
 
@@ -209,9 +211,17 @@ public class BAEffectsHandler : MonoBehaviour
 
         if (Mathf.RoundToInt(curEnemyRP) >= (int)100)
             curEnemyRP = 100.0f;
+        else if (Mathf.RoundToInt(curEnemyRP) < (int)0)
+            curEnemyRP = 0.0f;
 
         if (Mathf.RoundToInt(curPlayerRP) >= (int)100)
             curPlayerRP = 100.0f;
+        else if (Mathf.RoundToInt(curPlayerRP) < (int)0)
+            curEnemyRP = 0.0f;
+
+        UpdateHPandRPCounter();
+        UpdateHPandRPbars();
+
     }
 
     public void UpdateHPandRPCounter()

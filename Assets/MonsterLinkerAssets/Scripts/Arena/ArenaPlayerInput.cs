@@ -38,23 +38,27 @@ public class ArenaPlayerInput : MonoBehaviour
 
     public void RetryFight()
     {
+        SoundController.Instance.StopFightMusic();
         SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
         Scene curScene = SceneManager.GetActiveScene();
+        SoundController.Instance.StartMenuMusic();
         SceneManager.LoadScene(curScene.name);
     }
 
     public void NextFight()
     {
+        SoundController.Instance.StopFightMusic();
         SoundController.Instance.StartSFX(SoundController.SFX.ui_loadoutEquip);
         Scene curScene = SceneManager.GetActiveScene();
-        GameStateSwitch.Instance.curProfile.Arena += 1;
+        SoundController.Instance.StartMenuMusic();
         SceneManager.LoadScene(curScene.name);
     }
 
     public void BackToHome()
     {
+        SoundController.Instance.StopFightMusic();
         SoundController.Instance.StartSFX(SoundController.SFX.ui_cancel);
-        SceneManager.LoadScene("Home");
+        SceneManager.LoadScene(2);
     }
 
     public void CallCheatWindow()

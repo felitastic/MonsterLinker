@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class TitleMenu : MonoBehaviour
 {
     [Tooltip("Initiate Link Button at Game Start")]
+    public Animator MonsterLinkerLogo;
     public GameObject TitleButton;
     public GameObject SaveLoadWindow;
     public GameObject InputPlayerNameWindow;
@@ -26,6 +27,7 @@ public class TitleMenu : MonoBehaviour
         preloadscript = FindObjectOfType<PreLoadScript>();
         titletutorial = FindObjectOfType<TitleTutorial>();
         WriteSaveData();
+        SoundController.Instance.StartMenuMusic();
     }
 
     public void PressLoadButton()
@@ -73,6 +75,7 @@ public class TitleMenu : MonoBehaviour
     public void InitiatingLink()
     {
         TitleButton.GetComponentInChildren<Button>().interactable = false;
+        MonsterLinkerLogo.SetTrigger("fadeout");
         StartCoroutine(WaitForGlitchyButton());
     }
 

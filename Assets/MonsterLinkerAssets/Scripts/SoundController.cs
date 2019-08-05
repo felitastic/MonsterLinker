@@ -57,7 +57,6 @@ public class SoundController : MonoBehaviour
     {
         menu1,
         fight1,
-        fight2,
         numberofBGM
     }
 
@@ -132,6 +131,42 @@ public class SoundController : MonoBehaviour
         //this.AudioSourceBGM.Play(this.BGMClips[(int)sound]);
         //    PlayOneShot(this.BGMClips[(int)sound], volume);
     }
+
+    public void StartMenuMusic()
+    {
+        AudioSourceBGM_Menu.Play();
+    }
+
+    public IEnumerator StopMenuMusic()
+    {
+        AudioSourceBGM_Menu.volume = 0.8f;
+        yield return new WaitForSeconds(0.2f);
+        AudioSourceBGM_Menu.volume = 0.6f;
+        yield return new WaitForSeconds(0.2f);
+        AudioSourceBGM_Menu.volume = 0.4f;
+        yield return new WaitForSeconds(0.2f);
+        AudioSourceBGM_Menu.volume = 0.2f;
+        yield return new WaitForSeconds(0.2f);
+        AudioSourceBGM_Menu.Stop();
+    }
+    public void StartFightMusic()
+    {
+        AudioSourceBGM_Fight.Play();
+    }
+
+    public IEnumerator StopFightMusic()
+    {
+        AudioSourceBGM_Fight.volume = 0.8f;
+        yield return new WaitForSeconds(0.2f);
+        AudioSourceBGM_Fight.volume = 0.6f;
+        yield return new WaitForSeconds(0.2f);
+        AudioSourceBGM_Fight.volume = 0.4f;
+        yield return new WaitForSeconds(0.2f);
+        AudioSourceBGM_Fight.volume = 0.2f;
+        yield return new WaitForSeconds(0.2f);
+        AudioSourceBGM_Fight.Stop();
+    }
+
 
     public void StartLoopingBGM(BGM sound, float volume = 1f)
     {

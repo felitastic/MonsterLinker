@@ -43,6 +43,7 @@ public class HomeMenu : MonoBehaviour
     }
     public void GoToArena()
     {
+        StartCoroutine(SoundController.Instance.StopMenuMusic());
         SceneManager.LoadScene(3);
     }
 
@@ -98,6 +99,11 @@ public class HomeMenu : MonoBehaviour
 
             float percentage = curLerpTime / lerpTime;
             CreditTexts.GetComponent<RectTransform>().anchoredPosition = Vector3.Lerp(StartPos, EndPos, percentage);
+
+            if (CreditTexts.GetComponent<RectTransform>().anchoredPosition == new Vector2(EndPos.x, EndPos.y))
+            {
+                CloseCredits();
+            }
         }
     }
 }

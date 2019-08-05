@@ -35,11 +35,13 @@ public class InitiativeCheck : MonoBehaviour
         print("playerspeed: " + PlayerSpeed + "\n enemyspeed: " + EnemySpeed);
     }
 
+    //Ini Arrow got turned around due to player misunderstandings
+    //e = player turn; p = enemy turn
     public IEnumerator UMIni()
     {
         arenaui.SetSpeedValues(EnemySpeed, PlayerSpeed);
         arenaui.UM_Text.SetActive(true);
-        arenaui.SetIniArrow("p");
+        arenaui.SetIniArrow("e");
         yield return new WaitForSeconds(ShowIniCheckSecs);
         arenaui.UM_Text.SetActive(false);
         turnchanger.SwitchTurn(eTurn.PlayerFirst);
@@ -54,7 +56,7 @@ public class InitiativeCheck : MonoBehaviour
             print("players turn");
             arenaui.SetSpeedValues(EnemySpeed, PlayerSpeed);
             arenaui.IniBG.SetActive(true);
-            arenaui.SetIniArrow("p");
+            arenaui.SetIniArrow("e");
             yield return new WaitForSeconds(ShowIniCheckSecs);
             turnchanger.SwitchTurn(eTurn.PlayerFirst);
         }
@@ -63,7 +65,7 @@ public class InitiativeCheck : MonoBehaviour
             print("enemys turn");
             arenaui.SetSpeedValues(EnemySpeed, PlayerSpeed);
             arenaui.IniBG.SetActive(true);
-            arenaui.SetIniArrow("e");
+            arenaui.SetIniArrow("p");
             yield return new WaitForSeconds(ShowIniCheckSecs);
             turnchanger.SwitchTurn(eTurn.EnemyFirst);
         }
@@ -72,7 +74,7 @@ public class InitiativeCheck : MonoBehaviour
             print("players turn");
             arenaui.SetSpeedValues(EnemySpeed - 1, PlayerSpeed);
             arenaui.IniBG.SetActive(true);
-            arenaui.SetIniArrow("p");
+            arenaui.SetIniArrow("e");
             yield return new WaitForSeconds(ShowIniCheckSecs);
             turnchanger.SwitchTurn(eTurn.PlayerFirst);
         }

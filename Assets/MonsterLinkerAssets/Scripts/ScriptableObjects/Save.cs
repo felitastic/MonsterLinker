@@ -22,6 +22,7 @@ public class Save : ScriptableObject
     public List<FeralArt> FALoadout;
     public List<FeralArt> StartFAs;
     public Implant curImplant;
+    public Implant defaultImplant;
     public int lowestFAcost;
     public int MaxHitPoints = 5000;
     [Tooltip("Should be 0 normally")]
@@ -53,6 +54,7 @@ public class Save : ScriptableObject
         Arena = 1;
         Tutorial = eTutorial.notstarted;
         FALoadout = StartFAs;
+        curImplant = defaultImplant;
         curImplant = null;
         lowestFAcost = 0;
         MaxHitPoints = 5000;

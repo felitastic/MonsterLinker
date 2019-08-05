@@ -5,8 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class GameStarter : MonoBehaviour
 {
+    public Animator Logo;
+
     void Start()
     {
+        StartCoroutine(PlayLogo());
+    }
+
+    IEnumerator PlayLogo()
+    {
+        yield return new WaitForSeconds(0.1f);
+        Logo.SetTrigger("play");
+        yield return new WaitForSeconds(2.25f);
         SceneManager.LoadScene(1);
     }
 }

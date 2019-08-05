@@ -115,14 +115,9 @@ public class LoadoutButtons : MonoBehaviour
     {
         LoadedFAs = GameStateSwitch.Instance.curProfile.FALoadout;
 
-        if (LoadedFAs[2] != null)
-        {
-            ChoosenTexts[0].text = LoadedFAs[0].FAName;
-            ChoosenTexts[1].text = LoadedFAs[1].FAName;
-            ChoosenTexts[2].text = LoadedFAs[2].FAName;
-        }
-        else
-            curLeftButton.Select();
+        ChoosenTexts[0].text = LoadedFAs[0].FAName;
+        ChoosenTexts[1].text = LoadedFAs[1].FAName;
+        ChoosenTexts[2].text = LoadedFAs[2].FAName;
 
         if (GameStateSwitch.Instance.curProfile.curImplant != null)
             ChoosenTexts[3].text = GameStateSwitch.Instance.curProfile.curImplant.ImplantName;
@@ -151,9 +146,10 @@ public class LoadoutButtons : MonoBehaviour
         GameStateSwitch.Instance.Implant = GameStateSwitch.Instance.curProfile.curImplant.ImplantType;
         GameStateSwitch.Instance.curProfile.FALoadout = LoadedFAs;
         SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
+        SoundController.Instance.StopMenuMusic();
         yield return new WaitForSeconds(0.5f);
-        SoundController.Instance.AudioSourceBGM_Menu.mute = true;
-        SoundController.Instance.AudioSourceBGM_Fight.mute = false;
+        //SoundController.Instance.AudioSourceBGM_Menu.mute = true;
+        //SoundController.Instance.AudioSourceBGM_Fight.mute = false;
         GameStateSwitch.Instance.arenaui.FALoadout.SetActive(false);
         GameStateSwitch.Instance.SwitchState(eGameState.Intro);
     }

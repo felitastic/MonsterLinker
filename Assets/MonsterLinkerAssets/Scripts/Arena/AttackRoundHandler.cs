@@ -46,6 +46,7 @@ public class AttackRoundHandler : MonoBehaviour
                 print("check for death after this attack");        
                 baeffectshandler.deathCheck = true;
             }
+            SetEffectValues();
             StartAttack();
         }
 

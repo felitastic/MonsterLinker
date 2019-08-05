@@ -14,16 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Empty: 1
   LinkerName: 
-  MonsterName: 
+  MonsterName: Netherclaw
   Arena: 1
   Tutorial: 0
   maxBaseAttackInputSlots: 5
-  FALoadout: []
+  FALoadout:
+  - {fileID: 11400000, guid: 73cf7530c323cec48ae7a40273d02661, type: 2}
+  - {fileID: 11400000, guid: 01b158b686d3a3540bbdb79fe485522a, type: 2}
+  - {fileID: 11400000, guid: 650cedf781f27744e88f1b0704b87678, type: 2}
   StartFAs:
   - {fileID: 11400000, guid: 73cf7530c323cec48ae7a40273d02661, type: 2}
   - {fileID: 11400000, guid: 01b158b686d3a3540bbdb79fe485522a, type: 2}
   - {fileID: 11400000, guid: 650cedf781f27744e88f1b0704b87678, type: 2}
   curImplant: {fileID: 0}
+  defaultImplant: {fileID: 11400000, guid: d13aaf7f67a5a294d88ba3c900a07973, type: 2}
   lowestFAcost: 0
   MaxHitPoints: 5000
   curRP: 0
