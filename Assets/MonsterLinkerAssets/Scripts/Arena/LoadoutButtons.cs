@@ -131,7 +131,8 @@ public class LoadoutButtons : MonoBehaviour
     public void ConfirmLoadout() 
     {
         if (LoadedFAs[0] != null && LoadedFAs[1] != null && LoadedFAs[2] != null && GameStateSwitch.Instance.curProfile.curImplant != null)
-        {            
+        {
+            StartCoroutine(SoundController.Instance.StopMenuMusic());
             StartCoroutine(WaitForButtonAnim());
         }
         else
@@ -146,7 +147,6 @@ public class LoadoutButtons : MonoBehaviour
         GameStateSwitch.Instance.Implant = GameStateSwitch.Instance.curProfile.curImplant.ImplantType;
         GameStateSwitch.Instance.curProfile.FALoadout = LoadedFAs;
         SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
-        SoundController.Instance.StopMenuMusic();
         yield return new WaitForSeconds(0.5f);
         //SoundController.Instance.AudioSourceBGM_Menu.mute = true;
         //SoundController.Instance.AudioSourceBGM_Fight.mute = false;

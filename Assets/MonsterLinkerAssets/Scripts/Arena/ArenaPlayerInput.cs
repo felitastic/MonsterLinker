@@ -38,7 +38,7 @@ public class ArenaPlayerInput : MonoBehaviour
 
     public void RetryFight()
     {
-        SoundController.Instance.StopFightMusic();
+        StartCoroutine(SoundController.Instance.StopFightMusic());
         SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
         Scene curScene = SceneManager.GetActiveScene();
         SoundController.Instance.StartMenuMusic();
@@ -47,7 +47,7 @@ public class ArenaPlayerInput : MonoBehaviour
 
     public void NextFight()
     {
-        SoundController.Instance.StopFightMusic();
+        StartCoroutine(SoundController.Instance.StopFightMusic());
         SoundController.Instance.StartSFX(SoundController.SFX.ui_loadoutEquip);
         Scene curScene = SceneManager.GetActiveScene();
         SoundController.Instance.StartMenuMusic();
@@ -56,7 +56,7 @@ public class ArenaPlayerInput : MonoBehaviour
 
     public void BackToHome()
     {
-        SoundController.Instance.StopFightMusic();
+        StartCoroutine(SoundController.Instance.StopFightMusic());
         SoundController.Instance.StartSFX(SoundController.SFX.ui_cancel);
         SceneManager.LoadScene(2);
     }

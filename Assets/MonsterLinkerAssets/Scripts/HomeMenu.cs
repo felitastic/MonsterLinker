@@ -43,7 +43,7 @@ public class HomeMenu : MonoBehaviour
     }
     public void GoToArena()
     {
-        StartCoroutine(SoundController.Instance.StopMenuMusic());
+        //StartCoroutine(SoundController.Instance.StopMenuMusic());
         SceneManager.LoadScene(3);
     }
 

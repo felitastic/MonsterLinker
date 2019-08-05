@@ -184,10 +184,10 @@ public class GameStateSwitch : MonoBehaviour
             ///Arena in cinematischer Cutscene vorstellen
             ///FA Loadout und alle scripts laden
             case eGameState.Intro:
+                SoundController.Instance.StartFightMusic();
                 cameramovement.SetPositions(eCamPosition.intro);
                 cameramovement.StartLerp(3f);
 
-                SoundController.Instance.StartFightMusic();
                 arenaui.StatusBars.SetActive(false);
                 arenaui.FALoadout.SetActive(false);
                 arenaui.ResultPanel.SetActive(false);
