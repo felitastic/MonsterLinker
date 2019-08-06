@@ -45,6 +45,7 @@ public class MenuTutorial : MonoBehaviour
     //triggered by player input via continue
     public void NextLine()
     {
+        SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
         lineInProgress += 1;
         StartCoroutine(ChangeDialogue());
     }

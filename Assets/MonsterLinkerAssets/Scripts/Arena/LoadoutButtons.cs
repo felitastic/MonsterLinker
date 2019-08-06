@@ -132,8 +132,8 @@ public class LoadoutButtons : MonoBehaviour
     {
         if (LoadedFAs[0] != null && LoadedFAs[1] != null && LoadedFAs[2] != null && GameStateSwitch.Instance.curProfile.curImplant != null)
         {
-            SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
-            StartCoroutine(SoundController.Instance.StopMenuMusic());
+            //SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
+            //StartCoroutine(SoundController.Instance.StopMenuMusic());
             StartCoroutine(WaitForButtonAnim());
         }
         else
@@ -145,9 +145,9 @@ public class LoadoutButtons : MonoBehaviour
 
     public IEnumerator WaitForButtonAnim()
     {
+        SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
         GameStateSwitch.Instance.Implant = GameStateSwitch.Instance.curProfile.curImplant.ImplantType;
         GameStateSwitch.Instance.curProfile.FALoadout = LoadedFAs;
-        SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
         yield return new WaitForSeconds(0.5f);
         //SoundController.Instance.AudioSourceBGM_Menu.mute = true;
         //SoundController.Instance.AudioSourceBGM_Fight.mute = false;
@@ -157,6 +157,7 @@ public class LoadoutButtons : MonoBehaviour
 
     public void OpenFAChoice(Button thisButton)
     {
+        SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
         curLeftButton = thisButton;
         curLeftText = curLeftButton.GetComponentInChildren<Text>();        
         WindowSwitch(eLoadout.FeralArtChoice);
@@ -183,6 +184,7 @@ public class LoadoutButtons : MonoBehaviour
 
     public void OpenImplantChoice(Button thisButton)
     {
+        SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
         curLeftButton = thisButton;
         curLeftText = curLeftButton.GetComponentInChildren<Text>();        
         WindowSwitch(eLoadout.ImplantChoice);

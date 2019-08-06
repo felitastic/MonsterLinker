@@ -77,14 +77,15 @@ public class TitleMenu : MonoBehaviour
     public void InitiatingLink()
     {
         SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
-        TitleButton.GetComponentInChildren<Button>().interactable = false;
-        MonsterLinkerLogo.SetTrigger("fadeout");
         StartCoroutine(WaitForGlitchyButton());
     }
 
     public IEnumerator WaitForGlitchyButton()
     {
-        yield return new WaitForSeconds(0.8f);
+        //TitleButton.GetComponentInChildren<Animator>().SetTrigger("Pressed");
+        MonsterLinkerLogo.SetTrigger("fadeout");
+        TitleButton.GetComponentInChildren<Button>().interactable = false;
+        yield return new WaitForSeconds(1f);
         TitleButton.SetActive(false);
         SaveLoadWindow.SetActive(true);
     }

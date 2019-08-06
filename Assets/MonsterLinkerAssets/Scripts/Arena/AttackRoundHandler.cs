@@ -100,7 +100,7 @@ public class AttackRoundHandler : MonoBehaviour
                         {
                             //FA QTE und animation callen
                             animationhandler.EnduranceAnimEnd();
-                            baeffectshandler.PlayerPaysRP();
+                            //baeffectshandler.PlayerPaysRP();
                             qtehandler.SetType(eQTEType.FA);
                             animationhandler.PlayerAttack(curAttack.AnimationName);
                         }    

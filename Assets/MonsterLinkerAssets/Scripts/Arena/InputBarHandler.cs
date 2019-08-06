@@ -47,7 +47,7 @@ public class InputBarHandler : MonoBehaviour
             return;
 
         if (!DPadButtons.disabled)
-        {
+        {            
             PlayerAttackInput.Clear();
             feralartcheck.ResetLists();
             arenaui.UpdatePlayerInput(PlayerAttackInput);
@@ -87,7 +87,7 @@ public class InputBarHandler : MonoBehaviour
                 //{
                 //    feralartcheck.LoadedFeralArts.RemoveAt(3);
                 //    GameStateSwitch.Instance.fainfowindow.SI.SetActive(false);
-                //}
+                //}                
 
                 if (GameStateSwitch.Instance.implanthandler.UMbuttonpressed)
                 {
@@ -105,7 +105,7 @@ public class InputBarHandler : MonoBehaviour
             }
             else
             {
-                arenaui.SetConfirmButtonStatus(false);
+                SoundController.Instance.StartSFX(SoundController.SFX.ui_error);
                 //arenaui.ConfirmBAsButton.enabled = false;
                 print("BA input not full, cannot start fight");
             }
@@ -118,11 +118,13 @@ public class InputBarHandler : MonoBehaviour
         {
             if (arenaui.BaseAttackInfoPanel.activeSelf)
             {
+                SoundController.Instance.StartSFX(SoundController.SFX.ui_cancel);
                 arenaui.BaseAttackInfoPanel.SetActive(false);
                 arenaui.InfoButtonText.text = ("Show Info");
             }
             else
             {
+                SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
                 arenaui.BaseAttackInfoPanel.SetActive(true);
                 arenaui.InfoButtonText.text = ("Hide Info");
             }
@@ -131,6 +133,7 @@ public class InputBarHandler : MonoBehaviour
 
     public IEnumerator WaitForButtonAnim()
     {
+        SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
         yield return new WaitForSeconds(0.5f);
         GameStateSwitch.Instance.SwitchState(eGameState.InitiativeCheck);
     }

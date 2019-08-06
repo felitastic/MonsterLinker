@@ -98,8 +98,8 @@ public class BAEffectsHandler : MonoBehaviour
         float tempBaseDMG1 = curAttack.DMG + (curAttack.DMG * ImplantModifier);               
         float tempBaseDMG2 = tempBaseDMG1 + (tempBaseDMG1 * EnduranceModifier);
         curDMG = tempBaseDMG2 + (tempBaseDMG2 * QTEResultModifier);
-        print("player tempBaseDMG1: " +tempBaseDMG1);
-        print("player tempBaseDMG2: " + tempBaseDMG2);
+        //print("player tempBaseDMG1: " +tempBaseDMG1);
+        //print("player tempBaseDMG2: " + tempBaseDMG2);
         print("player curDMG: " + curDMG);
     }
 
@@ -107,7 +107,7 @@ public class BAEffectsHandler : MonoBehaviour
     {
         float tempBaseDMG = curAttack.DMG + (curAttack.DMG * EnemyDMGModifier);
         curDMG = tempBaseDMG - (tempBaseDMG * QTEResultModifier);
-        print("enemy tempBaseDMG: " + tempBaseDMG);
+        //print("enemy tempBaseDMG: " + tempBaseDMG);
         print("enemy curDMG: " + curDMG);
     }
 
@@ -142,8 +142,9 @@ public class BAEffectsHandler : MonoBehaviour
 
     public void PlayerPaysRP()
     {
+        print("cur attack " + curAttack.name + " costs " + curAttack.RPCost);
         curPlayerRP -= curAttack.RPCost;
-        playerstatusbar.RPTick(Mathf.RoundToInt(curPlayerRP));
+        //playerstatusbar.RPTick(Mathf.RoundToInt(curPlayerRP));
     }
 
     public void EnemyPaysRP()
@@ -154,7 +155,7 @@ public class BAEffectsHandler : MonoBehaviour
 
     public void PlayerTakesDmg()
     {
-        print("dealing dmg to player");
+        //print("dealing dmg to player");
         curPlayerHP -= curDMG;
         curEnemyHP += (maxEnemyHP * (curAttack.HPGain/100));
         curPlayerRP += RPgained;

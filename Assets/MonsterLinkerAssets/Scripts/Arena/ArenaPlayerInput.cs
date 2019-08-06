@@ -30,34 +30,34 @@ public class ArenaPlayerInput : MonoBehaviour
     }
 
     public void ResetPlayerInput()
-    {
-        SoundController.Instance.StartSFX(SoundController.SFX.ui_cancel);
+    {        
         inputbarhandler.Reset();       
     }
 
 
     public void RetryFight()
     {
-        StartCoroutine(SoundController.Instance.StopFightMusic());
+        //StartCoroutine(SoundController.Instance.StopFightMusic());
         SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
         Scene curScene = SceneManager.GetActiveScene();
-        SoundController.Instance.StartMenuMusic();
+        //SoundController.Instance.StartMenuMusic();
         SceneManager.LoadScene(curScene.name);
     }
 
     public void NextFight()
     {
-        StartCoroutine(SoundController.Instance.StopFightMusic());
+        //StartCoroutine(SoundController.Instance.StopFightMusic());
         SoundController.Instance.StartSFX(SoundController.SFX.ui_loadoutEquip);
         Scene curScene = SceneManager.GetActiveScene();
-        SoundController.Instance.StartMenuMusic();
+        //SoundController.Instance.StartMenuMusic();
         SceneManager.LoadScene(curScene.name);
     }
 
     public void BackToHome()
     {
-        StartCoroutine(SoundController.Instance.StopFightMusic());
         SoundController.Instance.StartSFX(SoundController.SFX.ui_cancel);
+        StartCoroutine(SoundController.Instance.StopFightMusic());
+        SoundController.Instance.StartMenuMusic();
         SceneManager.LoadScene(2);
     }
 

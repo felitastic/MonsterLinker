@@ -160,6 +160,8 @@ public class GameStateSwitch : MonoBehaviour
             ///FA Loadout für Spieler
             ///Enemy Values laden und Attack Slot Setup für Enemy und Spieler
             case eGameState.Loadout:
+                StartCoroutine(SoundController.Instance.StopMenuMusic());
+                SoundController.Instance.StartFightMusic();
                 cameramovement.SetCamPosition(eCamPosition.loadout);
                 //StartCoroutine(animationhandler.IdleOffset());
 
@@ -177,16 +179,15 @@ public class GameStateSwitch : MonoBehaviour
                 arenaui.FALoadout.SetActive(true);
                 arenaui.QTEPanel.SetActive(false);
                 enemystatemachine.GetEnemyValues();
-
-                if (!firstSetupDone)
-                    FirstSetup();
                 break;
             ///Arena in cinematischer Cutscene vorstellen
             ///FA Loadout und alle scripts laden
             case eGameState.Intro:
-                SoundController.Instance.StartFightMusic();
+                if (!firstSetupDone)
+                    FirstSetup();
+
                 cameramovement.SetPositions(eCamPosition.intro);
-                cameramovement.StartLerp(3f);
+                cameramovement.StartLerp(1f);
 
                 arenaui.StatusBars.SetActive(false);
                 arenaui.FALoadout.SetActive(false);

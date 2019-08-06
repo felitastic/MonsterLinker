@@ -6,11 +6,14 @@ using UnityEngine.UI;
 
 public class HomeMenu : MonoBehaviour
 {
+    public Animator MainMenuBG;
     public GameObject MenuScreen;
     public GameObject ExitPanel;
     public Text ExitText;
     public GameObject CreditPanel;
-    public GameObject CreditTexts;     
+    public GameObject CreditTexts;
+    public Button CreditsButton;     
+    public Button CreditsCancelButton;     
     private Coroutine curRoutine;
 
     public MenuTutorial menututorial;
@@ -43,8 +46,15 @@ public class HomeMenu : MonoBehaviour
     }
     public void GoToArena()
     {
-        //StartCoroutine(SoundController.Instance.StopMenuMusic());
         SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
+        StartCoroutine(FadeOutToArena());               
+    }
+
+    public IEnumerator FadeOutToArena()
+    {
+        StartCoroutine(SoundController.Instance.StopMenuMusic());
+        MainMenuBG.SetTrigger("fadeout");
+        yield return new WaitForSeconds(0.4f);
         SceneManager.LoadScene(3);
     }
 
@@ -80,6 +90,8 @@ public class HomeMenu : MonoBehaviour
 
     public void RunCredits()
     {
+        SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
+        CreditsCancelButton.Select();
         StartPos = CreditTexts.GetComponent<RectTransform>().anchoredPosition;
         EndPos = StartPos + new Vector3(0, 1410, 0);
         CreditPanel.SetActive(true);
@@ -88,10 +100,11 @@ public class HomeMenu : MonoBehaviour
 
     public void CloseCredits()
     {
-        SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
+        SoundController.Instance.StartSFX(SoundController.SFX.ui_cancel);
         curLerpTime = 0.0f;
         lerping = false;
         CreditPanel.SetActive(false);
+        CreditsButton.Select();
         CreditTexts.GetComponent<RectTransform>().anchoredPosition = StartPos;
     }
 

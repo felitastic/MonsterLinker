@@ -201,7 +201,7 @@ public class FeralArtCheck : MonoBehaviour
     startFAloop:
         while (FANo < LoadedFeralArts.Count)
         {
-            print("cur FA: " + LoadedFeralArts[FANo].name);
+            //print("cur FA: " + LoadedFeralArts[FANo].name);
 
             //skip FA if there is not enough slots for it to happen
             if (LoadedFeralArts[FANo].FeralArtInput.Count > (AttackList.Count - Pos)) //inputbarhandler.maxBaseAttackInputSlots - Pos
@@ -212,12 +212,12 @@ public class FeralArtCheck : MonoBehaviour
 
             for (InputNo = 0; InputNo < LoadedFeralArts[FANo].FeralArtInput.Count; InputNo++)
             {
-                print("checking fa "+ LoadedFeralArts[FANo]);
+                //print("checking fa "+ LoadedFeralArts[FANo]);
 
                 if (LoadedFeralArts[FANo].FeralArtInput[InputNo] == AttackList[InputNo + Pos]) //curBAlist[InputNo + Pos])
                 {
                     //check next input
-                    print("positive, checking next input");
+                    //print("positive, checking next input");
                     //save BA pos in list -> int list
                     BAsToDelete.Add(InputNo + Pos);
 
@@ -225,7 +225,7 @@ public class FeralArtCheck : MonoBehaviour
                 else
                 {
                     //check next FA
-                    print("negative, checking next FA");
+                    //print("negative, checking next FA");
                     BAsToDelete.Clear();
                     InputNo = 0;
                     FANo += 1;
@@ -242,7 +242,7 @@ public class FeralArtCheck : MonoBehaviour
                 {
                     RPCostSum += LoadedFeralArts[FANo].RPCost;
                     print("FA found, adding " + LoadedFeralArts[FANo].name + " to list");
-                    print("BAs to delete: " + BAsToDelete[0] +BAsToDelete[1] +BAsToDelete[2]);
+                    //print("BAs to delete: " + BAsToDelete[0] +BAsToDelete[1] +BAsToDelete[2]);
 
                     for (int i = BAsToDelete.Count; i > 0; i--)
                         AttackList.RemoveAt(BAsToDelete[i - 1]);
@@ -277,14 +277,14 @@ public class FeralArtCheck : MonoBehaviour
                 else
                 {
                     BAsToDelete.Clear();
-                    print("no FA found, next FA?");
+                    //print("no FA found, next FA?");
                     FANo += 1;
                 }
             }
             else
             {
                 BAsToDelete.Clear();
-                print("no FA found, next FA?");
+                //print("no FA found, next FA?");
                 FANo += 1;
             }
         }
