@@ -73,35 +73,54 @@ public class AnimationHandler : MonoBehaviour
 
     public IEnumerator DeathFlag(bool playerwins)
     {
+        float fallspeed = 0.3f;
+
+        float firstlerp = 0.5f;
+        float secondlerp = 0.7f;
+        float thirdlerp = 1.5f;
+
+        float firstwait = 0.2f;
+        float secondwait = 0.8f;
+        float thirdwait = 1f;
+        float forthwait = 0.6f;
+
         if (playerwins)
         {
             EnemyAnim.SetBool("death", true);
             PlayerAnim.SetFloat("speed", 0.01f);
             GameStateSwitch.Instance.cameramovement.SetPositions(eCamPosition.windeath);
-            GameStateSwitch.Instance.cameramovement.StartLerp(0.5f);
-            yield return new WaitForSeconds(0.2f);
-            EnemyAnim.SetFloat("speed", 0.5f);
-            yield return new WaitForSeconds(0.7f);
+            GameStateSwitch.Instance.cameramovement.StartLerp(firstlerp);
+            yield return new WaitForSeconds(firstwait);
+            EnemyAnim.SetFloat("speed", fallspeed);
+            yield return new WaitForSeconds(secondwait);
             EnemyAnim.SetFloat("speed", 1f);
-            GameStateSwitch.Instance.cameramovement.SetPositions(eCamPosition.resultwin);
-            GameStateSwitch.Instance.cameramovement.StartLerp(0.4f);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(thirdwait);
+            GameStateSwitch.Instance.cameramovement.SetPositions(eCamPosition.resultwinturn);
+            GameStateSwitch.Instance.cameramovement.StartLerp(secondlerp);
+            yield return new WaitForSeconds(forthwait);
             PlayerAnim.SetTrigger("victory");
+            GameStateSwitch.Instance.cameramovement.SetPositions(eCamPosition.resultwinzoom);
+            GameStateSwitch.Instance.cameramovement.StartLerp(thirdlerp);
+
         }
         else
         {
             PlayerAnim.SetBool("death", true);
             PlayerAnim.SetFloat("speed", 0.01f);
             GameStateSwitch.Instance.cameramovement.SetPositions(eCamPosition.lossdeath);
-            GameStateSwitch.Instance.cameramovement.StartLerp(0.5f);
-            yield return new WaitForSeconds(0.2f);
-            PlayerAnim.SetFloat("speed", 0.5f);
-            yield return new WaitForSeconds(0.7f);
+            GameStateSwitch.Instance.cameramovement.StartLerp(firstlerp);
+            yield return new WaitForSeconds(firstwait);
+            PlayerAnim.SetFloat("speed", fallspeed);
+            yield return new WaitForSeconds(secondwait);
             PlayerAnim.SetFloat("speed", 1f);
-            GameStateSwitch.Instance.cameramovement.SetPositions(eCamPosition.resultloss);
-            GameStateSwitch.Instance.cameramovement.StartLerp(0.4f);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(thirdwait);
+            GameStateSwitch.Instance.cameramovement.SetPositions(eCamPosition.resultlossturn);
+            GameStateSwitch.Instance.cameramovement.StartLerp(secondlerp);
+            yield return new WaitForSeconds(forthwait);
             EnemyAnim.SetTrigger("victory");
+            yield return new WaitForSeconds(1f);
+            GameStateSwitch.Instance.cameramovement.SetPositions(eCamPosition.resultlosszoom);
+            GameStateSwitch.Instance.cameramovement.StartLerp(thirdlerp);
         }        
     }
 

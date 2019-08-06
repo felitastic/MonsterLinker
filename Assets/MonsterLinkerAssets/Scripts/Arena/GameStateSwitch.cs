@@ -345,7 +345,7 @@ public class GameStateSwitch : MonoBehaviour
                         Debug.LogError("No Result set!");
                         break;
                     case eFightResult.Victory:
-                        cameramovement.SetCamPosition(eCamPosition.resultwin);
+                        //cameramovement.SetCamPosition(eCamPosition.resultwinturn);
                         arenaui.NextButton.SetActive(true);
                         arenaui.RetryButton.SetActive(false);
                         arenaui.ResultText.text = "WINNER";
@@ -353,7 +353,7 @@ public class GameStateSwitch : MonoBehaviour
 
                         break;
                     case eFightResult.Defeat:
-                        cameramovement.SetCamPosition(eCamPosition.resultloss);
+                        //cameramovement.SetCamPosition(eCamPosition.resultlossturn);
                         arenaui.RetryButton.SetActive(true);
                         arenaui.NextButton.SetActive(false);
                         arenaui.ResultText.text = "LOSER";

@@ -183,8 +183,10 @@ public enum eCamPosition
     inicheck,
     attack,
     block,
-    resultloss,
-    resultwin,
+    resultlossturn,
+    resultwinturn,
     lossdeath,
     windeath,
+    resultlosszoom,
+    resultwinzoom
 }
