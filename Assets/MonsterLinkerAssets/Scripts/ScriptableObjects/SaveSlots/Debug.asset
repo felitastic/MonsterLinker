@@ -15,7 +15,7 @@ MonoBehaviour:
   Empty: 0
   LinkerName: Debugger
   MonsterName: Debug Beast
-  Arena: 2
+  Arena: 4
   Tutorial: 0
   maxBaseAttackInputSlots: 5
   FALoadout:

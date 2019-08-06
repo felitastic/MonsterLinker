@@ -71,16 +71,36 @@ public class AnimationHandler : MonoBehaviour
         }
     }
 
-    public void DeathFlag(bool playerwins)
+    public IEnumerator DeathFlag(bool playerwins)
     {
         if (playerwins)
         {
             EnemyAnim.SetBool("death", true);
+            PlayerAnim.SetFloat("speed", 0.01f);
+            GameStateSwitch.Instance.cameramovement.SetPositions(eCamPosition.windeath);
+            GameStateSwitch.Instance.cameramovement.StartLerp(0.5f);
+            yield return new WaitForSeconds(0.2f);
+            EnemyAnim.SetFloat("speed", 0.5f);
+            yield return new WaitForSeconds(0.7f);
+            EnemyAnim.SetFloat("speed", 1f);
+            GameStateSwitch.Instance.cameramovement.SetPositions(eCamPosition.resultwin);
+            GameStateSwitch.Instance.cameramovement.StartLerp(0.4f);
+            yield return new WaitForSeconds(0.5f);
             PlayerAnim.SetTrigger("victory");
         }
         else
         {
             PlayerAnim.SetBool("death", true);
+            PlayerAnim.SetFloat("speed", 0.01f);
+            GameStateSwitch.Instance.cameramovement.SetPositions(eCamPosition.lossdeath);
+            GameStateSwitch.Instance.cameramovement.StartLerp(0.5f);
+            yield return new WaitForSeconds(0.2f);
+            PlayerAnim.SetFloat("speed", 0.5f);
+            yield return new WaitForSeconds(0.7f);
+            PlayerAnim.SetFloat("speed", 1f);
+            GameStateSwitch.Instance.cameramovement.SetPositions(eCamPosition.resultloss);
+            GameStateSwitch.Instance.cameramovement.StartLerp(0.4f);
+            yield return new WaitForSeconds(0.5f);
             EnemyAnim.SetTrigger("victory");
         }        
     }

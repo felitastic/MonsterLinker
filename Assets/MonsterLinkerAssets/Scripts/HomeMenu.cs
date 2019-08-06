@@ -44,11 +44,13 @@ public class HomeMenu : MonoBehaviour
     public void GoToArena()
     {
         //StartCoroutine(SoundController.Instance.StopMenuMusic());
+        SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
         SceneManager.LoadScene(3);
     }
 
     public void QuitGame()
     {
+        SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
         ExitPanel.SetActive(true);
         curRoutine = StartCoroutine(QuitText());
         //disable confirm buttons, only enable b press for cancel
@@ -58,16 +60,20 @@ public class HomeMenu : MonoBehaviour
     {
         float waitbetweendots = 0.7f;
         ExitText.text = "Separating link.";
+        SoundController.Instance.StartSFX(SoundController.SFX.ui_switchBetweenSlots);
         yield return new WaitForSeconds(waitbetweendots);
         ExitText.text = "Separating link. .";
+        SoundController.Instance.StartSFX(SoundController.SFX.ui_switchBetweenSlots);
         yield return new WaitForSeconds(waitbetweendots);
         ExitText.text = "Separating link. . .";
+        SoundController.Instance.StartSFX(SoundController.SFX.ui_switchBetweenSlots);
         yield return new WaitForSeconds(waitbetweendots);
         Application.Quit();
     }
 
     public void AbortQuitting()
     {
+        SoundController.Instance.StartSFX(SoundController.SFX.ui_cancel);
         StopCoroutine(curRoutine);
         ExitPanel.SetActive(false);
     }
@@ -82,6 +88,7 @@ public class HomeMenu : MonoBehaviour
 
     public void CloseCredits()
     {
+        SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
         curLerpTime = 0.0f;
         lerping = false;
         CreditPanel.SetActive(false);

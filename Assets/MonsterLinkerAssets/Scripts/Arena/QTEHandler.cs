@@ -264,7 +264,7 @@ public class QTEHandler : MonoBehaviour
 
         if (Input.GetButtonDown(Buttons[ran].inputString))
         {
-            SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
+            SoundController.Instance.StartSFX(SoundController.SFX.impact_normal);
             //GameStateSwitch.Instance.camshake.Shake(0.10f, 1.75f);
             print("button " + Buttons[ran].name + " pressed");
             mashCounter += 1;

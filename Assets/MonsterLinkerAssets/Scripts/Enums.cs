@@ -184,5 +184,7 @@ public enum eCamPosition
     attack,
     block,
     resultloss,
-    resultwin
+    resultwin,
+    lossdeath,
+    windeath,
 }

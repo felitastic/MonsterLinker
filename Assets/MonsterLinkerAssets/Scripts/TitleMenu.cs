@@ -32,12 +32,14 @@ public class TitleMenu : MonoBehaviour
 
     public void PressLoadButton()
     {
+        SoundController.Instance.StartSFX(SoundController.SFX.ui_loadoutEquip);
         SelectedSaveSlot();
         LoadSave(SelectedSaveSlot());
     }
 
     public void PressDeleteButton()
-    { 
+    {
+        SoundController.Instance.StartSFX(SoundController.SFX.ui_cancel);
         SelectedSaveSlot();
         DeleteSave(SelectedSaveSlot());
     }
@@ -74,6 +76,7 @@ public class TitleMenu : MonoBehaviour
 
     public void InitiatingLink()
     {
+        SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
         TitleButton.GetComponentInChildren<Button>().interactable = false;
         MonsterLinkerLogo.SetTrigger("fadeout");
         StartCoroutine(WaitForGlitchyButton());
@@ -161,6 +164,7 @@ public class TitleMenu : MonoBehaviour
 
     public void ConfirmPlayerName()
     {
+        SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
         if (string.IsNullOrWhiteSpace(PlayerName.text))
         {
             preloadscript.curSave.LinkerName = "Hoody";

@@ -100,11 +100,13 @@ public class ArenaUIHandler : MonoBehaviour
     {
         if (!DPadButtons.disabled)
         {
+            SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
             DPadButtons.disabled = true;
             CheatWindow.SetActive(true);
         }
         else
         {
+            SoundController.Instance.StartSFX(SoundController.SFX.ui_cancel);
             DPadButtons.disabled = false;
             CheatWindow.SetActive(false);
         }      
@@ -112,6 +114,7 @@ public class ArenaUIHandler : MonoBehaviour
 
     public void UpdateUMBuff(int round)
     {
+        SoundController.Instance.StartSFX(SoundController.SFX.ui_loadoutEquip);
         UM_BuffIcon.GetComponentInChildren<Animator>().SetTrigger("update");
         UM_IconImage.sprite = BuffIcons[round - 1];
     }
@@ -190,6 +193,7 @@ public class ArenaUIHandler : MonoBehaviour
 
     public void WriteSFA_Info()
     {
+        SoundController.Instance.StartSFX(SoundController.SFX.ui_loadoutEquip);
         SFA_Name.text = GameStateSwitch.Instance.implanthandler.SuperFeralArt.FAName;
         SFASlot.SetActive(true);
     }
@@ -198,18 +202,21 @@ public class ArenaUIHandler : MonoBehaviour
     {             
         if (DPadButtons.Down || Input.GetKeyDown(KeyCode.DownArrow))
         {
+            SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
             LightAttack.animator.SetTrigger("Pressed");
             LightAttack.onClick.Invoke();
         }
 
         if (DPadButtons.Right || Input.GetKeyDown(KeyCode.RightArrow))
         {
+            SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
             NormalAttack.animator.SetTrigger("Pressed");
             NormalAttack.onClick.Invoke();
         }
 
         if (DPadButtons.Up || Input.GetKeyDown(KeyCode.UpArrow))
         {
+            SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
             HeavyAttack.animator.SetTrigger("Pressed");
             HeavyAttack.onClick.Invoke();
         }
@@ -217,6 +224,7 @@ public class ArenaUIHandler : MonoBehaviour
         {
             if (GameStateSwitch.Instance.arenaui.UM_Button.GetComponentInChildren<Button>().interactable)
             {
+                SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
                 UM.animator.SetTrigger("Pressed");
                 UM.onClick.Invoke();
             }       

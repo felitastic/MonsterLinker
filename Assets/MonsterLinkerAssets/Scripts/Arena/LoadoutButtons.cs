@@ -132,12 +132,13 @@ public class LoadoutButtons : MonoBehaviour
     {
         if (LoadedFAs[0] != null && LoadedFAs[1] != null && LoadedFAs[2] != null && GameStateSwitch.Instance.curProfile.curImplant != null)
         {
+            SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
             StartCoroutine(SoundController.Instance.StopMenuMusic());
             StartCoroutine(WaitForButtonAnim());
         }
         else
         {
-            SoundController.Instance.StartSFX(SoundController.SFX.ui_cancel);
+            SoundController.Instance.StartSFX(SoundController.SFX.ui_error);
             print("not enough FAs chosen");
         }
     }
@@ -165,16 +166,16 @@ public class LoadoutButtons : MonoBehaviour
     {
         if (!LoadedFAs.Contains(thisFA))
         {
+            SoundController.Instance.StartSFX(SoundController.SFX.ui_loadoutEquip);
             int slotNo = int.Parse(curLeftButton.name);
             LoadedFAs[slotNo] = thisFA;
             print("pressed button for FA choice "+thisFA.name);
             curLeftText.text = thisFA.FAName;
-            SoundController.Instance.StartSFX(SoundController.SFX.ui_loadoutEquip);
         }
         else
         {
+            SoundController.Instance.StartSFX(SoundController.SFX.ui_error);
             print("FA already in list");
-            SoundController.Instance.StartSFX(SoundController.SFX.ui_cancel);
         }
         WindowSwitch(eLoadout.LoadoutOnly);
         curLeftButton.Select();
@@ -199,7 +200,7 @@ public class LoadoutButtons : MonoBehaviour
         else
         {
             print("implant already chosen");
-            SoundController.Instance.StartSFX(SoundController.SFX.ui_cancel);
+            SoundController.Instance.StartSFX(SoundController.SFX.ui_error);
         }
         WindowSwitch(eLoadout.LoadoutOnly);
         curLeftButton.Select();

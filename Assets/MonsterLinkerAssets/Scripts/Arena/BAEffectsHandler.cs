@@ -285,7 +285,7 @@ public class BAEffectsHandler : MonoBehaviour
             case eGameState.QTEAttack:                
                 if (Mathf.RoundToInt(curEnemyHP) <= (int)0)
                 {
-                    GameStateSwitch.Instance.animationhandler.DeathFlag(true);
+                    StartCoroutine(GameStateSwitch.Instance.animationhandler.DeathFlag(true));
                     StartCoroutine(ShowResult(eFightResult.Victory));
                 }
                 else
@@ -296,7 +296,7 @@ public class BAEffectsHandler : MonoBehaviour
             case eGameState.QTEBlock:
                 if (Mathf.RoundToInt(curPlayerHP) <= (int)0)
                 {
-                    GameStateSwitch.Instance.animationhandler.DeathFlag(false);
+                    StartCoroutine(GameStateSwitch.Instance.animationhandler.DeathFlag(false));
                     StartCoroutine(ShowResult(eFightResult.Defeat));
                 }
                 else

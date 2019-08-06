@@ -82,8 +82,11 @@ public class ArenaPlayerInput : MonoBehaviour
         arenaui.UseCheatWindow();
     }
 
-    public void TestStuff()
+    public void NextEnemy()
     {
+        GameStateSwitch.Instance.curProfile.Arena += 1;
+        arenaui.UseCheatWindow();
+        RetryFight();
         //VFXController.Instance.SpawnEffect(VFXController.VFX.TestVFX, VFXController.Position.TestMiddle);
 
         //float duration = Random.Range(0.1f, 0.2f);
