@@ -41,6 +41,7 @@ public class GameStateSwitch : MonoBehaviour
     public ArenaStageChanger arenastagechanger;
     public CameraMovement cameramovement;
     public LoadoutTutorial loadouttutprial;
+    public BlackList blacklist;
 
     public Save curProfile; 
     public Enemy curEnemy;
@@ -84,6 +85,7 @@ public class GameStateSwitch : MonoBehaviour
         toriicolorchange = GetComponentInChildren<Torii_ColorChange>();
         arenastagechanger = GetComponentInChildren<ArenaStageChanger>();
         cameramovement = GetComponentInChildren<CameraMovement>();
+        blacklist = GetComponentInChildren<BlackList>();
 
         qteanimevents = FindObjectOfType<QTEAnimEvents>();        
         enemystatusbar = FindObjectOfType<EnemyStatusBar>();
@@ -149,10 +151,11 @@ public class GameStateSwitch : MonoBehaviour
         switch (gamestate)
         {
             case eGameState.Setup:
-                //TODO play blacklist video
-
                 GetAllScripts();
                 ConnectScripts();
+
+                StartCoroutine(blacklist.PlayBlacklistVideo());
+
                 //TODO activate when everything is working
                 curProfile = preloadscript.curSave;
                 SetEnemy();
@@ -186,6 +189,8 @@ public class GameStateSwitch : MonoBehaviour
                 {
                     loadouttutprial.TriggerDialogue(0);
                 }
+                else
+                { }
 
                 break;
             ///Arena in cinematischer Cutscene vorstellen

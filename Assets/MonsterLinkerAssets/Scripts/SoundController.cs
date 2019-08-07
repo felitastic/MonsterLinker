@@ -49,6 +49,11 @@ public class SoundController : MonoBehaviour
         qte_timing_critical,
         qte_timing_fail,
         qte_timing_good,
+        endurance_mash1,
+        endurance_mash2,
+        logo_giggle,
+        ui_titlescreen,
+        monster_deathfall,
 
         numberofSFX
     }

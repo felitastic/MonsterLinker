@@ -76,7 +76,7 @@ public class TitleMenu : MonoBehaviour
 
     public void InitiatingLink()
     {
-        SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
+        SoundController.Instance.StartSFX(SoundController.SFX.ui_titlescreen);
         StartCoroutine(WaitForGlitchyButton());
     }
 
