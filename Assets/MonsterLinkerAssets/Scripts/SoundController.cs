@@ -54,6 +54,7 @@ public class SoundController : MonoBehaviour
         logo_giggle,
         ui_titlescreen,
         monster_deathfall,
+        qte_newgood,
 
         numberofSFX
     }

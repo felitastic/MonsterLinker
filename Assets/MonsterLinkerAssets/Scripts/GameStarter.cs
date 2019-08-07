@@ -15,7 +15,6 @@ public class GameStarter : MonoBehaviour
     IEnumerator PlayLogo()
     {
         yield return new WaitForSeconds(0.1f);
-        SoundController.Instance.StartSFX(SoundController.SFX.logo_giggle);
         Logo.SetTrigger("play");
         yield return new WaitForSeconds(2.25f);
         SceneManager.LoadScene(1);

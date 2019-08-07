@@ -9,6 +9,7 @@ public class LoadoutTutorial : MonoBehaviour
     public TutorialChan qte;
     public int lineInProgress = 0;
     public GameObject LoadoutButtons;
+    public Button StartButton;
 
     public GameObject FAChoiceWindow;
     public GameObject SIChoiceWindow;
@@ -123,6 +124,7 @@ public class LoadoutTutorial : MonoBehaviour
                 EndDialogue(true);
                 LoadoutButtons.SetActive(true);
                 DPadButtons.disabled = false;
+                StartButton.Select();
                 GameStateSwitch.Instance.preloadscript.curSave.Tutorial = eTutorial.done;
                 break;
             default:

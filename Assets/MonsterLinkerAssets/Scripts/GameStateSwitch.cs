@@ -7,6 +7,8 @@ public class GameStateSwitch : MonoBehaviour
 {
     public static GameStateSwitch Instance;
 
+    public GameObject Arena;
+
     public eGameState GameState = eGameState.Setup;
     public eFightResult FightResult;
     public eImplant Implant;
@@ -156,7 +158,10 @@ public class GameStateSwitch : MonoBehaviour
 
                 StartCoroutine(blacklist.PlayBlacklistVideo());
 
-                //TODO activate when everything is working
+                //Instantiate Arena Prefab
+                //GameObject arena = GameObject.Instantiate(Arena, transform.position, transform.rotation) as GameObject;
+                //arena.name = "Arena";
+
                 curProfile = preloadscript.curSave;
                 SetEnemy();
                 SwitchState(eGameState.Loadout);

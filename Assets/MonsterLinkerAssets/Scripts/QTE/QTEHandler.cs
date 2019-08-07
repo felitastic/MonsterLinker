@@ -326,7 +326,7 @@ public class QTEHandler : MonoBehaviour
                     break;
                 case eQTEZone.Good:
                     curQTEAnim.Play(curQTE.Type + "_Good");
-                    SoundController.Instance.StartSFX(SoundController.SFX.qte_block_perfect, 0.7f);
+                    SoundController.Instance.StartSFX(SoundController.SFX.qte_newgood, 0.7f);
                     baeffectshandler.SetFA_QTEResultModifier(curQTE.ModifierGood);
 
                     break;
