@@ -113,14 +113,14 @@ public class LoadoutButtons : MonoBehaviour
 
     public void SetInitialTexts()
     {
-        LoadedFAs = GameStateSwitch.Instance.curProfile.FALoadout;
+        LoadedFAs = GameStateSwitch.Instance.preloadscript.curSave.FALoadout;
 
         ChoosenTexts[0].text = LoadedFAs[0].FAName;
         ChoosenTexts[1].text = LoadedFAs[1].FAName;
         ChoosenTexts[2].text = LoadedFAs[2].FAName;
 
-        if (GameStateSwitch.Instance.curProfile.curImplant != null)
-            ChoosenTexts[3].text = GameStateSwitch.Instance.curProfile.curImplant.ImplantName;
+        if (GameStateSwitch.Instance.preloadscript.curSave.curImplant != null)
+            ChoosenTexts[3].text = GameStateSwitch.Instance.preloadscript.curSave.curImplant.ImplantName;
 
         //if (LoadedFAs[2] != null && GameStateSwitch.Instance.curProfile.curImplant != null)
         //    StartButton.Select();
@@ -146,8 +146,8 @@ public class LoadoutButtons : MonoBehaviour
     public IEnumerator WaitForButtonAnim()
     {
         SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
-        GameStateSwitch.Instance.Implant = GameStateSwitch.Instance.curProfile.curImplant.ImplantType;
-        GameStateSwitch.Instance.curProfile.FALoadout = LoadedFAs;
+        GameStateSwitch.Instance.Implant = GameStateSwitch.Instance.preloadscript.curSave.curImplant.ImplantType;
+        GameStateSwitch.Instance.preloadscript.curSave.FALoadout = LoadedFAs;
         yield return new WaitForSeconds(0.5f);
         //SoundController.Instance.AudioSourceBGM_Menu.mute = true;
         //SoundController.Instance.AudioSourceBGM_Fight.mute = false;
@@ -193,10 +193,10 @@ public class LoadoutButtons : MonoBehaviour
 
     public void ChooseImplant(Implant implant)
     {
-        if (GameStateSwitch.Instance.curProfile.curImplant != implant)
+        if (GameStateSwitch.Instance.preloadscript.curSave.curImplant != implant)
         {
             SoundController.Instance.StartSFX(SoundController.SFX.ui_loadoutEquip);
-            GameStateSwitch.Instance.curProfile.curImplant = implant;
+            GameStateSwitch.Instance.preloadscript.curSave.curImplant = implant;
             curLeftText.text = implant.ImplantName;
         }
         else

@@ -40,6 +40,7 @@ public class GameStateSwitch : MonoBehaviour
     public Torii_ColorChange toriicolorchange;
     public ArenaStageChanger arenastagechanger;
     public CameraMovement cameramovement;
+    public LoadoutTutorial loadouttutprial;
 
     public Save curProfile; 
     public Enemy curEnemy;
@@ -89,6 +90,7 @@ public class GameStateSwitch : MonoBehaviour
         playerstatusbar = FindObjectOfType<PlayerStatusBar>();
         camshake = FindObjectOfType<CamShake>();
         preloadscript = FindObjectOfType<PreLoadScript>();
+        loadouttutprial = FindObjectOfType<LoadoutTutorial>();
     }
 
     void ConnectScripts()
@@ -131,7 +133,7 @@ public class GameStateSwitch : MonoBehaviour
     
     public void SetEnemy()
     {
-        arenastagechanger.CheckArenaStage(curProfile.Arena);
+        arenastagechanger.CheckArenaStage(preloadscript.curSave.Arena);
         enemystatemachine = GetComponentInChildren<EnemyStateMachine>();
         enemystatemachine.arenaui = arenaui;
         enemystatemachine.initiativecheck = initiativecheck;
@@ -147,6 +149,8 @@ public class GameStateSwitch : MonoBehaviour
         switch (gamestate)
         {
             case eGameState.Setup:
+                //TODO play blacklist video
+
                 GetAllScripts();
                 ConnectScripts();
                 //TODO activate when everything is working
@@ -154,12 +158,11 @@ public class GameStateSwitch : MonoBehaviour
                 SetEnemy();
                 SwitchState(eGameState.Loadout);
 
-                //TODO play blacklist video
 
                 break;
             ///FA Loadout für Spieler
             ///Enemy Values laden und Attack Slot Setup für Enemy und Spieler
-            case eGameState.Loadout:                
+            case eGameState.Loadout:                         
                 SoundController.Instance.StartFightMusic();
                 cameramovement.SetCamPosition(eCamPosition.loadout);
                 //StartCoroutine(animationhandler.IdleOffset());
@@ -178,6 +181,12 @@ public class GameStateSwitch : MonoBehaviour
                 arenaui.FALoadout.SetActive(true);
                 arenaui.QTEPanel.SetActive(false);
                 enemystatemachine.GetEnemyValues();
+
+                if (preloadscript.curSave.Tutorial == eTutorial.loadout)
+                {
+                    loadouttutprial.TriggerDialogue(0);
+                }
+
                 break;
             ///Arena in cinematischer Cutscene vorstellen
             ///FA Loadout und alle scripts laden
@@ -349,7 +358,7 @@ public class GameStateSwitch : MonoBehaviour
                         arenaui.NextButton.SetActive(true);
                         arenaui.RetryButton.SetActive(false);
                         arenaui.ResultText.text = "WINNER";
-                        curProfile.Arena += 1;
+                        preloadscript.curSave.Arena += 1;
 
                         break;
                     case eFightResult.Defeat:
@@ -383,7 +392,7 @@ public class GameStateSwitch : MonoBehaviour
         baeffectshandler.UpdateHPandRPCounter();
         //arenaui.SetEnemyHPandRP(Mathf.RoundToInt(baeffectshandler.curEnemyHP), Mathf.RoundToInt(baeffectshandler.curEnemyRP));
         //arenaui.SetPlayerHPandRP(Mathf.RoundToInt(baeffectshandler.curPlayerHP), Mathf.RoundToInt(baeffectshandler.curPlayerRP));
-        feralartcheck.LoadedFeralArts = curProfile.FALoadout;
+        feralartcheck.LoadedFeralArts = preloadscript.curSave.FALoadout;
         curProfile.SetCheapestFAcost();
         fainfowindow.WriteFAData();
 

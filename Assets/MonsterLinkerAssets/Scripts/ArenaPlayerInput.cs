@@ -84,7 +84,7 @@ public class ArenaPlayerInput : MonoBehaviour
 
     public void NextEnemy()
     {
-        GameStateSwitch.Instance.curProfile.Arena += 1;
+        GameStateSwitch.Instance.preloadscript.curSave.Arena += 1;
         arenaui.UseCheatWindow();
         RetryFight();
         //VFXController.Instance.SpawnEffect(VFXController.VFX.TestVFX, VFXController.Position.TestMiddle);

@@ -318,7 +318,7 @@ public class QTEHandler : MonoBehaviour
                     Debug.LogError("QTE Zone auf None, check Animation Events");
                     break;
                 case eQTEZone.Fail:
-                    SoundController.Instance.StartSFX(SoundController.SFX.qte_timing_fail);
+                    SoundController.Instance.StartSFX(SoundController.SFX.qte_timing_fail, 0.7f);
                     curQTEAnim.Play(curQTE.Type + "_Fail");
                     attackroundhandler.NoExtraSlot = true;
                     baeffectshandler.SetFA_QTEResultModifier(curQTE.ModifierFail);
@@ -326,13 +326,13 @@ public class QTEHandler : MonoBehaviour
                     break;
                 case eQTEZone.Good:
                     curQTEAnim.Play(curQTE.Type + "_Good");
-                    SoundController.Instance.StartSFX(SoundController.SFX.qte_block_perfect);
+                    SoundController.Instance.StartSFX(SoundController.SFX.qte_block_perfect, 0.7f);
                     baeffectshandler.SetFA_QTEResultModifier(curQTE.ModifierGood);
 
                     break;
                 case eQTEZone.Perfect:
                     curQTEAnim.Play(curQTE.Type + "_Perfect");
-                    SoundController.Instance.StartSFX(SoundController.SFX.qte_timing_good);
+                    SoundController.Instance.StartSFX(SoundController.SFX.qte_timing_good, 0.7f);
                     baeffectshandler.SetFA_QTEResultModifier(curQTE.ModifierPerfect);
 
                     break;
@@ -349,7 +349,7 @@ public class QTEHandler : MonoBehaviour
                 case eQTEZone.Fail:
                     //trigger fail anim
                     //do dmg stuff etc
-                    SoundController.Instance.StartSFX(SoundController.SFX.qte_timing_fail);
+                    SoundController.Instance.StartSFX(SoundController.SFX.qte_timing_fail, 0.7f);
                     curQTEAnim.Play(curQTE.Type + "_Fail");
                     attackroundhandler.NoExtraSlot = true;
                     GameStateSwitch.Instance.playerCreatureanimevents.qteResult = 1;
@@ -360,7 +360,7 @@ public class QTEHandler : MonoBehaviour
                 case eQTEZone.Good:
                     //trigger good anim
                     //do dmg stuff etc
-                    SoundController.Instance.StartSFX(SoundController.SFX.qte_block_perfect);
+                    SoundController.Instance.StartSFX(SoundController.SFX.qte_block_perfect, 0.7f);
                     //curQTEAnim.speed = 1.0f;
                     curQTEAnim.Play(curQTE.Type + "_Good");
                     GameStateSwitch.Instance.playerCreatureanimevents.qteResult = 2;
@@ -371,7 +371,7 @@ public class QTEHandler : MonoBehaviour
                 case eQTEZone.Perfect:
                     //trigger perfect anim
                     //do dmg stuff etc
-                    SoundController.Instance.StartSFX(SoundController.SFX.qte_timing_good);
+                    SoundController.Instance.StartSFX(SoundController.SFX.qte_timing_good, 0.7f);
                     //curQTEAnim.speed = 1.0f;
                     curQTEAnim.Play(curQTE.Type + "_Perfect");
                     GameStateSwitch.Instance.playerCreatureanimevents.qteResult = 3;

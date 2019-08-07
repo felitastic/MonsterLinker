@@ -13,7 +13,7 @@ public class FAInfoWindow : MonoBehaviour
 
     public void WriteFAData()
     {
-        List<FeralArt> FAs = GameStateSwitch.Instance.curProfile.FALoadout;
+        List<FeralArt> FAs = GameStateSwitch.Instance.preloadscript.curSave.FALoadout;
 
         for (int i = 0; i < FAs.Count; i++)
         {
@@ -43,7 +43,7 @@ public class FAInfoWindow : MonoBehaviour
 
     public void SetSI()
     {
-        WriteSiData(GameStateSwitch.Instance.curProfile.curImplant);
+        WriteSiData(GameStateSwitch.Instance.preloadscript.curSave.curImplant);
 
         //switch (GameStateSwitch.Instance.curProfile.curImplant)
         //{

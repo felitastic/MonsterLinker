@@ -21,17 +21,17 @@ public class TitleTutorial : MonoBehaviour
         switch(curLine)
         {
             case 0:
-                qte.ChangeQTEBody(eQTEBodyLanguage.armsdown, eQTEFacialExpression.neutral, new Vector2(0, 0));
+                qte.ChangeQTEBody(eQTEBodyLanguage.pointRight, eQTEFacialExpression.neutral, qte.downRight_title);
                 qte.ChangeQTELine(lines[curLine]);
                 qte.QTEchan_Fadein();
                 break;
             case 4:
                 lines[lineInProgress] = "Nice to meet you, " + FindObjectOfType<PreLoadScript>().curSave.LinkerName + "!";
-                qte.ChangeQTEBody(eQTEBodyLanguage.armsdown, eQTEFacialExpression.neutral, new Vector2(0, 0));
+                qte.ChangeQTEBody(eQTEBodyLanguage.armsdown, eQTEFacialExpression.neutral, qte.downRight_title);
                 break;
             case 6:
                 lines[lineInProgress] = "Welcome back, " + FindObjectOfType<PreLoadScript>().curSave.LinkerName + "!";
-                qte.ChangeQTEBody(eQTEBodyLanguage.armsdown, eQTEFacialExpression.neutral, new Vector2(750, 150));                  
+                qte.ChangeQTEBody(eQTEBodyLanguage.pointRight, eQTEFacialExpression.excited, qte.center_title);                  
                 qte.ChangeQTELine(lines[curLine]);
                 qte.QTEchan_Fadein();
                 break;
@@ -72,20 +72,20 @@ public class TitleTutorial : MonoBehaviour
         switch (lineInProgress)
         {
             case 1:
-
+                qte.ChangeQTEBody(eQTEBodyLanguage.armsdown, eQTEFacialExpression.neutral, qte.downRight_title);
                 break;
             case 2:
-
+                qte.ChangeQTEBody(eQTEBodyLanguage.armsdown, eQTEFacialExpression.excited, qte.downRight_title);
                 break;
             case 3:
-                qte.ChangeQTEBody(eQTEBodyLanguage.armsdown, eQTEFacialExpression.neutral, new Vector2(750, 150));
+                qte.ChangeQTEBody(eQTEBodyLanguage.pointLeft, eQTEFacialExpression.neutral, qte.downRight_title);
                 //yield return new WaitForSeconds(0.5f);
                 EndDialogue(false);
                 FindObjectOfType<TitleMenu>().InputPlayerNameWindow.SetActive(true);
 
                 break;
             case 4:
-                qte.ChangeQTEBody(eQTEBodyLanguage.armsdown, eQTEFacialExpression.neutral, new Vector2(0, 0));
+                qte.ChangeQTEBody(eQTEBodyLanguage.pointRight, eQTEFacialExpression.excited, qte.downRight_title);
                 //yield return new WaitForSeconds(0.5f);
 
                 break;
