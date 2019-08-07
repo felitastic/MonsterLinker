@@ -115,6 +115,11 @@ public class SoundController : MonoBehaviour
         //}
     }
 
+    public void PlaySoundClip(AudioClip clip, float volume = 1f)
+    {
+        this.AudioSourceSFX.PlayOneShot(clip, volume);
+    }
+
     public void StartSFX(SFX sound, float volume = 1f)
     {
         this.AudioSourceSFX.PlayOneShot(this.SFXClips[(int)sound], volume);

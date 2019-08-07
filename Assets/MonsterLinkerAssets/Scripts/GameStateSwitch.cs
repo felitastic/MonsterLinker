@@ -184,8 +184,7 @@ public class GameStateSwitch : MonoBehaviour
 
                 if (preloadscript.curSave.Tutorial == eTutorial.loadout)
                 {
-                    //TODO fecking loadout tut triggern und dann button shit tun
-                    //loadouttutprial.TriggerDialogue(0);
+                    loadouttutprial.TriggerDialogue(0);
                 }
 
                 break;

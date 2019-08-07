@@ -157,11 +157,14 @@ public class LoadoutButtons : MonoBehaviour
 
     public void OpenFAChoice(Button thisButton)
     {
-        SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
-        curLeftButton = thisButton;
-        curLeftText = curLeftButton.GetComponentInChildren<Text>();        
-        WindowSwitch(eLoadout.FeralArtChoice);
-        FAChoiceButton1.Select();        
+        if (!DPadButtons.disabled)
+        {
+            SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
+            curLeftButton = thisButton;
+            curLeftText = curLeftButton.GetComponentInChildren<Text>();
+            WindowSwitch(eLoadout.FeralArtChoice);
+            FAChoiceButton1.Select();
+        }   
     }
     public void ChooseFA(FeralArt thisFA)
     {
@@ -184,11 +187,14 @@ public class LoadoutButtons : MonoBehaviour
 
     public void OpenImplantChoice(Button thisButton)
     {
-        SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
-        curLeftButton = thisButton;
-        curLeftText = curLeftButton.GetComponentInChildren<Text>();        
-        WindowSwitch(eLoadout.ImplantChoice);
-        ImplantChoiceButton1.Select();
+        if (!DPadButtons.disabled)
+        {
+            SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
+            curLeftButton = thisButton;
+            curLeftText = curLeftButton.GetComponentInChildren<Text>();
+            WindowSwitch(eLoadout.ImplantChoice);
+            ImplantChoiceButton1.Select();
+        }
     }
 
     public void ChooseImplant(Implant implant)

@@ -280,6 +280,11 @@ public class CreatureAnimEvents : MonoBehaviour
         SoundController.Instance.StartSFX(SoundController.SFX.endurance);
     }
 
+    public void PlaySFX(AudioClip clip)
+    {
+        SoundController.Instance.PlaySoundClip(clip);
+    }
+
     public void EnduranceEnd()
     {
         //SoundController.Instance.StopLoopingSound()
