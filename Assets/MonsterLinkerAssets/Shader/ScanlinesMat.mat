@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ScanlinesMat
-  m_Shader: {fileID: 4800000, guid: f58578321ca6f6046a4b85e655d549ac, type: 3}
+  m_Shader: {fileID: 4800000, guid: 9f1d85bc9419d974382066a96b7e3c41, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -33,8 +33,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+        m_Scale: {x: 1.03, y: 0.24}
+        m_Offset: {x: 1.01, y: 2.22}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -51,30 +51,46 @@ Material:
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
+    - _ChromAberrAmountX: 0
+    - _ChromAberrAmountY: 0
     - _Cull: 2
     - _Cutoff: 0.5
     - _DstBlend: 0
     - _EnvironmentReflections: 1
+    - _Fill: 0.67
+    - _Frequency: 20
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _LeftStripesAmount: 1
+    - _LeftStripesFill: 0.7
     - _LinesSize: 4
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _RightStripesAmount: 1
+    - _RightStripesFill: 0.829
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
+    - _WavyDisplFreq: 10
     - _WorkflowMode: 1
     - _ZWrite: 1
+    - hardPix: -3.07
+    - hardScan: -8
+    - maskDark: 0.99
+    - maskLight: 0.42
+    - resScale: 1
     m_Colors:
     - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Color: {r: 0.504717, g: 0.92895603, b: 1, a: 1}
+    - _DisplacementAmount: {r: 0.17, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - warp: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &8109032501238421416
 MonoBehaviour:
   m_ObjectHideFlags: 11

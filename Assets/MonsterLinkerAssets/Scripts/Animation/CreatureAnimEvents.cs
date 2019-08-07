@@ -150,7 +150,8 @@ public class CreatureAnimEvents : MonoBehaviour
     {
         SoundController.Instance.StartSFX(SoundController.SFX.woosh_heavy);
     }
-   
+
+
 
     //calls hurt for the creature being hit
     public void HitImpact()
@@ -254,7 +255,11 @@ public class CreatureAnimEvents : MonoBehaviour
                 SoundController.Instance.StartSFX(SoundController.SFX.impact_normal);
                 break;
         }
-
+    }
+    
+    public void SFXUnleashedMode()
+    {
+        SoundController.Instance.StartSFX(SoundController.SFX.unleashedMode);
     }
 
     //TODO placeholder for testing, delete later
@@ -270,12 +275,10 @@ public class CreatureAnimEvents : MonoBehaviour
         StartCoroutine(qtehandler.ButtonMash());
     }
 
-
     public void SFXEndurance()
     {
-        //SoundController.Instance.StartLoopingSFX(SoundController.SFX.powerCharge1, 1.0f);
+        SoundController.Instance.StartSFX(SoundController.SFX.endurance);
     }
-
 
     public void EnduranceEnd()
     {

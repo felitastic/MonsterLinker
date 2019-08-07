@@ -1,47 +1,58 @@
-// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
-
-Shader "Shader/Scanlines" {
-	Properties{
-		_Color("Color", Color) = (0,0,0,1)
-		_LinesSize("LinesSize", Range(1,10)) = 1
+﻿Shader "Custom/StripesMaskShader"
+{
+	Properties
+	{
+		_MainTex("Texture", 2D) = "white" {}
+		_Frequency("Frequency", float) = 20
+		_Fill("Fill", Range(0, 1)) = 0.8
 	}
-		SubShader{
-			Tags {"IgnoreProjector" = "True" "Queue" = "Overlay"}
-			Fog { Mode Off }
-			Pass {
-				ZTest Always
-				ZWrite Off
-				Blend SrcAlpha OneMinusSrcAlpha
+		SubShader
+		{
+			// No culling or depth
+			Cull Off ZWrite Off ZTest Always
 
-		CGPROGRAM
+			Pass
+			{
+				CGPROGRAM
+				#pragma vertex vert
+				#pragma fragment frag
 
-		#pragma vertex vert
-		#pragma fragment frag
-		#include "UnityCG.cginc"
+				#include "UnityCG.cginc"
 
-				fixed4 _Color; half _LinesSize;
-
-				struct v2f {
-					half4 pos:POSITION;
-					fixed4 sPos : TEXCOORD;
+				struct appdata
+				{
+					float4 vertex : POSITION;
+					float2 uv : TEXCOORD0;
 				};
 
-				v2f vert(appdata_base v) {
-					v2f o; o.pos = UnityObjectToClipPos(v.vertex);
-					o.sPos = ComputeScreenPos(o.pos);
+				struct v2f
+				{
+					float2 uv : TEXCOORD0;
+					float4 vertex : SV_POSITION;
+				};
+
+				v2f vert(appdata v)
+				{
+					v2f o;
+					o.vertex = UnityObjectToClipPos(v.vertex);
+					o.uv = v.uv;
 					return o;
 				}
 
-				fixed4 frag(v2f i) : COLOR {
-					fixed p = i.sPos.y / i.sPos.w;
+				sampler2D _MainTex;
+				float _Frequency;
+				float _Fill;
 
-					if ((int)(p * _ScreenParams.y / floor(_LinesSize)) % 2 == 0) discard;
-					   return _Color;
-				 }
+				float random(float2 input) {
+					return frac(sin(dot(input, float2(12.9898,78.233))) * 43758.5453123);
+				}
 
-		ENDCG
-			   }
-
-	}
+				fixed4 frag(v2f i) : SV_Target
+				{
+					float stripes = 1 - step(_Fill, random(floor(i.uv.y * _Frequency)));
+					return float4(stripes, stripes, stripes, 1);
+				}
+				ENDCG
+			}
+		}
 }
