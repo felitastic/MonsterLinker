@@ -46,6 +46,7 @@ public class InitiativeCheck : MonoBehaviour
         arenaui.UM_Text.SetActive(false);
         StartCoroutine(turnchanger.SwitchTurn(eTurn.PlayerFirst));
         GameStateSwitch.Instance.animationhandler.MoveToMiddle();
+        StartCoroutine(GameStateSwitch.Instance.implanthandler.UMHeal());
     }
 
     public IEnumerator CompareSpeed()

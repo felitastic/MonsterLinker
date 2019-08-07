@@ -18,7 +18,8 @@ public class AnimationHandler : MonoBehaviour
     //TODO set to um animation when its there
     public void PlayerUMActivation()
     {
-        //PlayerAnim.SetTrigger("um");
+        print("play unleashed animation");
+        PlayerAnim.SetTrigger("unleashed");
     }
 
     public void EnduranceAnimStart()

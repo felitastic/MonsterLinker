@@ -50,11 +50,10 @@ public class ImplantHandler : MonoBehaviour
     public IEnumerator UMHeal()
     {
         print("healing player by" + UM_oneTimeHeal_Value);
-        float animationTime = 1f;
+        float animationTime = 2.3f;
         GameStateSwitch.Instance.animationhandler.PlayerUMActivation();
         GameStateSwitch.Instance.baeffectshandler.HealPlayer(UM_oneTimeHeal_Value);
         yield return new WaitForSeconds(animationTime);
-        StartCoroutine(GameStateSwitch.Instance.initiativecheck.UMIni());
     }
 
     public void UMRoundCounter()

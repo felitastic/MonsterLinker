@@ -184,7 +184,8 @@ public class GameStateSwitch : MonoBehaviour
 
                 if (preloadscript.curSave.Tutorial == eTutorial.loadout)
                 {
-                    loadouttutprial.TriggerDialogue(0);
+                    //TODO fecking loadout tut triggern und dann button shit tun
+                    //loadouttutprial.TriggerDialogue(0);
                 }
 
                 break;
@@ -243,9 +244,11 @@ public class GameStateSwitch : MonoBehaviour
                 arenaui.PlayerInputBar.SetActive(true);
                 arenaui.EnemyInputBar.SetActive(true);
 
-                if (implanthandler.Unleashed == eUnleashedMode.active && implanthandler.UMrounds == 1)
+                if (implanthandler.Unleashed == eUnleashedMode.active && implanthandler.UMrounds <= 1)
                 {
-                    StartCoroutine(implanthandler.UMHeal());
+
+                    StartCoroutine(GameStateSwitch.Instance.initiativecheck.UMIni());
+                    //StartCoroutine(implanthandler.UMHeal());
                 }
                 //else if (implanthandler.Unleashed == eUnleashedMode.active && implanthandler.UMrounds != 1)
                 //{

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LoadoutTutorial : MonoBehaviour
 {
@@ -28,6 +29,9 @@ public class LoadoutTutorial : MonoBehaviour
                 LoadoutButtons.SetActive(false);
                 qte.QTEchan_Fadein();
                 qte.ContinueButton.SetActive(true);
+                //qte.ContinueButton.GetComponentInChildren<Button>().Select();
+
+                //get loadout button and disalbe, just blend in a grafik LOOKING like the shit
                 break;
             //case 7:
             //    qte.ChangeQTEBody(eQTEBodyLanguage.armsdown, eQTEFacialExpression.excited, qte.mainPos);
@@ -74,6 +78,7 @@ public class LoadoutTutorial : MonoBehaviour
             case 3:
                 //open fa choice (or fake it)
                 FAChoiceWindow.SetActive(true);
+                qte.ContinueButton.GetComponentInChildren<Button>().Select();                
                 qte.ChangeQTEBody(eQTEBodyLanguage.pointRight, eQTEFacialExpression.neutral, qte.loadoutTop);
 
                 break;
@@ -87,6 +92,7 @@ public class LoadoutTutorial : MonoBehaviour
                 break;
             case 7:
                 FAChoiceWindow.SetActive(false);
+                qte.ContinueButton.GetComponentInChildren<Button>().Select();
                 //close fa choice
                 break;
             case 8:
@@ -96,6 +102,7 @@ public class LoadoutTutorial : MonoBehaviour
                 break;
             case 10:
                 SIChoiceWindow.SetActive(true);
+                qte.ContinueButton.GetComponentInChildren<Button>().Select();
                 //open implant choice
                 qte.ChangeQTEBody(eQTEBodyLanguage.pointRight, eQTEFacialExpression.neutral, qte.loadoutBottom);
 
@@ -108,6 +115,7 @@ public class LoadoutTutorial : MonoBehaviour
                 break;
             case 13: 
                 SIChoiceWindow.SetActive(false);
+                qte.ContinueButton.GetComponentInChildren<Button>().Select();
                 //close implant window
                 qte.ChangeQTEBody(eQTEBodyLanguage.armscrossed, eQTEFacialExpression.neutral, qte.loadoutBottom);
                 break;

@@ -31,7 +31,7 @@ public class TitleTutorial : MonoBehaviour
                 break;
             case 6:
                 lines[lineInProgress] = "Welcome back, " + FindObjectOfType<PreLoadScript>().curSave.LinkerName + "!";
-                qte.ChangeQTEBody(eQTEBodyLanguage.pointRight, eQTEFacialExpression.excited, qte.center_title);                  
+                qte.ChangeQTEBody(eQTEBodyLanguage.pointRight, eQTEFacialExpression.excited, qte.downLeft_title);                  
                 qte.ChangeQTELine(lines[curLine]);
                 qte.QTEchan_Fadein();
                 break;
