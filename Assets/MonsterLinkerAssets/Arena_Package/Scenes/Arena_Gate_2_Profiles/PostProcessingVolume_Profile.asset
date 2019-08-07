@@ -20,8 +20,8 @@ MonoBehaviour:
     overrideState: 1
     value: 0.3
   threshold:
-    overrideState: 0
-    value: 1
+    overrideState: 1
+    value: 0.65
   softKnee:
     overrideState: 0
     value: 0.5
@@ -86,7 +86,7 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   gradingMode:
-    overrideState: 0
+    overrideState: 1
     value: 1
   externalLut:
     overrideState: 0
@@ -122,7 +122,7 @@ MonoBehaviour:
     value: 1
   temperature:
     overrideState: 1
-    value: -7
+    value: -38
   tint:
     overrideState: 1
     value: 11
@@ -134,16 +134,16 @@ MonoBehaviour:
     value: 7
   saturation:
     overrideState: 1
-    value: -9
+    value: -8
   brightness:
     overrideState: 0
     value: 0
   postExposure:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: 0.54
   contrast:
     overrideState: 1
-    value: 40
+    value: 37
   mixerRedOutRedIn:
     overrideState: 1
     value: 132
@@ -1400,7 +1400,6 @@ MonoBehaviour:
   - {fileID: 8903639456180422223}
   - {fileID: -594699979095359301}
   - {fileID: 5302767713790953849}
-  - {fileID: 6488501060019464058}
 --- !u!114 &5166625018739671057
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1441,7 +1440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6050e2d5de785ce4d931e4dbdbf2d755, type: 3}
   m_Name: ChromaticAberration
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
@@ -1450,39 +1449,11 @@ MonoBehaviour:
     value: {fileID: 0}
     defaultState: 1
   intensity:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: 0.07
   fastMode:
     overrideState: 0
     value: 0
---- !u!114 &6488501060019464058
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d65e486e4de6e5448a8fbb43dc8756a0, type: 3}
-  m_Name: Grain
-  m_EditorClassIdentifier: 
-  active: 0
-  enabled:
-    overrideState: 1
-    value: 1
-  colored:
-    overrideState: 0
-    value: 1
-  intensity:
-    overrideState: 1
-    value: 0.647
-  size:
-    overrideState: 1
-    value: 0.79
-  lumContrib:
-    overrideState: 1
-    value: 1
 --- !u!114 &8440529612351587791
 MonoBehaviour:
   m_ObjectHideFlags: 3
