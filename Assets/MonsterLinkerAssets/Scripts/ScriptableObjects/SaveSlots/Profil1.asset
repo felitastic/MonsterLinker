@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Profil1
   m_EditorClassIdentifier: 
   Empty: 0
-  LinkerName: Hoody
+  LinkerName: lul
   MonsterName: Netherclaw
-  Arena: 1
-  Tutorial: 2
+  Arena: 3
+  Tutorial: 7
   maxBaseAttackInputSlots: 5
   FALoadout:
   - {fileID: 11400000, guid: 73cf7530c323cec48ae7a40273d02661, type: 2}
@@ -26,7 +26,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 73cf7530c323cec48ae7a40273d02661, type: 2}
   - {fileID: 11400000, guid: 01b158b686d3a3540bbdb79fe485522a, type: 2}
   - {fileID: 11400000, guid: 650cedf781f27744e88f1b0704b87678, type: 2}
-  curImplant: {fileID: 0}
+  curImplant: {fileID: 11400000, guid: d13aaf7f67a5a294d88ba3c900a07973, type: 2}
   defaultImplant: {fileID: 11400000, guid: d13aaf7f67a5a294d88ba3c900a07973, type: 2}
   lowestFAcost: 36
   MaxHitPoints: 5000
