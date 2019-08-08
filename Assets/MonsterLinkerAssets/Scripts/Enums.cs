@@ -188,5 +188,6 @@ public enum eCamPosition
     lossdeath,
     windeath,
     resultlosszoom,
-    resultwinzoom
+    resultwinzoom,
+    blacklist
 }

@@ -138,10 +138,11 @@ public class GameStateSwitch : MonoBehaviour
     public void SetEnemy()
     {
         arenastagechanger.CheckArenaStage(preloadscript.curSave.Arena);
-        enemystatemachine = GetComponentInChildren<EnemyStateMachine>();
+        enemystatemachine = toriicolorchange.EnemyScript[preloadscript.curSave.Arena].GetComponentInChildren<EnemyStateMachine>();
         enemystatemachine.arenaui = arenaui;
         enemystatemachine.initiativecheck = initiativecheck;
         enemystatemachine.baeffectshandler = baeffectshandler;
+        arenaui.EnemyName.text = curEnemy.MonsterName;
     }
 
     //will be called by other scripts, update the arenastate and then run functions from the scripts
@@ -156,7 +157,10 @@ public class GameStateSwitch : MonoBehaviour
                 GetAllScripts();
                 ConnectScripts();
 
-                StartCoroutine(blacklist.PlayBlacklistVideo());
+                arenaui.FALoadout.SetActive(false);
+                SoundController.Instance.StartFightMusic();
+                cameramovement.SetCamPosition(eCamPosition.blacklist);
+                blacklist.PlayBlacklistVideo();
 
                 //Instantiate Arena Prefab
                 //GameObject arena = GameObject.Instantiate(Arena, transform.position, transform.rotation) as GameObject;
@@ -164,16 +168,13 @@ public class GameStateSwitch : MonoBehaviour
 
                 curProfile = preloadscript.curSave;
                 SetEnemy();
-                SwitchState(eGameState.Loadout);
 
 
                 break;
             ///FA Loadout für Spieler
             ///Enemy Values laden und Attack Slot Setup für Enemy und Spieler
-            case eGameState.Loadout:                         
-                SoundController.Instance.StartFightMusic();
+            case eGameState.Loadout:
                 cameramovement.SetCamPosition(eCamPosition.loadout);
-                //StartCoroutine(animationhandler.IdleOffset());
 
                 if (!firstSetupDone)
                     loadoutbuttons.WriteFAList();
@@ -426,7 +427,7 @@ public class GameStateSwitch : MonoBehaviour
         //if (Implant == eImplant.UnleashedMode)
         //    feralartcheck.UnleashedModeused = false;
                
-        firstSetupDone = true;
+        //firstSetupDone = true;
     }
 
     public void ResetFight()
