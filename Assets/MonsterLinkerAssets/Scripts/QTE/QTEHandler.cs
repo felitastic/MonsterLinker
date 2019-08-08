@@ -268,7 +268,7 @@ public class QTEHandler : MonoBehaviour
 
         if (Input.GetButtonDown(Buttons[ran].inputString))
         {
-            SoundController.Instance.StartSFX(SoundController.SFX.endurance_mash2);
+            SoundController.Instance.StartSFX(SoundController.SFX.endurance_mash2, 0.7f);
             //GameStateSwitch.Instance.camshake.Shake(0.10f, 1.75f);
             print("button " + Buttons[ran].name + " pressed");
             mashCounter += 1;
@@ -330,7 +330,7 @@ public class QTEHandler : MonoBehaviour
                     break;
                 case eQTEZone.Good:
                     curQTEAnim.Play(curQTE.Type + "_Good");
-                    SoundController.Instance.StartSFX(SoundController.SFX.qte_newgood, QTESFXvolume);
+                    SoundController.Instance.StartSFX(SoundController.SFX.qte_newgood, 1f);
                     baeffectshandler.SetFA_QTEResultModifier(curQTE.ModifierGood);
 
                     break;
@@ -364,7 +364,7 @@ public class QTEHandler : MonoBehaviour
                 case eQTEZone.Good:
                     //trigger good anim
                     //do dmg stuff etc
-                    SoundController.Instance.StartSFX(SoundController.SFX.qte_newgood, QTESFXvolume);
+                    SoundController.Instance.StartSFX(SoundController.SFX.qte_newgood, 1f);
                     //curQTEAnim.speed = 1.0f;
                     curQTEAnim.Play(curQTE.Type + "_Good");
                     GameStateSwitch.Instance.playerCreatureanimevents.qteResult = 2;
