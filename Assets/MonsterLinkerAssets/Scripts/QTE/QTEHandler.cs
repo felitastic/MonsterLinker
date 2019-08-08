@@ -32,6 +32,7 @@ public class QTEHandler : MonoBehaviour
     public List<ButtonInput> Buttons = new List<ButtonInput>();
     public List<Vector2> ButtonPosVectors;
 
+    public GameObject EnduranceText;
     public GameObject QTEButton;
     public RectTransform QTEButtonTransform;
     public Image ButtonImage;
@@ -219,6 +220,7 @@ public class QTEHandler : MonoBehaviour
         yield return new WaitForSeconds(EnduranceTime);
         QTEStateSwitch(eQTEState.Waiting);
         baeffectshandler.SetEnduranceModifier(mashCounter);
+        EnduranceText.SetActive(false);
         EnduranceDone = true;
         attackroundhandler.StartAttack();
     }
@@ -487,6 +489,7 @@ public class QTEHandler : MonoBehaviour
                 print("endurance kuhteheh running");
                 QTEInput = eQTEInput.Endurance;
                 EnduranceButton.SetActive(true);
+                EnduranceText.SetActive(true);
                 curQTEAnim.SetTrigger("Endurance");
                 break;
             case eQTEState.Done:
@@ -495,7 +498,7 @@ public class QTEHandler : MonoBehaviour
                 print("kuhteheh done");
                 QTEInput = eQTEInput.None; 
                 curQTEAnim.Play("Wait");
-                QTEButton.SetActive(false);
+                QTEButton.SetActive(false);                
                 EnduranceButton.SetActive(false);
                 //RandomButtonGenerator();
                 mashCounter = 0;

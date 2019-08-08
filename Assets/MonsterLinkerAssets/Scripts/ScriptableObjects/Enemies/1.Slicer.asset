@@ -17,7 +17,7 @@ MonoBehaviour:
   MonsterName: Slicer
   MaxHitPoints: 3000
   MaxInputSlots: 5
-  DmgModifier: 2
+  DmgModifier: 1.5
   RPgainperHit: 3
   FAs:
   - {fileID: 11400000, guid: f3c3e14e80b3bbf47a13e11f17edd9ac, type: 2}
