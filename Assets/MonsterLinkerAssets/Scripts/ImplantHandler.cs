@@ -86,21 +86,23 @@ public class ImplantHandler : MonoBehaviour
                         break;
                     case eUnleashedMode.active:
                         print("UM round " + UMrounds);
+                        GameStateSwitch.Instance.baeffectshandler.SetImplantModifier(UM_DMGDealt_Multiplier);
+                        GameStateSwitch.Instance.baeffectshandler.UM_DefenseBuff = UM_DMGTaken_Reduction;
 
                         if (UMrounds > 3)
                         {
                             //disable UM symbol
                             GameStateSwitch.Instance.arenaui.UM_BuffIcon.GetComponentInChildren<Animator>().SetTrigger("inactive");
                             GameStateSwitch.Instance.arenaui.UM_Button.GetComponentInChildren<Button>().interactable = false;
+                            GameStateSwitch.Instance.baeffectshandler.SetImplantModifier(0.0f);
+                            GameStateSwitch.Instance.baeffectshandler.UM_DefenseBuff = 0.0f;
                             Unleashed = eUnleashedMode.done;
+                            GameStateSwitch.Instance.arenaui.UM_BuffIcon.SetActive(false);
                             return;
                         }
-
                         GameStateSwitch.Instance.arenaui.UpdateUMBuff(UMrounds);
-
                         break;
                     case eUnleashedMode.done:
-                        GameStateSwitch.Instance.arenaui.UM_BuffIcon.SetActive(false);
                         break;
                     default:
                         Debug.LogError("UM state not found");

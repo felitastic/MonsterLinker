@@ -94,6 +94,14 @@ public class ArenaPlayerInput : MonoBehaviour
         //StartCoroutine(GameStateSwitch.Instance.camshake.Shake(duration, magnitude));
     }
 
+    public void EnemyHP10()
+    {
+        GameStateSwitch.Instance.baeffectshandler.curEnemyHP = GameStateSwitch.Instance.baeffectshandler.maxPlayerHP * 0.1f;
+        GameStateSwitch.Instance.baeffectshandler.UpdateHPandRPCounter();
+        GameStateSwitch.Instance.baeffectshandler.UpdateHPandRPbars();
+        arenaui.UseCheatWindow();
+    }
+
     //public void ChooseProfile(Save saveSlot)
     //{
     //    if (saveSlot.Used)

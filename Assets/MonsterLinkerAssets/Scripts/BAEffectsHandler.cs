@@ -40,6 +40,8 @@ public class BAEffectsHandler : MonoBehaviour
     public float ImplantModifier;
     [Tooltip("Damage modifier of the current enemy")]
     public float EnemyDMGModifier;
+    [Tooltip("Set by the implant Unleashed Mode")]
+    public float UM_DefenseBuff;
     [Tooltip("How many RP enemy gains for every hit taken")]
     public int EnemyRPgain;
 
@@ -106,7 +108,8 @@ public class BAEffectsHandler : MonoBehaviour
     public void CalculateEnemyBaseDmg()
     {
         float tempBaseDMG = curAttack.DMG + (curAttack.DMG * EnemyDMGModifier);
-        curDMG = tempBaseDMG - (tempBaseDMG * QTEResultModifier);
+        float tempBaseDMG2 = tempBaseDMG - (tempBaseDMG * QTEResultModifier);
+        curDMG = tempBaseDMG2 - (tempBaseDMG2 * UM_DefenseBuff);
         //print("enemy tempBaseDMG: " + tempBaseDMG);
         print("enemy curDMG: " +tempBaseDMG+  "- (" +tempBaseDMG+" x "+QTEResultModifier+" = " + curDMG);
     }

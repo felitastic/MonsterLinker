@@ -25,8 +25,8 @@ public class TutorialChan : MonoBehaviour
     public Vector2 center_title = new Vector2(35, 125);
 
     //For the Main menu
-    public Vector2 downLeft_main = new Vector2(815, -240);
-    public Vector2 downRight_main = new Vector2(-860, -240);
+    public Vector2 downLeft_main = new Vector2(-860, -240);
+    public Vector2 downRight_main = new Vector2(815, -240);
     public Vector2 center_main = new Vector2(20, 125);
 
     //For the loadout Screen

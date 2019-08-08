@@ -214,6 +214,11 @@ public class LoadoutButtons : MonoBehaviour
         curLeftButton.Select();
     }
 
+    public void CannotUseImplant(Implant implant)
+    {
+        SoundController.Instance.StartSFX(SoundController.SFX.ui_error);
+    }
+
     public void WindowSwitch(eLoadout window)
     {
         Window = window;

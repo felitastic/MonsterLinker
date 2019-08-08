@@ -16,4 +16,5 @@ MonoBehaviour:
   ImplantType: 2
   RPCost: 0
   FAInput: []
-  Description: unleash meee
+  Description: Can be activated once after player monsters HP dropped below 25%. Heals
+    in the first round after usage, grants higher defense and attack for 3 rounds.

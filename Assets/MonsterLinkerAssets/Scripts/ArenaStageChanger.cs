@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ArenaStageChanger : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class ArenaStageChanger : MonoBehaviour
     //public GameObject Enemy5;
 
     public Torii_ColorChange toriicolorchange;
+    //public Text EnemyName;
 
     public void CheckArenaStage(int arena)
     {

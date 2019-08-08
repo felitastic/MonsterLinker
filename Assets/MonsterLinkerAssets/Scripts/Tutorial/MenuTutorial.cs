@@ -20,10 +20,10 @@ public class MenuTutorial : MonoBehaviour
         switch (curLine)
         {
             case 0:
-                qte.ChangeQTEBody(eQTEBodyLanguage.armsdown, eQTEFacialExpression.excited, qte.center_main);
+                qte.ChangeQTEBody(eQTEBodyLanguage.armsdown, eQTEFacialExpression.excited, qte.downLeft_main);
                 qte.ChangeQTELine(lines[curLine]);
                 qte.QTEchan_Fadein();
-                qte.ContinueButton.SetActive(true);
+                qte.ContinueButton.SetActive(false);
                 break;
             case 1:
                 MenuButtons.SetActive(false);

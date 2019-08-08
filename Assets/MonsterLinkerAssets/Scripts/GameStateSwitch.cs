@@ -138,8 +138,9 @@ public class GameStateSwitch : MonoBehaviour
     public void SetEnemy()
     {
         arenastagechanger.CheckArenaStage(preloadscript.curSave.Arena);
-        enemystatemachine = toriicolorchange.EnemyScript[preloadscript.curSave.Arena].GetComponentInChildren<EnemyStateMachine>();
+        enemystatemachine = toriicolorchange.EnemyScript[preloadscript.curSave.Arena-1].GetComponentInChildren<EnemyStateMachine>();
         enemystatemachine.arenaui = arenaui;
+        curEnemy = enemystatemachine.enemy;
         enemystatemachine.initiativecheck = initiativecheck;
         enemystatemachine.baeffectshandler = baeffectshandler;
         arenaui.EnemyName.text = curEnemy.MonsterName;

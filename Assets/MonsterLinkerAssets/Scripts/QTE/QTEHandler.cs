@@ -362,7 +362,7 @@ public class QTEHandler : MonoBehaviour
                 case eQTEZone.Good:
                     //trigger good anim
                     //do dmg stuff etc
-                    SoundController.Instance.StartSFX(SoundController.SFX.qte_block_perfect, QTESFXvolume);
+                    SoundController.Instance.StartSFX(SoundController.SFX.qte_newgood, QTESFXvolume);
                     //curQTEAnim.speed = 1.0f;
                     curQTEAnim.Play(curQTE.Type + "_Good");
                     GameStateSwitch.Instance.playerCreatureanimevents.qteResult = 2;

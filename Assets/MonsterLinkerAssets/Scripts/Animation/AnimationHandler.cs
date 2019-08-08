@@ -77,7 +77,7 @@ public class AnimationHandler : MonoBehaviour
         float fallspeed = 0.3f;
 
         float firstlerp = 0.5f;
-        float secondlerp = 0.7f;
+        float secondlerp = 0.5f;
         float thirdlerp = 1.5f;
 
         float firstwait = 0.2f;
@@ -91,17 +91,22 @@ public class AnimationHandler : MonoBehaviour
             PlayerAnim.SetFloat("speed", 0.01f);
             GameStateSwitch.Instance.cameramovement.SetPositions(eCamPosition.windeath);
             GameStateSwitch.Instance.cameramovement.StartLerp(firstlerp);
-            yield return new WaitForSeconds(firstwait);
+            //yield return new WaitForSeconds(firstwait);
             EnemyAnim.SetFloat("speed", fallspeed);
             yield return new WaitForSeconds(secondwait);
             EnemyAnim.SetFloat("speed", 1f);
-            yield return new WaitForSeconds(thirdwait);
+            yield return new WaitForSeconds(thirdwait+0.2f);
+            //moment länger
             GameStateSwitch.Instance.cameramovement.SetPositions(eCamPosition.resultwinturn);
             GameStateSwitch.Instance.cameramovement.StartLerp(secondlerp);
-            yield return new WaitForSeconds(forthwait);
+            yield return new WaitForSeconds(forthwait-0.3f);
+            //moment kürzer
             PlayerAnim.SetTrigger("victory");
+            yield return new WaitForSeconds(0.5f);
+            //noch n kleiner wait
             GameStateSwitch.Instance.cameramovement.SetPositions(eCamPosition.resultwinzoom);
-            GameStateSwitch.Instance.cameramovement.StartLerp(thirdlerp);
+            GameStateSwitch.Instance.cameramovement.StartLerp(thirdlerp+1f);
+            //moment länger
 
         }
         else

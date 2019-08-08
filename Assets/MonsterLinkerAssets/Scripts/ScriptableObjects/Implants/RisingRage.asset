@@ -16,4 +16,5 @@ MonoBehaviour:
   ImplantType: 1
   RPCost: 0
   FAInput: []
-  Description: rage rising
+  Description: Passive - Gives attack bonuses for each Rage point owned at the beginning
+    of a round.
