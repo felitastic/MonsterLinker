@@ -254,7 +254,7 @@ public class GameStateSwitch : MonoBehaviour
                 arenaui.PlayerInputBar.SetActive(true);
                 arenaui.EnemyInputBar.SetActive(true);
 
-                if (implanthandler.Unleashed == eUnleashedMode.active && implanthandler.UMrounds <= 1)
+                if (implanthandler.Unleashed == eUnleashedMode.active)
                 {
 
                     StartCoroutine(GameStateSwitch.Instance.initiativecheck.UMIni());

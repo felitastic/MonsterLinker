@@ -54,6 +54,7 @@ public class ImplantHandler : MonoBehaviour
         GameStateSwitch.Instance.animationhandler.PlayerUMActivation();
         GameStateSwitch.Instance.baeffectshandler.HealPlayer(UM_oneTimeHeal_Value);
         yield return new WaitForSeconds(animationTime);
+        StartCoroutine(GameStateSwitch.Instance.turnchanger.SwitchTurn(eTurn.PlayerFirst));
     }
 
     public void UMRoundCounter()

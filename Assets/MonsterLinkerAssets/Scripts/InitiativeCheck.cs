@@ -40,13 +40,21 @@ public class InitiativeCheck : MonoBehaviour
     public IEnumerator UMIni()
     {
         arenaui.SetSpeedValues(EnemySpeed, PlayerSpeed);
-        arenaui.UM_Text.SetActive(true);
+        //arenaui.UM_Text.SetActive(true);
         arenaui.SetIniArrow("e");
         yield return new WaitForSeconds(ShowIniCheckSecs);
-        arenaui.UM_Text.SetActive(false);
-        StartCoroutine(turnchanger.SwitchTurn(eTurn.PlayerFirst));
+        //arenaui.UM_Text.SetActive(false);        
         GameStateSwitch.Instance.animationhandler.MoveToMiddle();
-        StartCoroutine(GameStateSwitch.Instance.implanthandler.UMHeal());
+        yield return new WaitForSeconds(1f);
+
+        if (GameStateSwitch.Instance.implanthandler.UMrounds == 1)
+        {
+            StartCoroutine(GameStateSwitch.Instance.implanthandler.UMHeal());
+        }
+        else
+        {
+            StartCoroutine(GameStateSwitch.Instance.turnchanger.SwitchTurn(eTurn.PlayerFirst));
+        }
     }
 
     public IEnumerator CompareSpeed()
