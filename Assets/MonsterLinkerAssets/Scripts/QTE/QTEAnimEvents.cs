@@ -17,15 +17,15 @@ public class QTEAnimEvents : MonoBehaviour
 
     public void Update()
     {
-        if (start)
-        {
-            timer += Time.deltaTime;
-        }
+        //if (start)
+        //{
+        //    timer += Time.deltaTime;
+        //}
     }
 
     public void ZStartQTE()
     {
-        start = true;
+        //start = true;
         QTEZone = eQTEZone.Fail;
         print("cur Zone: " + QTEZone);
         //print("timer:" + timer);
@@ -47,11 +47,11 @@ public class QTEAnimEvents : MonoBehaviour
 
     public void ZEndQTE()
     {
-        start = false;
+        //start = false;
         QTEZone = eQTEZone.Fail;
         StartCoroutine(qtehandler.CheckQTEZone());
         print("cur Zone: " + QTEZone);
-        print("Full length: " + timer);
-        timer = 0f;
+        //print("Full length: " + timer);
+        //timer = 0f;
     }
 }
