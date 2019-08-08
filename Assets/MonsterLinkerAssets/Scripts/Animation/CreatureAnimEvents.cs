@@ -257,6 +257,10 @@ public class CreatureAnimEvents : MonoBehaviour
         }
     }
     
+    public void UM_Heal_tempVFX()
+    {
+        GameStateSwitch.Instance.arenaui.UM_healAnim.SetTrigger("heal");
+    }
     public void SFXUnleashedMode()
     {
         SoundController.Instance.StartSFX(SoundController.SFX.unleashedMode);

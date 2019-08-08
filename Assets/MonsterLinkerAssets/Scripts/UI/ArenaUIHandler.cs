@@ -53,6 +53,7 @@ public class ArenaUIHandler : MonoBehaviour
     public Image UM_IconImage;
     public List<Sprite> BuffIcons;
     public GameObject UM_Text;
+    public Animator UM_healAnim;
 
     [Header("Super Feral Art")]
     public GameObject SFASlot;
