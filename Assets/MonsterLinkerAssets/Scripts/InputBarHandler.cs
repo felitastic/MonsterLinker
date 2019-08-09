@@ -120,13 +120,13 @@ public class InputBarHandler : MonoBehaviour
             {
                 SoundController.Instance.StartSFX(SoundController.SFX.ui_cancel);
                 arenaui.BaseAttackInfoPanel.SetActive(false);
-                arenaui.InfoButtonText.text = ("Show Info");
+                arenaui.InfoButtonText.text = ("Help!");
             }
             else
             {
                 SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
                 arenaui.BaseAttackInfoPanel.SetActive(true);
-                arenaui.InfoButtonText.text = ("Hide Info");
+                arenaui.InfoButtonText.text = ("Thanks");
             }
         }
     }
