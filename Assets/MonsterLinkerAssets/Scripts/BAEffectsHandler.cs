@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class BAEffectsHandler : MonoBehaviour
 {
-    //[Tooltip("Is it the players turn - kinda redundant -> block oder attack state?")]
-    //public bool Playerturn;
-
     public float maxPlayerHP;
     public float curPlayerHP;
     public float curPlayerRP;
@@ -45,17 +42,6 @@ public class BAEffectsHandler : MonoBehaviour
     [Tooltip("How many RP enemy gains for every hit taken")]
     public int EnemyRPgain;
 
-    //TODO shove all these to the implantshandler
-    //[Tooltip("If Rising Rage is active")]
-    //public float RisingRageModifier = 1.0f;
-    //[Header("For Rising Rage")]
-    //public float PlayerRPatAttackStart;
-    //[Tooltip("Multiplier for percentage, e.g. x2 -> 1RP gains 2Dmg")]
-    //public float RRPercentage;
-    ////Set by GameStateSwitch during Ini Check
-    //public List<Attack> curEnemyAttacks;
-    //public List<Attack> curPlayerAttacks;
-
     public void StartHpandRPValues(float playerHP, int playerRP, float enemyHP, int enemyRP, int enemyRPgain, float enemyDMGModifier)
     {
         maxPlayerHP = playerHP;
@@ -79,7 +65,6 @@ public class BAEffectsHandler : MonoBehaviour
     {
         EnduranceModifier = (float)mashCount / 100.0f;
         print("EnduranceModifier: " + EnduranceModifier);
-        //return Mathf.RoundToInt(curAttack.DMG + (curAttack.DMG * EnduranceModifier));
     }
 
     public void SetFA_QTEResultModifier(float dmgModifier)
@@ -133,8 +118,6 @@ public class BAEffectsHandler : MonoBehaviour
         }
 
         HPandRPClamp();
-        //UpdateHPandRPCounter();
-        //UpdateHPandRPbars();
     }
 
     public void HealPlayer(float curHeal)
@@ -147,7 +130,6 @@ public class BAEffectsHandler : MonoBehaviour
     {
         print("cur attack " + curAttack.name + " costs " + curAttack.RPCost);
         curPlayerRP -= curAttack.RPCost;
-        //playerstatusbar.RPTick(Mathf.RoundToInt(curPlayerRP));
     }
 
     public void EnemyPaysRP()
@@ -164,19 +146,6 @@ public class BAEffectsHandler : MonoBehaviour
         curPlayerRP += RPgained;
         curEnemyRP += curAttack.RPGain;
         TotalDmgTaken += curDMG;
-
-        //HPandRPClamp();
-
-        //arenaui.DebugPlayerDMG.text = "" + curDMG;
-
-        //StartCoroutine(arenaui.ShowDmgCounters(Mathf.RoundToInt(curDMG)));
-
-        //StartCoroutine(arenaui.ShowDmgCounters(Mathf.RoundToInt(curDMG)));
-        //GameStateSwitch.Instance.statusbarhandler.LerpPlayerHP();
-        //arenaui.SetPlayerHPandRP(Mathf.RoundToInt(curPlayerHP), Mathf.RoundToInt(curPlayerRP));
-        //arenaui.SetEnemyHPandRP(Mathf.RoundToInt(curEnemyHP), Mathf.RoundToInt(curEnemyRP));
-        //print("Player takes " + (curDMG) + " DMG\n Enemy gains " + curAttack.RPGain + " RP");
-        //print("Player HP: " + curPlayerHP + ", Player RP: " + curPlayerRP +", Enemy HP: " + curEnemyHP+", Enemy RP: " + curEnemyRP);
     }
 
     public void EnemyTakesDmg()
@@ -186,22 +155,6 @@ public class BAEffectsHandler : MonoBehaviour
         curEnemyRP += EnemyRPgain;
         curPlayerRP += RPgained;
         TotalDmgDealt += curDMG;
-
-        //HPandRPClamp();
-
-        //arenaui.DebugEnemyDMG.text = "" + curDMG;
-
-        //StartCoroutine(arenaui.ShowDmgCounters(Mathf.RoundToInt(curDMG)));
-
-        //print("dealing dmg to enemy");
-        //curEnemyHP -= curDMG;
-        //curPlayerHP += curAttack.HPGain;
-        //StartCoroutine(arenaui.ShowDmgCounters(Mathf.RoundToInt(curDMG)));
-        //TotalDmgDealt += curDMG;
-        //arenaui.SetPlayerHPandRP(Mathf.RoundToInt(curPlayerHP), Mathf.RoundToInt(curPlayerRP));
-        //arenaui.SetEnemyHPandRP(Mathf.RoundToInt(curEnemyHP), Mathf.RoundToInt(curEnemyRP));
-        //print("Enemy takes " + (curDMG) + " DMG\n Player gains " + curAttack.RPGain + " RP");
-        //print("Player HP: " + curPlayerHP + ", Player RP: " + curPlayerRP + ", Enemy HP: " + curEnemyHP+", Enemy RP: " + curEnemyRP);
     }
 
     //Make sure HP and RP cannot go over their max value
@@ -252,7 +205,6 @@ public class BAEffectsHandler : MonoBehaviour
 
     public void ShowTotalDmg(float totaldmg)
     {
-        //TODO show total damge dealt and taken at the end of the round
         print("total damage this round: " + totaldmg);
     }
 
@@ -321,73 +273,4 @@ public class BAEffectsHandler : MonoBehaviour
         GameStateSwitch.Instance.SwitchState(eGameState.Result);
         print("fight state: " + GameStateSwitch.Instance.FightResult);
     }
-
-    //    if (Mathf.Round(hitpoints) <= 0)
-    //{
-    //    //TODO: set result screen to open up
-    //    switch (gameState)
-    //    {
-    //        case eGameState.QTEAttack:
-    //            print("enemy died");
-    //            GameStateSwitch.Instance.FightResult = eFightResult.Victory;
-
-    //            break;
-    //        case eGameState.QTEBlock:
-    //            print("player died");
-    //            GameStateSwitch.Instance.FightResult = eFightResult.Defeat;
-
-    //            break;
-    //        default:
-    //            Debug.LogError("I dunno who died, check BAEffectsHandler");
-    //            GameStateSwitch.Instance.FightResult = eFightResult.None;
-    //            break;
-    //    }
-
-    //    GameStateSwitch.Instance.SwitchState(eGameState.Result);
-    //}
-    //}
-    //HACK possible needs to be rewritten later when FAs are implemented
-    //public void GetAttackLists(List<Attack> Playerlist, List<Attack> Enemylist)
-    //{
-    //    curPlayerAttacks = Playerlist;
-    //    //foreach (Attack attack in Playerlist)
-    //    //{
-    //    //    curPlayerAttacks.Add(attack);
-    //    //}
-
-    //    foreach (Attack attack in Enemylist)
-    //    {
-    //        curEnemyAttacks.Add(attack);
-    //    }
-    //}
-
-    //    public void DMGModification(float dmgModifier, int RPgained)
-    //{
-    //    QTEResultModifier = dmgModifier;        
-
-    //    if (Mathf.RoundToInt(EnduranceModifier) <= 0)
-    //        EnduranceModifier = Mathf.Round(1);
-
-    //    if (GameStateSwitch.Instance.Implant == eImplant.RisingRage)
-    //    {            
-    //        RisingRageModifier = 1 + (PlayerRPatAttackStart * (RRPercentage / 100));
-    //        print("rising rage active: x" + RisingRageModifier + " dmg");
-    //    }
-    //    else
-    //        RisingRageModifier = 1;
-
-    //    switch (GameStateSwitch.Instance.GameState)
-    //    {
-    //        case eGameState.QTEAttack:
-    //            float curDMG = ((curAttack.DMG * RisingRageModifier) * EnduranceModifier) * QTEResultModifier;
-    //            EnemyTakesDmg(Mathf.Round(curDMG));
-    //            break;
-    //        case eGameState.QTEBlock:
-    //            curDMG = curAttack.DMG * QTEResultModifier;
-    //            PlayerTakesDmg(Mathf.Round(curDMG), RPgained);
-    //            break;
-    //        default:
-    //            break;
-    //    }        
-    //}
 }

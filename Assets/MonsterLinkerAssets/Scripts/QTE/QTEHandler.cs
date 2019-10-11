@@ -481,7 +481,7 @@ public class QTEHandler : MonoBehaviour
                 break;
             case eQTEState.Running:
                 print("kuhteheh running");
-                QTEInput = eQTEInput.QTE;                
+                //QTEInput = eQTEInput.QTE;                
                 QTEButton.SetActive(true);
                 curQTEAnim.SetTrigger(AnimString);
                 break;

@@ -121,7 +121,7 @@ public class TitleMenu : MonoBehaviour
         switch (slotNo)
         {
             case 1:
-                preloadscript.curSave = preloadscript.Save1;
+                preloadscript.curSave = preloadscript.Save1;                
                 break;
             case 2:
                 preloadscript.curSave = preloadscript.Save2;
@@ -133,7 +133,7 @@ public class TitleMenu : MonoBehaviour
                 Debug.LogError("could not find save, loading default 1");
                 preloadscript.curSave = preloadscript.Save1;
                 break;
-        }
+        }        
 
         SaveLoadWindow.SetActive(false);
         if (preloadscript.curSave.Empty)

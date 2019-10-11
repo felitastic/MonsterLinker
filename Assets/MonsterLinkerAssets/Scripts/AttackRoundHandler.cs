@@ -27,6 +27,7 @@ public class AttackRoundHandler : MonoBehaviour
         curAttack = curAttackList[curRound-1];
 
         SetEffectValues();
+        baeffectshandler.deathCheck = true;
         StartAttack();
     }   
     

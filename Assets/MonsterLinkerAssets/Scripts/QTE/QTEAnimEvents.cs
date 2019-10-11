@@ -27,6 +27,7 @@ public class QTEAnimEvents : MonoBehaviour
     {
         //start = true;
         QTEZone = eQTEZone.Fail;
+        qtehandler.QTEInput = eQTEInput.QTE;
         print("cur Zone: " + QTEZone);
         //print("timer:" + timer);
     }
@@ -51,6 +52,7 @@ public class QTEAnimEvents : MonoBehaviour
         QTEZone = eQTEZone.Fail;
         StartCoroutine(qtehandler.CheckQTEZone());
         print("cur Zone: " + QTEZone);
+        qtehandler.QTEInput = eQTEInput.None;
         //print("Full length: " + timer);
         //timer = 0f;
     }
