@@ -15,7 +15,7 @@ MonoBehaviour:
   Empty: 0
   LinkerName: lul
   MonsterName: Netherclaw
-  Arena: 3
+  Arena: 1
   Tutorial: 7
   maxBaseAttackInputSlots: 5
   FALoadout:
