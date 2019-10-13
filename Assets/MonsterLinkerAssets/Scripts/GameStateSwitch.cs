@@ -369,10 +369,22 @@ public class GameStateSwitch : MonoBehaviour
                         break;
                     case eFightResult.Victory:
                         //cameramovement.SetCamPosition(eCamPosition.resultwinturn);
-                        arenaui.NextButton.SetActive(true);
-                        arenaui.RetryButton.SetActive(false);
-                        arenaui.ResultText.text = "WINNER";
-                        preloadscript.curSave.Arena += 1;
+                        if (preloadscript.curSave.Arena != 5)
+                        {
+                            arenaui.NextButton.SetActive(true);
+                            arenaui.RetryButton.SetActive(false);
+                            arenaui.ResultText.text = "WINNER";
+                            preloadscript.curSave.Arena += 1;
+                            arenaui.HomeButton.SetActive(true);
+                        }
+                        else
+                        {
+                            arenaui.NextButton.SetActive(false);
+                            arenaui.RetryButton.SetActive(false);
+                            arenaui.ResultText.text = "CHAMPION";
+                            preloadscript.curSave.Arena = 1;
+                            StartCoroutine(ShowEndDemo());
+                        }
 
                         break;
                     case eFightResult.Defeat:
@@ -380,14 +392,21 @@ public class GameStateSwitch : MonoBehaviour
                         arenaui.RetryButton.SetActive(true);
                         arenaui.NextButton.SetActive(false);
                         arenaui.ResultText.text = "LOSER";
+                        arenaui.HomeButton.SetActive(true);
                         break;
                 }
-                arenaui.HomeButton.SetActive(true);
                 arenaui.ResultPanel.SetActive(true);
                 break;
             case eGameState.Blacklist:
                 break;
         }
+    }
+
+    public IEnumerator ShowEndDemo()
+    {
+        yield return new WaitForSeconds(2.75f);
+        arenaui.HomeButton.SetActive(true);
+        arenaui.EndDemoText.SetActive(true);
     }
 
     public void FirstSetup()

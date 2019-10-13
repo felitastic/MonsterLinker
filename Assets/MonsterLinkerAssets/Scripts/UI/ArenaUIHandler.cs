@@ -20,6 +20,7 @@ public class ArenaUIHandler : MonoBehaviour
     public GameObject StatusBars;
     public GameObject InitiativeCheck;
     public GameObject QTEPanel;
+    public GameObject EndDemoText;
     public List<Button> BAInputButtons = new List<Button>(3);
 
     [Header("Health and Rage")]
