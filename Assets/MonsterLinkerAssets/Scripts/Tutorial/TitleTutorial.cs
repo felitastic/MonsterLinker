@@ -43,10 +43,6 @@ public class TitleTutorial : MonoBehaviour
     //triggered by player input via continue
     public void NextLine()
     {
-        //if (lineInProgress == 3)
-        //{
-        //    EndDialogue(false);
-        //}
         SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
         lineInProgress += 1;
         StartCoroutine(ChangeDialogue());
@@ -110,93 +106,4 @@ public class TitleTutorial : MonoBehaviour
         yield return new WaitForSeconds(0.01f);
         qte.WriteDialogue(lines[lineInProgress]);        
     }
-
-    //public IEnumerator ChangePosition(Vector2 newPos)
-    //{
-    //    tutorialchan.QTEchanAnim.SetTrigger("fadeout");
-    //    yield return new WaitForSeconds(0.3f);
-    //    tutorialchan.QTEposition.anchoredPosition = newPos;        
-    //    tutorialchan.QTEchanAnim.SetTrigger("fadein");
-    //}
-
-    //public IEnumerator TriggerDialogue()
-    //{
-    //    linesdone += 1;
-    //    ChangeDialogue();
-    //    tutorialchan.ContinueButton.SetActive(false);
-
-    //    switch (linesdone)
-    //    {            
-    //        case 0:
-    //            tutorialchan.TutChan_Switch(eQTEBodyLanguage.pointUp, eQTEFacialExpression.happy);
-    //            tutorialchan.QTEposition.anchoredPosition = new Vector2(700, 0);
-    //            tutorialchan.QTEchanAnim.SetTrigger("fadein"); 
-    //            break;
-    //        case 1:
-    //            StartCoroutine(ChangePosition(new Vector2(-200, 0)));
-    //            tutorialchan.TutChan_Switch(eQTEBodyLanguage.pointUp, eQTEFacialExpression.shocked);    
-
-    //            tutorialchan.QTEchanAnim.SetTrigger("fadeout");
-    //            yield return new WaitForSeconds(0.25f);
-    //            tutorialchan.QTEposition.anchoredPosition = new Vector2(-500, 0);
-    //            tutorialchan.QTEchanAnim.SetTrigger("fadein");
-    //            yield return new WaitForSeconds(0.25f);                
-    //            break;
-    //        case 2:
-    //            tutorialchan.QTEchanAnim.SetTrigger("fadeout");
-    //            yield return new WaitForSeconds(0.25f);
-    //            tutorialchan.TutChan_Switch(eQTEBodyLanguage.pointUp, eQTEFacialExpression.sad);
-    //            tutorialchan.QTEposition.anchoredPosition = new Vector2(-800, 170);
-    //            tutorialchan.QTEchanAnim.SetTrigger("fadein");
-    //            yield return new WaitForSeconds(0.25f);
-    //            AllowNameInput();
-    //            break;
-    //        case 3:
-    //            tutorialchan.QTEchanAnim.SetTrigger("fadeout");
-    //            yield return new WaitForSeconds(0.25f);
-    //            tutorialchan.TutChan_Switch(eQTEBodyLanguage.pointUp, eQTEFacialExpression.happy);
-    //            tutorialchan.QTEposition.anchoredPosition = new Vector2(0, 0);
-    //            tutorialchan.QTEchanAnim.SetTrigger("fadein");
-    //            yield return new WaitForSeconds(0.25f);
-    //            break;
-    //        case 4:
-    //            tutorialchan.QTEchanAnim.SetTrigger("fadeout");
-    //            yield return new WaitForSeconds(0.25f);
-    //            tutorialchan.TutChan_Switch(eQTEBodyLanguage.pointUp, eQTEFacialExpression.sad);
-    //            tutorialchan.QTEposition.anchoredPosition = new Vector2(-800, 170);
-    //            tutorialchan.QTEchanAnim.SetTrigger("fadein");
-    //            yield return new WaitForSeconds(0.25f);
-    //            break;
-    //        case 5:
-    //            tutorialchan.QTEchanAnim.SetTrigger("fadeout");
-    //            yield return new WaitForSeconds(0.25f);
-    //            SceneManager.LoadScene(2);
-    //            break;
-    //        case 7:
-    //            tutorialchan.TutChan_Switch(eQTEBodyLanguage.pointUp, eQTEFacialExpression.happy);
-    //            tutorialchan.QTEposition.anchoredPosition = new Vector2(0, 0);
-    //            tutorialchan.QTEchanAnim.SetTrigger("fadein");
-    //            break;
-    //            case 8:
-    //            tutorialchan.QTEchanAnim.SetTrigger("fadeout");
-    //            yield return new WaitForSeconds(0.25f);
-    //            SceneManager.LoadScene(2);
-    //            break;
-    //        default:
-    //            tutorialchan.TutChan_Switch(eQTEBodyLanguage.pointUp, eQTEFacialExpression.shocked);
-    //            break;
-    //    }
-    //    tutorialchan.ContinueButton.SetActive(true);
-    //}
-
-    //public void NamesPromptNextLine()
-    //{
-    //    StartCoroutine(TriggerDialogue());
-    //}
-
-    //public void AllowNameInput()
-    //{
-    //    tutorialchan.ContinueButton.SetActive(false);
-    //    FindObjectOfType<TitleMenu>().InputPlayerNameWindow.SetActive(true);
-    //}
 }

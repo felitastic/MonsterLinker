@@ -21,7 +21,6 @@ public class TutorialChan : MonoBehaviour
     //For the Title menu
     public Vector2 downLeft_title = new Vector2(800, -350);
     public Vector2 downRight_title = new Vector2(820, 20);
-    //public Vector2 downRight_title = new Vector2(820, -350);
     public Vector2 center_title = new Vector2(35, 125);
 
     //For the Main menu

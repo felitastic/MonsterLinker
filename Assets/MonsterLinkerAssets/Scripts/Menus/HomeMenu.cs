@@ -21,7 +21,7 @@ public class HomeMenu : MonoBehaviour
 
     [Header("For the credits lerp")]
     [Tooltip("Regulates how fast the credits roll, higher no = slower")]
-    public float lerpTime = 5f;
+    public float lerpTime = 20f;
     float curLerpTime;
     Vector3 StartPos;
     Vector3 EndPos;
@@ -93,7 +93,7 @@ public class HomeMenu : MonoBehaviour
         SoundController.Instance.StartSFX(SoundController.SFX.ui_select);
         CreditsCancelButton.Select();
         StartPos = CreditTexts.GetComponent<RectTransform>().anchoredPosition;
-        EndPos = StartPos + new Vector3(0, 1410, 0);
+        EndPos = StartPos + new Vector3(0, 3400, 0);
         CreditPanel.SetActive(true);
         lerping = true;
     }
